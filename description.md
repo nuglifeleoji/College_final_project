@@ -1,0 +1,16 @@
+Title: An Interactive Platform for The Three-Body Problem
+Leo, Michael
+Main Intervention. Our project asks: how can interactive, AI-driven storytelling transform Liu Cixin’s The Three-Body Problem by allowing readers to enter the novel as participants rather than only observers? For now, our platform will focus only on the first book of the trilogy. Users will create or select their own character and enter the world of The Three-Body Problem, interacting with major characters and historical moments from the novel. Inspired by the VR game inside the book, our project turns the novel itself into an interactive narrative space where readers can investigate the Trisolaran mystery, encounter the Earth-Trisolaris Organization, and make choices that affect their path through the story.
+Medium. The project will take the form of an interactive website combining LLM-powered character agents with a structured “World Book” system. Users can choose a character to start with and put whatever plot into the novel. There will also be external timeline / countdown and major events happening, so each decision made by the user will affect the final result. The system will track user decisions, advance the story through dialogue-based plot progression, and allow users to reach different endings or roll back choices to explore alternate outcomes.
+Course Influences. The primary influence is Liu Cixin's The Three-Body Problem trilogy itself. We have read all of the series, and they are not just stories, they demand deep reader thoughts and participation. For example, Dark Forest theory, the Wallfacer Project, and the Sword dilemma, all trigger the reader’s thoughts: what should we do in those positions? These questions led us to our interactive medium. Also we want to extend the class discussions of different ETO factions, the adventists, the redemptionists, and the survivors to let the users feel the tensions through interactions on their own rather than pure linear reading. 
+Outside Inspiration. Our inspiration also comes from the Chinese content creator Danini  https://space.bilibili.com/35722941, who develops interactive stories in which users choose different actions and reach different endings based on their decisions. We are especially interested in the ability to go back in time, change earlier choices, and experience alternate narrative paths.
+Execution. Leo will lead frontend development using Next.js and React, along with UX design and character-sheet design. Michael will lead backend architecture, LLM integration through the Claude API, prompt engineering for each character’s voice, and the World Book retrieval system. Both of us will co-author the plot trees, character arcs, and final artist’s statement. We will deliver a live demo that walks through one complete interaction path within the world of the first novel.
+Timeline.
+Week 5: Proposal submitted; character research and first-book plot-tree outline begin.
+Week 6: Backend scaffolding; World Book schema; first character prompts, including Ye Wenjie, Wang Miao, Shi Qiang, and Mike Evans.
+Week 7: Frontend prototype; LLM integration and testing.
+Week 8: Full first-book character roster; branching engine; rollback feature; critical revisions.
+Week 9: Integration, user testing, polish, and final presentation.
+
+
+

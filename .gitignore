@@ -1,0 +1,50 @@
+# ---- Secrets / env ----
+.env
+.env.*
+!.env.example
+
+# ---- Dependencies ----
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# ---- Next.js build output ----
+.next/
+out/
+build/
+dist/
+
+# ---- TypeScript ----
+*.tsbuildinfo
+next-env.d.ts
+
+# ---- Testing / coverage ----
+coverage/
+
+# ---- Logs ----
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# ---- Vercel ----
+.vercel
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Editors / IDEs ----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ---- Claude Code (keep shared config, ignore personal/local) ----
+.claude/settings.local.json
