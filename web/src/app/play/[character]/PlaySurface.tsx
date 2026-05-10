@@ -4,7 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { CHARACTERS, getCharacter, type Character } from "@/lib/characters";
+import { History, UsersRound } from "lucide-react";
+import { getCharacter, type Character } from "@/lib/characters";
 import { appendDecision } from "@/lib/plot-tree";
 import {
   type Turn,
@@ -20,8 +21,19 @@ import {
   checkEndingTrigger,
   type Alignment,
 } from "@/lib/factions";
-import Typewriter from "@/components/Typewriter";
+import {
+  compactedMessages,
+  maybeCompactContext,
+  type ContextCompact,
+} from "@/lib/context-compact";
+import {
+  recordCharacterMemory,
+  recordPlayerTurn,
+  toSharedMemorySnapshot,
+  type ForcedTimelineEvent,
+} from "@/lib/shared-memory";
 import AlignmentMeter from "@/components/AlignmentMeter";
+import TurnRows from "./TurnRows";
 
 type CharacterEvent =
   | null
@@ -63,6 +75,10 @@ function freshTurns(character: Character): Turn[] {
   ];
 }
 
+function timelineTurn(event: ForcedTimelineEvent): Turn {
+  return { kind: "timeline", event };
+}
+
 export default function PlaySurface({ character }: { character: Character }) {
   const router = useRouter();
   const [turns, setTurns] = useState<Turn[]>(() => freshTurns(character));
@@ -79,6 +95,9 @@ export default function PlaySurface({ character }: { character: Character }) {
   const [activeChoiceSet, setActiveChoiceSet] = useState<string[]>(
     character.openingScene.starterChoices
   );
+  const [contextCompact, setContextCompact] = useState<
+    ContextCompact | undefined
+  >(undefined);
   const [savedAt, setSavedAt] = useState<number | null>(null);
 
   const active = useMemo(() => getCharacter(activeId) ?? character, [activeId, character]);
@@ -107,9 +126,9 @@ export default function PlaySurface({ character }: { character: Character }) {
     if (!hydrated) return;
     const hasUserTurn = turns.some((t) => t.kind === "user");
     if (!hasUserTurn) return;
-    saveSession(character.id, turns, alignment, activeId);
+    saveSession(character.id, turns, alignment, activeId, contextCompact);
     setSavedAt(Date.now());
-  }, [turns, alignment, activeId, character.id, hydrated]);
+  }, [turns, alignment, activeId, character.id, contextCompact, hydrated]);
 
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
@@ -119,24 +138,8 @@ export default function PlaySurface({ character }: { character: Character }) {
   }, [turns, loading]);
 
   const apiMessages = useMemo(() => {
-    const msgs: { role: "user" | "assistant"; content: string }[] = [];
-    for (const t of turns) {
-      if (t.kind === "char") {
-        msgs.push({
-          role: "assistant",
-          content: JSON.stringify({
-            speech: t.speech,
-            stage: t.stage,
-            choices: [],
-            event: null,
-          }),
-        });
-      } else if (t.kind === "user") {
-        msgs.push({ role: "user", content: t.text });
-      }
-    }
-    return msgs;
-  }, [turns]);
+    return compactedMessages(turns, contextCompact);
+  }, [turns, contextCompact]);
 
   const resumeWith = (resume: boolean) => {
     if (resume) {
@@ -144,6 +147,7 @@ export default function PlaySurface({ character }: { character: Character }) {
       if (saved) {
         setTurns(saved.turns);
         setAlignment(saved.alignment);
+        setContextCompact(saved.contextCompact);
         setActiveId(saved.activeCharacterId ?? saved.characterId);
         const lastChoices = [...saved.turns]
           .reverse()
@@ -156,6 +160,7 @@ export default function PlaySurface({ character }: { character: Character }) {
       deleteSession(character.id);
       setTurns(freshTurns(character));
       setAlignment({ ...ZERO_ALIGNMENT });
+      setContextCompact(undefined);
       setActiveId(character.id);
       setActiveChoiceSet(character.openingScene.starterChoices);
     }
@@ -168,7 +173,17 @@ export default function PlaySurface({ character }: { character: Character }) {
     setLoading(true);
     setDraft("");
 
-    setTurns((prev) => [...prev.filter((t) => t.kind !== "choices"), { kind: "user", text }]);
+    const sharedTurn = recordPlayerTurn({
+      characterId: character.id,
+      activeCharacterId: activeId,
+      text,
+    });
+    const preReplyTurns: Turn[] = [
+      ...turns.filter((t) => t.kind !== "choices"),
+      { kind: "user", text },
+      ...(sharedTurn.forcedEvent ? [timelineTurn(sharedTurn.forcedEvent)] : []),
+    ];
+    setTurns(preReplyTurns);
 
     try {
       const res = await fetch("/api/chat", {
@@ -178,6 +193,10 @@ export default function PlaySurface({ character }: { character: Character }) {
           characterId: character.id,
           activeCharacterId: activeId,
           messages: [...apiMessages, { role: "user", content: text }],
+          sharedMemory: toSharedMemorySnapshot(sharedTurn.memory),
+          forcedTimelineEvent: sharedTurn.forcedEvent,
+          contextCompact,
+          playerTurnCount: preReplyTurns.filter((t) => t.kind === "user").length,
         }),
       });
       const data = (await res.json()) as ApiReply;
@@ -226,9 +245,19 @@ export default function PlaySurface({ character }: { character: Character }) {
       });
       newTurns.push({ kind: "choices", choices: data.choices, id: uid() });
 
-      setTurns((prev) => [...prev, ...newTurns]);
+      const fullTurns = [...preReplyTurns, ...newTurns];
+      const nextCompact = maybeCompactContext(fullTurns, contextCompact);
+      setTurns(fullTurns);
+      setContextCompact(nextCompact);
       setActiveChoiceSet(data.choices);
       setActiveId(nextActiveId);
+      recordCharacterMemory({
+        memory: sharedTurn.memory,
+        characterId: character.id,
+        activeCharacterId: nextActiveId,
+        text: data.speech,
+        globalTurn: sharedTurn.globalTurn,
+      });
 
       appendDecision({
         id: uid(),
@@ -237,20 +266,19 @@ export default function PlaySurface({ character }: { character: Character }) {
         prompt: "(your line)",
         chosen: text,
         alternatives: fromChoices.filter((c) => c !== text),
-        timestamp: Date.now(),
+        timestamp: sharedTurn.timestamp,
       });
 
       // Ending check (only on the perspective character's saves)
-      const userTurns = turns.filter((t) => t.kind === "user").length + 1; // +1 because we just added one
+      const userTurns = preReplyTurns.filter((t) => t.kind === "user").length;
       const trigger = checkEndingTrigger(nextAlignment, userTurns);
       if (trigger) {
-        const finalSession = loadSession(character.id);
-        const finalTurns = finalSession ? finalSession.turns : turns;
         saveSession(
           character.id,
-          [...finalTurns, ...newTurns, { kind: "user", text }],
+          fullTurns,
           nextAlignment,
           nextActiveId,
+          nextCompact,
           {
             axis: trigger.axis,
             turn: trigger.reachedAt,
@@ -263,8 +291,8 @@ export default function PlaySurface({ character }: { character: Character }) {
         }, 1800);
       }
     } catch (err) {
-      setTurns((prev) => [
-        ...prev,
+      setTurns([
+        ...preReplyTurns,
         {
           kind: "char",
           characterId: activeId,
@@ -371,7 +399,7 @@ export default function PlaySurface({ character }: { character: Character }) {
               {active.role} · {active.era}
             </div>
             <div className="mt-5 hairline" />
-            <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[11px] tracking-[0.24em] uppercase">
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[11px] tracking-[0.24em] uppercase">
               <span className="text-eto-glow">{character.openingScene.chapter}</span>
               <span className="text-mute">
                 Turn <span className="text-parchment tabular-nums">{String(userTurnCount).padStart(2, "0")}</span>
@@ -380,14 +408,30 @@ export default function PlaySurface({ character }: { character: Character }) {
                 <span className={`w-1.5 h-1.5 rounded-full ${savedAt ? "bg-amber shadow-[0_0_8px_rgba(212,168,87,0.9)]" : "bg-mute"}`} />
                 {savedAt ? "Saved" : "Not saved"}
               </span>
+              {contextCompact && (
+                <span className="text-mute">
+                  Context compacted · turn{" "}
+                  <span className="text-parchment tabular-nums">
+                    {String(contextCompact.compactedThroughTurn).padStart(2, "0")}
+                  </span>
+                </span>
+              )}
               <Link href={`/story/${character.id}`} className="text-mute hover:text-amber transition-colors">
                 ▭ Read as story
               </Link>
-              <Link href="/decisions" className="text-mute hover:text-amber transition-colors">
-                ⤺ Rewind
+              <Link
+                href="/decisions"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-line text-mute hover:border-amber/60 hover:text-amber transition-colors"
+              >
+                <History size={14} strokeWidth={1.8} aria-hidden />
+                Rewind
               </Link>
-              <Link href="/characters" className="text-mute hover:text-amber transition-colors ml-auto">
-                Switch character →
+              <Link
+                href="/characters"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 border border-eto/60 text-eto-glow hover:border-eto-glow hover:bg-eto/10 transition-colors md:ml-auto"
+              >
+                <UsersRound size={14} strokeWidth={1.8} aria-hidden />
+                Switch
               </Link>
             </div>
             <div className="mt-5">
@@ -400,164 +444,13 @@ export default function PlaySurface({ character }: { character: Character }) {
       {/* Conversation */}
       <section className="mx-auto max-w-4xl px-6 lg:px-10 py-12">
         <div ref={scrollerRef} className="space-y-7 max-h-[60vh] overflow-y-auto pr-3">
-          <AnimatePresence initial={false}>
-            {turns.map((t, idx) => {
-              if (t.kind === "scene") {
-                return (
-                  <motion.div
-                    key={`scene-${idx}`}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className="border border-line bg-panel/40 backdrop-blur-sm p-5"
-                  >
-                    <div className="font-mono text-[10px] tracking-[0.36em] uppercase text-amber-soft">
-                      Scene · {t.chapter}
-                    </div>
-                    <p className="mt-2 text-parchment-dim font-display italic leading-relaxed">
-                      {t.setting}
-                    </p>
-                  </motion.div>
-                );
-              }
-              if (t.kind === "guest_enter") {
-                const g = getCharacter(t.characterId);
-                if (!g) return null;
-                return (
-                  <motion.div
-                    key={`ge-${idx}`}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="border border-eto/40 bg-eto/5 p-4 flex items-center gap-3"
-                  >
-                    <div className={`shrink-0 w-10 h-10 border border-line bg-gradient-to-br ${g.portraitGradient} flex items-center justify-center font-display text-xl text-parchment/80`}>
-                      {g.glyph}
-                    </div>
-                    <div>
-                      <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-eto-glow">
-                        {g.name} enters
-                      </div>
-                      <div className="font-display italic text-parchment-dim text-sm">
-                        {t.reason}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              if (t.kind === "guest_exit") {
-                const g = getCharacter(t.characterId);
-                return (
-                  <motion.div
-                    key={`gx-${idx}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4 }}
-                    className="border border-line/60 bg-panel/30 p-3 text-center font-display italic text-parchment-dim"
-                  >
-                    {g?.name ?? "They"} steps out · {t.reason}
-                  </motion.div>
-                );
-              }
-              if (t.kind === "char") {
-                const charDef =
-                  CHARACTERS.find((c) => c.id === t.characterId) ?? character;
-                const isLast =
-                  idx === turns.length - 1 ||
-                  (idx === turns.length - 2 && turns[turns.length - 1].kind === "choices");
-                return (
-                  <motion.div
-                    key={t.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35 }}
-                    className="flex items-start gap-4"
-                  >
-                    <div className={`shrink-0 w-12 h-12 border border-line bg-gradient-to-br ${charDef.portraitGradient} flex items-center justify-center font-display text-2xl text-parchment/80`}>
-                      {charDef.glyph}
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber/80">
-                        {charDef.name} · <span className="text-mute italic normal-case tracking-normal">{t.stage}</span>
-                      </div>
-                      <div className="mt-2 font-display text-xl text-parchment leading-relaxed">
-                        {isLast ? <Typewriter text={t.speech} speed={14} /> : t.speech}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              if (t.kind === "user") {
-                return (
-                  <motion.div
-                    key={`u-${idx}`}
-                    initial={{ opacity: 0, x: 8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex items-start gap-4 flex-row-reverse"
-                  >
-                    <div className="shrink-0 w-12 h-12 border border-eto/60 bg-eto/10 flex items-center justify-center font-mono text-[10px] uppercase tracking-[0.24em] text-eto-glow">
-                      You
-                    </div>
-                    <div className="flex-1 max-w-[80%]">
-                      <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-eto-glow text-right">
-                        Your line
-                      </div>
-                      <div className="mt-2 px-4 py-3 border border-eto/40 bg-eto/5 text-parchment text-right leading-relaxed">
-                        {t.text}
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              if (t.kind === "choices") {
-                return (
-                  <motion.div
-                    key={t.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: 0.15 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-3"
-                  >
-                    {t.choices.map((c) => (
-                      <button
-                        key={c}
-                        disabled={loading}
-                        onClick={() => send(c, t.choices)}
-                        className="group text-left border border-line bg-panel/40 hover:border-eto/60 hover:bg-eto/5 transition-colors p-4 disabled:opacity-50"
-                      >
-                        <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-mute group-hover:text-eto-glow">
-                          Option
-                        </div>
-                        <div className="mt-2 font-display text-base text-parchment leading-snug">
-                          {c}
-                        </div>
-                      </button>
-                    ))}
-                  </motion.div>
-                );
-              }
-              return null;
-            })}
-            {loading && (
-              <motion.div
-                key="loading"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex items-center gap-3 text-parchment-dim"
-              >
-                <span className="dot-pulse">
-                  <span />
-                  <span />
-                  <span />
-                </span>
-                <span className="font-mono text-[11px] tracking-[0.28em] uppercase text-mute">
-                  {active.name} is composing a reply...
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          <TurnRows
+            turns={turns}
+            loading={loading}
+            activeName={active.name}
+            character={character}
+            onChoice={send}
+          />
         </div>
 
         <form

@@ -7,6 +7,12 @@ import {
   ZERO_ALIGNMENT,
   type Alignment,
 } from "@/lib/factions";
+import {
+  buildSharedMemoryPrompt,
+  type ForcedTimelineEvent,
+  type SharedMemorySnapshot,
+} from "@/lib/shared-memory";
+import { buildCompactPrompt, type ContextCompact } from "@/lib/context-compact";
 
 export const runtime = "nodejs";
 
@@ -21,6 +27,13 @@ type ChatRequest = {
   // The currently active speaker (might be a guest).
   activeCharacterId?: string;
   messages: ChatMessage[];
+  // Cross-character continuity stored by the browser.
+  sharedMemory?: SharedMemorySnapshot;
+  // Timeline events are forced by global player-turn cadence.
+  forcedTimelineEvent?: ForcedTimelineEvent | null;
+  // Auto-generated every 5 player turns; does not count as a turn.
+  contextCompact?: ContextCompact;
+  playerTurnCount?: number;
 };
 
 type CharacterEvent =
@@ -132,9 +145,16 @@ function parseCharacterReply(
   };
 }
 
-function mockReply(name: string, lastUser: string): CharacterReply {
+function mockReply(
+  name: string,
+  lastUser: string,
+  forcedEvent?: ForcedTimelineEvent | null
+): CharacterReply {
+  const forcedNote = forcedEvent
+    ? ` A forced timeline event also fired: ${forcedEvent.date} — ${forcedEvent.title}.`
+    : "";
   return {
-    speech: `[${name}] You said: "${lastUser.slice(0, 60)}". This is a mock reply because no ANTHROPIC_API_KEY is configured. Set it in .env.local and restart to talk to me for real.`,
+    speech: `[${name}] You said: "${lastUser.slice(0, 60)}".${forcedNote} This is a mock reply because no ANTHROPIC_API_KEY is configured. Set it in .env.local and restart to talk to me for real.`,
     stage: `${name} watches you steadily, waiting for the credentials to come online.`,
     choices: [
       "Open .env.local and set ANTHROPIC_API_KEY",
@@ -172,7 +192,9 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    return Response.json(mockReply(active.name, lastUser));
+    return Response.json(
+      mockReply(active.name, lastUser, body.forcedTimelineEvent)
+    );
   }
 
   const client = new Anthropic({ apiKey });
@@ -192,9 +214,29 @@ export async function POST(req: Request) {
     },
     {
       type: "text" as const,
-      text: `Opening scene context: ${active.openingScene.setting}`,
+      text: buildSharedMemoryPrompt(body.sharedMemory),
+    },
+    {
+      type: "text" as const,
+      text: buildCompactPrompt(body.contextCompact),
+    },
+    {
+      type: "text" as const,
+      text: `Opening scene context: ${active.openingScene.setting}
+
+Turn state:
+- Global player turn: ${body.sharedMemory?.globalTurn ?? "unknown"}
+- This character conversation turn: ${body.playerTurnCount ?? "unknown"}
+- A context compaction occurs every 5 player turns and is not itself a story turn.`,
     },
   ];
+
+  if (body.forcedTimelineEvent) {
+    systemBlocks.push({
+      type: "text" as const,
+      text: `A forced timeline event has just occurred on this player turn. You must let it affect this reply while staying in character. Event: ${body.forcedTimelineEvent.date} · ${body.forcedTimelineEvent.title}. ${body.forcedTimelineEvent.detail}`,
+    });
+  }
 
   // Seed an opening turn for empty conversations
   const seeded =

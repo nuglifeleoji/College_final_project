@@ -15,6 +15,10 @@ import {
   lastCharLine,
   type SavedSession,
 } from "@/lib/sessions";
+import {
+  clearSharedMemory,
+  rewindSharedMemoryBefore,
+} from "@/lib/shared-memory";
 import { CHARACTERS, getCharacter } from "@/lib/characters";
 import {
   AXIS_COLOR,
@@ -50,17 +54,20 @@ export default function DecisionsView() {
 
   const onRewind = (id: string) => {
     if (typeof window === "undefined") return;
+    const decision = decisions.find((d) => d.id === id);
     const ok = window.confirm(
       "Rewind to this point? Everything after this decision will be erased from the timeline. (Your characters' canonical knowledge stays the same.)"
     );
     if (!ok) return;
     rewindTo(id);
+    if (decision) rewindSharedMemoryBefore(decision.timestamp);
     refresh();
   };
 
   const onClearDecisions = () => {
     if (!window.confirm("Erase the entire decision history?")) return;
     clearDecisions();
+    clearSharedMemory();
     refresh();
   };
 

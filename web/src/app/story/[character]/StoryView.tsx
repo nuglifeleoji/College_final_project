@@ -78,6 +78,21 @@ export default function StoryView({ character }: { character: Character }) {
                   </div>
                 );
               }
+              if (t.kind === "timeline") {
+                return (
+                  <div key={`tl-${i}`} className="my-10 text-center">
+                    <div className="font-mono text-[10px] tracking-[0.36em] uppercase text-amber">
+                      ⸻ Forced timeline · Turn {t.event.triggeredAtTurn} ⸻
+                    </div>
+                    <h3 className="mt-3 font-display text-2xl text-parchment">
+                      {t.event.date} · {t.event.title}
+                    </h3>
+                    <p className="mt-2 italic text-parchment-dim text-base leading-relaxed max-w-2xl mx-auto">
+                      {t.event.detail}
+                    </p>
+                  </div>
+                );
+              }
               if (t.kind === "guest_enter") {
                 const g = getCharacter(t.characterId);
                 return (

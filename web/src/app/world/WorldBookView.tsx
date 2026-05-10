@@ -1,8 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TIMELINE, WORLD_ENTRIES, type WorldEntry } from "@/lib/world-book";
+import {
+  loadSharedMemory,
+  subscribeSharedMemory,
+  TIMELINE_TURN_INTERVAL,
+  turnsUntilNextTimelineEvent,
+  type SharedMemoryState,
+} from "@/lib/shared-memory";
 
 const AXIS_LABEL: Record<string, string> = {
   earth: "Earth",
@@ -25,6 +32,15 @@ const AXIS_DOT: Record<string, string> = {
 export default function WorldBookView() {
   const [activeId, setActiveId] = useState<string>(WORLD_ENTRIES[0].id);
   const [filter, setFilter] = useState<string>("all");
+  const [memory, setMemory] = useState<SharedMemoryState>(() =>
+    loadSharedMemory()
+  );
+
+  useEffect(() => {
+    const refresh = () => setMemory(loadSharedMemory());
+    refresh();
+    return subscribeSharedMemory(refresh);
+  }, []);
 
   const filteredEntries = useMemo(() => {
     if (filter === "all") return WORLD_ENTRIES;
@@ -33,6 +49,9 @@ export default function WorldBookView() {
 
   const active: WorldEntry | undefined =
     WORLD_ENTRIES.find((e) => e.id === activeId) ?? WORLD_ENTRIES[0];
+  const activeTimelineIndex = memory.timelineEvents.length;
+  const nextTimeline = TIMELINE[activeTimelineIndex] ?? null;
+  const turnsUntilNext = turnsUntilNextTimelineEvent(memory);
 
   return (
     <div className="relative">
@@ -52,6 +71,42 @@ export default function WorldBookView() {
           Browse the canon and the timeline; the characters draw on these
           entries when you speak with them.
         </p>
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          <div className="border border-eto/50 bg-eto/10 p-4">
+            <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-eto-glow">
+              Goal
+            </div>
+            <div className="mt-2 font-display text-2xl text-parchment leading-tight">
+              Stop the destruction of the human world.
+            </div>
+          </div>
+          <div className="border border-line bg-panel/40 p-4">
+            <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-mute">
+              Turn clock
+            </div>
+            <div className="mt-2 font-mono text-3xl text-parchment tabular-nums">
+              {String(memory.globalTurn).padStart(2, "0")}
+            </div>
+            <div className="mt-1 font-mono text-[10px] tracking-[0.28em] uppercase text-mute">
+              Forced event every {TIMELINE_TURN_INTERVAL} turns
+            </div>
+          </div>
+          <div className="border border-amber/40 bg-amber/5 p-4">
+            <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber">
+              Next timeline pressure
+            </div>
+            <div className="mt-2 font-display text-xl text-parchment leading-tight">
+              {nextTimeline
+                ? `${nextTimeline.date} · ${nextTimeline.title}`
+                : "Timeline complete"}
+            </div>
+            <div className="mt-1 font-mono text-[10px] tracking-[0.28em] uppercase text-mute">
+              {nextTimeline
+                ? `${turnsUntilNext} turn${turnsUntilNext === 1 ? "" : "s"} remaining`
+                : "No queued event"}
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 lg:px-10 pb-24 grid lg:grid-cols-12 gap-8">
@@ -61,13 +116,29 @@ export default function WorldBookView() {
             Timeline · Book I
           </div>
           <ol className="relative border-l border-line pl-5 space-y-4">
-            {TIMELINE.map((ev) => (
-              <li key={ev.id} className="relative">
+            {TIMELINE.map((ev, index) => {
+              const triggered = index < activeTimelineIndex;
+              const current = index === activeTimelineIndex;
+              return (
+              <li
+                key={ev.id}
+                className={`relative border transition-colors ${
+                  current
+                    ? "border-amber/50 bg-amber/5 -ml-3 p-3"
+                    : triggered
+                      ? "border-transparent opacity-70"
+                      : "border-transparent"
+                }`}
+              >
                 <span
                   className={`absolute -left-[27px] top-1.5 w-2.5 h-2.5 rounded-full ${AXIS_DOT[ev.axis]}`}
                 />
                 <div className={`font-mono text-[10px] tracking-[0.32em] uppercase ${AXIS_COLOR[ev.axis]}`}>
-                  {AXIS_LABEL[ev.axis]} · {ev.date}
+                  {current
+                    ? `Next in ${turnsUntilNext} turn${turnsUntilNext === 1 ? "" : "s"}`
+                    : triggered
+                      ? "Triggered"
+                      : "Queued"} · {AXIS_LABEL[ev.axis]} · {ev.date}
                 </div>
                 <div className="font-display text-base text-parchment leading-snug mt-1">
                   {ev.title}
@@ -76,7 +147,8 @@ export default function WorldBookView() {
                   {ev.detail}
                 </p>
               </li>
-            ))}
+            );
+            })}
           </ol>
         </aside>
 

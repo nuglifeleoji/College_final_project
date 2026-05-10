@@ -3,6 +3,7 @@ import { EB_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Starfield from "@/components/Starfield";
 import Nav from "@/components/Nav";
+import TimelineBar from "@/components/TimelineBar";
 
 const display = EB_Garamond({
   variable: "--font-display",
@@ -39,6 +40,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col grain">
         <Starfield />
         <Nav />
+        <TimelineBar />
         <main className="relative z-10 flex-1 flex flex-col">{children}</main>
       </body>
     </html>

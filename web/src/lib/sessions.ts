@@ -1,9 +1,12 @@
 // Per-character saved play session, persisted to localStorage.
 
 import { ZERO_ALIGNMENT, type Alignment, type Axis } from "@/lib/factions";
+import type { ContextCompact } from "@/lib/context-compact";
+import type { ForcedTimelineEvent } from "@/lib/shared-memory";
 
 export type Turn =
   | { kind: "scene"; chapter: string; setting: string }
+  | { kind: "timeline"; event: ForcedTimelineEvent }
   | { kind: "char"; characterId: string; speech: string; stage: string; id: string }
   | { kind: "user"; text: string }
   | { kind: "choices"; choices: string[]; id: string }
@@ -17,6 +20,7 @@ export type SavedSession = {
   activeCharacterId?: string;
   turns: Turn[];
   alignment: Alignment;
+  contextCompact?: ContextCompact;
   endingFired?: { axis: Axis; turn: number; resolvedAt: number };
   startedAt: number;
   updatedAt: number;
@@ -49,6 +53,7 @@ export function saveSession(
   turns: Turn[],
   alignment: Alignment,
   activeCharacterId: string,
+  contextCompact?: ContextCompact,
   endingFired?: SavedSession["endingFired"]
 ) {
   if (typeof window === "undefined") return;
@@ -58,6 +63,7 @@ export function saveSession(
     activeCharacterId,
     turns,
     alignment,
+    contextCompact: contextCompact ?? existing?.contextCompact,
     endingFired: endingFired ?? existing?.endingFired,
     startedAt: existing?.startedAt ?? Date.now(),
     updatedAt: Date.now(),

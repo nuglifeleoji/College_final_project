@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { CHARACTERS } from "@/lib/characters";
 
 export const metadata = { title: "Characters · Three-Body" };
@@ -87,13 +88,18 @@ export default function CharactersPage() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 flex items-center justify-between">
-                  <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber-soft">
+                <div className="mt-auto pt-6 flex items-end justify-between gap-4">
+                  <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber-soft leading-relaxed">
                     {c.openingScene.chapter}
                   </div>
-                  <span className="font-mono text-xs tracking-[0.28em] uppercase text-eto-glow group-hover:text-amber transition-colors flex items-center gap-2">
-                    Begin → {c.name.split(" ")[0]}
-                    <span aria-hidden>→</span>
+                  <span className="shrink-0 inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.24em] uppercase text-eto-glow group-hover:text-amber transition-colors">
+                    <span>Begin {c.name.split(" ")[0]}</span>
+                    <ArrowRight
+                      size={15}
+                      strokeWidth={1.8}
+                      className="translate-y-px transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
                   </span>
                 </div>
               </div>
