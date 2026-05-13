@@ -4,6 +4,7 @@ import "./globals.css";
 import Starfield from "@/components/Starfield";
 import Nav from "@/components/Nav";
 import TimelineBar from "@/components/TimelineBar";
+import OnboardingGate from "@/components/OnboardingGate";
 
 const display = EB_Garamond({
   variable: "--font-display",
@@ -39,6 +40,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col grain">
         <Starfield />
+        <OnboardingGate />
         <Nav />
         <TimelineBar />
         <main className="relative z-10 flex-1 flex flex-col">{children}</main>

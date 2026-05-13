@@ -2,13 +2,23 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
-import { Check, Plus, UserRound } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { BookOpen, Check, History, Play, Plus, UserRound } from "lucide-react";
 import { loadDecisions, type Decision } from "@/lib/plot-tree";
-import { listSessions, type SavedSession } from "@/lib/sessions";
+import {
+  lastCharLine,
+  listSessions,
+  turnCount,
+  type SavedSession,
+} from "@/lib/sessions";
+import { CHARACTERS } from "@/lib/characters";
+import { AXIS_COLOR, AXIS_LABEL, dominantAxis } from "@/lib/factions";
 import {
   createUser,
   getCurrentUserId,
+  hasCompletedReaderOnboarding,
   loadUsers,
+  markReaderOnboardingComplete,
   setCurrentUser,
   subscribeUsers,
   updateUser,
@@ -31,11 +41,20 @@ function formatRelative(ts: number) {
   return `${Math.round(h / 24)}d ago`;
 }
 
+function safeNextPath(raw: string | null) {
+  if (!raw || !raw.startsWith("/") || raw.startsWith("//")) return "/characters";
+  if (raw.startsWith("/account")) return "/characters";
+  return raw;
+}
+
 export default function AccountView() {
+  const router = useRouter();
   const [users, setUsers] = useState<UserProfile[]>([]);
   const [currentId, setCurrentId] = useState("");
   const [sessions, setSessions] = useState<SavedSession[]>([]);
   const [decisions, setDecisions] = useState<Decision[]>([]);
+  const [onboardingComplete, setOnboardingComplete] = useState(true);
+  const [nextPath, setNextPath] = useState("/characters");
   const [newName, setNewName] = useState("");
   const [draftName, setDraftName] = useState("");
   const [draftGlyph, setDraftGlyph] = useState("");
@@ -52,14 +71,22 @@ export default function AccountView() {
     setDraftAccent(current.accent);
     setSessions(listSessions());
     setDecisions(loadDecisions());
+    setOnboardingComplete(hasCompletedReaderOnboarding());
   };
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setNextPath(safeNextPath(params.get("next")));
     refresh();
     return subscribeUsers(refresh);
   }, []);
 
   const current = users.find((u) => u.id === currentId) ?? users[0];
+  const sessionByCharacter = new Map(
+    sessions.map((session) => [session.characterId, session])
+  );
+  const recentSessions = sessions.slice(0, 3);
+  const totalTurns = sessions.reduce((sum, session) => sum + turnCount(session), 0);
 
   const saveProfile = (event: FormEvent) => {
     event.preventDefault();
@@ -69,6 +96,11 @@ export default function AccountView() {
       glyph: draftGlyph,
       accent: draftAccent,
     });
+    if (!onboardingComplete) {
+      markReaderOnboardingComplete();
+      router.push(nextPath);
+      return;
+    }
     refresh();
   };
 
@@ -76,7 +108,12 @@ export default function AccountView() {
     event.preventDefault();
     if (!newName.trim()) return;
     createUser(newName);
+    markReaderOnboardingComplete();
     setNewName("");
+    if (!onboardingComplete) {
+      router.push(nextPath);
+      return;
+    }
     refresh();
   };
 
@@ -107,6 +144,25 @@ export default function AccountView() {
           that belongs to you.
         </p>
       </section>
+
+      {!onboardingComplete && (
+        <section className="mx-auto max-w-7xl px-6 lg:px-10 pb-8">
+          <div className="border border-eto/60 bg-eto/10 p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-eto-glow">
+                First launch
+              </div>
+              <p className="mt-2 text-parchment-dim leading-relaxed">
+                Create or name your reader before entering the story. Your saves,
+                branches, and timeline pressure will belong to this identity.
+              </p>
+            </div>
+            <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-mute">
+              Next · {nextPath}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-7xl px-6 lg:px-10 pb-24 grid lg:grid-cols-12 gap-8">
         <article className="lg:col-span-5 border border-line bg-panel/40 backdrop-blur-sm overflow-hidden">
@@ -146,6 +202,14 @@ export default function AccountView() {
                 {String(decisions.length).padStart(2, "0")}
               </div>
             </div>
+            <div className="col-span-2 border border-line bg-void-2/50 p-4">
+              <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-mute">
+                Total turns
+              </div>
+              <div className="mt-2 font-mono text-4xl text-parchment tabular-nums">
+                {String(totalTurns).padStart(2, "0")}
+              </div>
+            </div>
           </div>
 
           <div className="px-7 pb-7 flex flex-wrap gap-3">
@@ -166,6 +230,174 @@ export default function AccountView() {
         </article>
 
         <div className="lg:col-span-7 grid gap-6">
+          <section className="border border-line bg-panel/40 backdrop-blur-sm p-6">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+              <div>
+                <div className="font-mono text-[11px] tracking-[0.36em] uppercase text-mute">
+                  Dashboard
+                </div>
+                <h2 className="mt-2 font-display text-3xl text-parchment">
+                  Recent stories
+                </h2>
+              </div>
+              <Link
+                href="/decisions"
+                className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.24em] uppercase text-eto-glow hover:text-amber transition-colors"
+              >
+                <History size={14} strokeWidth={1.8} aria-hidden />
+                Rewind archive
+              </Link>
+            </div>
+
+            {recentSessions.length === 0 ? (
+              <div className="border border-dashed border-line/70 bg-void-2/40 p-5">
+                <p className="font-display text-xl text-parchment">
+                  No stories yet.
+                </p>
+                <p className="mt-2 text-parchment-dim leading-relaxed">
+                  Pick a character and take one turn. Your latest conversation
+                  will appear here when you return.
+                </p>
+              </div>
+            ) : (
+              <div className="grid gap-3">
+                {recentSessions.map((session) => {
+                  const character = CHARACTERS.find(
+                    (c) => c.id === session.characterId
+                  );
+                  if (!character) return null;
+                  const axis = dominantAxis(session.alignment);
+                  const href = session.endingFired
+                    ? `/play/${character.id}/end?axis=${session.endingFired.axis}`
+                    : `/play/${character.id}`;
+                  const last = lastCharLine(session);
+                  return (
+                    <article
+                      key={session.characterId}
+                      className="border border-line bg-void-2/50 p-4"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                        <div className={`w-14 h-14 shrink-0 bg-gradient-to-br ${character.portraitGradient} border border-line flex items-center justify-center font-display text-2xl text-parchment`}>
+                          {character.glyph}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                            <h3 className="font-display text-2xl text-parchment">
+                              {character.name}
+                            </h3>
+                            <span className="font-mono text-[10px] tracking-[0.24em] uppercase text-mute">
+                              Turn {String(turnCount(session)).padStart(2, "0")}
+                            </span>
+                            <span className={`font-mono text-[10px] tracking-[0.24em] uppercase ${AXIS_COLOR[axis].fg}`}>
+                              {session.endingFired
+                                ? `Ended · ${AXIS_LABEL[session.endingFired.axis]}`
+                                : `Drift · ${AXIS_LABEL[axis]}`}
+                            </span>
+                          </div>
+                          <p className="mt-2 text-parchment-dim italic line-clamp-2">
+                            {last ? `"${last}"` : "(scene set, awaiting your line)"}
+                          </p>
+                        </div>
+                        <div className="flex sm:flex-col gap-2">
+                          <Link
+                            href={href}
+                            className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-eto text-parchment font-mono text-[10px] tracking-[0.24em] uppercase hover:bg-eto-glow transition-colors"
+                          >
+                            <Play size={13} strokeWidth={1.8} aria-hidden />
+                            {session.endingFired ? "Ending" : "Continue"}
+                          </Link>
+                          <Link
+                            href={`/story/${character.id}`}
+                            className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-line text-parchment-dim hover:border-amber hover:text-amber font-mono text-[10px] tracking-[0.24em] uppercase transition-colors"
+                          >
+                            <BookOpen size={13} strokeWidth={1.8} aria-hidden />
+                            Read
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+
+          <section className="border border-line bg-panel/40 backdrop-blur-sm p-6">
+            <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+              <div>
+                <div className="font-mono text-[11px] tracking-[0.36em] uppercase text-mute">
+                  Character progress
+                </div>
+                <h2 className="mt-2 font-display text-3xl text-parchment">
+                  Four seats, four paths.
+                </h2>
+              </div>
+              <Link
+                href="/characters"
+                className="font-mono text-[10px] tracking-[0.24em] uppercase text-eto-glow hover:text-amber transition-colors"
+              >
+                Pick another character
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-3">
+              {CHARACTERS.map((character) => {
+                const session = sessionByCharacter.get(character.id);
+                const turns = session ? turnCount(session) : 0;
+                const axis = session ? dominantAxis(session.alignment) : null;
+                const last = session ? lastCharLine(session) : null;
+                return (
+                  <article
+                    key={character.id}
+                    className="border border-line bg-void-2/50 p-4"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className={`w-12 h-12 shrink-0 bg-gradient-to-br ${character.portraitGradient} border border-line flex items-center justify-center font-display text-xl text-parchment`}>
+                        {character.glyph}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-display text-xl text-parchment">
+                          {character.name}
+                        </div>
+                        <div className="mt-1 font-mono text-[9px] tracking-[0.24em] uppercase text-mute">
+                          Turn {String(turns).padStart(2, "0")}
+                          {axis ? ` · ${AXIS_LABEL[axis]}` : " · not started"}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="mt-3 min-h-[3rem] text-sm text-parchment-dim italic leading-relaxed line-clamp-2">
+                      {last ?? character.openingScene.setting}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      <Link
+                        href={`/play/${character.id}`}
+                        className="px-3 py-2 bg-eto text-parchment font-mono text-[10px] tracking-[0.22em] uppercase hover:bg-eto-glow transition-colors"
+                      >
+                        {session ? "Continue" : "Begin"}
+                      </Link>
+                      {session && (
+                        <>
+                          <Link
+                            href={`/story/${character.id}`}
+                            className="px-3 py-2 border border-line text-parchment-dim hover:border-amber hover:text-amber font-mono text-[10px] tracking-[0.22em] uppercase transition-colors"
+                          >
+                            Read
+                          </Link>
+                          <Link
+                            href="/decisions"
+                            className="px-3 py-2 border border-line text-parchment-dim hover:border-amber hover:text-amber font-mono text-[10px] tracking-[0.22em] uppercase transition-colors"
+                          >
+                            Rewind
+                          </Link>
+                        </>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+
           <form
             onSubmit={saveProfile}
             className="border border-line bg-panel/40 backdrop-blur-sm p-6"

@@ -9,6 +9,7 @@ export type UserProfile = {
 
 export const USERS_KEY = "tb_users_v1";
 export const CURRENT_USER_KEY = "tb_current_user_v1";
+export const READER_ONBOARDING_KEY = "tb_reader_onboarding_v1";
 export const USER_UPDATED_EVENT = "tb_user_updated";
 export const DEFAULT_USER_ID = "local-reader";
 
@@ -119,6 +120,18 @@ export function getCurrentUserId() {
 export function getCurrentUser() {
   const id = getCurrentUserId();
   return loadUsers().find((u) => u.id === id) ?? defaultUser();
+}
+
+export function hasCompletedReaderOnboarding() {
+  if (!isBrowser()) return false;
+  if (window.localStorage.getItem(READER_ONBOARDING_KEY) === "1") return true;
+  return loadUsers().some((u) => u.id !== DEFAULT_USER_ID);
+}
+
+export function markReaderOnboardingComplete() {
+  if (!isBrowser()) return;
+  window.localStorage.setItem(READER_ONBOARDING_KEY, "1");
+  emitUserUpdate();
 }
 
 export function setCurrentUser(id: string) {
