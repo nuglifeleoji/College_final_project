@@ -11,6 +11,7 @@ import {
 import {
   listSessions,
   deleteSession,
+  restoreSessionSnapshot,
   turnCount,
   lastCharLine,
   type SavedSession,
@@ -56,11 +57,18 @@ export default function DecisionsView() {
     if (typeof window === "undefined") return;
     const decision = decisions.find((d) => d.id === id);
     const ok = window.confirm(
-      "Rewind to this point? Everything after this decision will be erased from the timeline. (Your characters' canonical knowledge stays the same.)"
+      "Rewind to the moment before this choice? This choice and everything after it will be erased from the timeline. (Your characters' canonical knowledge stays the same.)"
     );
     if (!ok) return;
     rewindTo(id);
     if (decision) rewindSharedMemoryBefore(decision.timestamp);
+    if (decision?.snapshot) {
+      restoreSessionSnapshot(decision.snapshot);
+    } else {
+      window.alert(
+        "This older decision was recorded before rewind snapshots existed, so only the branch log was rewound."
+      );
+    }
     refresh();
   };
 

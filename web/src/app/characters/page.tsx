@@ -88,11 +88,11 @@ export default function CharactersPage() {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 flex items-end justify-between gap-4">
+                <div className="mt-auto pt-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 sm:gap-4">
                   <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber-soft leading-relaxed">
                     {c.openingScene.chapter}
                   </div>
-                  <span className="shrink-0 inline-flex items-center gap-1.5 font-mono text-xs tracking-[0.24em] uppercase text-eto-glow group-hover:text-amber transition-colors">
+                  <span className="inline-flex items-center gap-1.5 font-mono text-[10px] sm:text-xs tracking-[0.24em] uppercase text-eto-glow group-hover:text-amber transition-colors">
                     <span>Begin {c.name.split(" ")[0]}</span>
                     <ArrowRight
                       size={15}

@@ -10,7 +10,7 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 scanlines pointer-events-none opacity-40" />
         <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-20 md:pt-28 pb-20 md:pb-32 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 relative z-10">
+          <div className="lg:col-span-7 relative z-10 min-w-0">
             <div className="flex items-center gap-3 mb-7">
               <span className="w-2 h-2 rounded-full bg-eto-glow shadow-[0_0_10px_rgba(255,45,79,0.9)]" />
               <span className="font-mono text-[11px] tracking-[0.36em] uppercase text-eto-glow">
@@ -19,7 +19,7 @@ export default function Home() {
               <span className="hairline flex-1 max-w-[180px]" />
             </div>
 
-            <h1 className="font-display font-medium leading-[0.95] text-[3.6rem] md:text-[5.4rem] lg:text-[6.4rem] tracking-tight text-parchment">
+            <h1 className="font-display font-medium leading-[0.95] text-[3.15rem] sm:text-[3.6rem] md:text-[5.4rem] lg:text-[6.4rem] tracking-tight text-parchment">
               Do not <span className="italic text-eto-glow text-glow-eto">answer</span>.<br />
               <span className="text-parchment-dim">Do not answer.</span><br />
               <span className="text-parchment-dim/70">Do not answer.</span>
@@ -57,7 +57,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:col-span-5 relative z-10 flex flex-col items-center lg:items-end gap-10">
+          <div className="lg:col-span-5 relative z-10 flex flex-col items-center lg:items-end gap-10 min-w-0">
             <div className="relative">
               <ThreeBodyOrbit size={420} className="hidden md:block" />
               <ThreeBodyOrbit size={280} className="md:hidden" />

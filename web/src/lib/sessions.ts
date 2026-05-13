@@ -26,6 +26,14 @@ export type SavedSession = {
   updatedAt: number;
 };
 
+export type SessionSnapshot = {
+  characterId: string;
+  activeCharacterId: string;
+  turns: Turn[];
+  alignment: Alignment;
+  contextCompact?: ContextCompact;
+};
+
 const KEY_PREFIX = "tb_session_v2_";
 const INTRO_KEY = "tb_seen_intro_v1";
 
@@ -69,6 +77,24 @@ export function saveSession(
     updatedAt: Date.now(),
   };
   window.localStorage.setItem(sessionKey(characterId), JSON.stringify(session));
+}
+
+export function restoreSessionSnapshot(snapshot: SessionSnapshot) {
+  if (typeof window === "undefined") return;
+  const existing = loadSession(snapshot.characterId);
+  const session: SavedSession = {
+    characterId: snapshot.characterId,
+    activeCharacterId: snapshot.activeCharacterId,
+    turns: snapshot.turns,
+    alignment: snapshot.alignment,
+    contextCompact: snapshot.contextCompact,
+    startedAt: existing?.startedAt ?? Date.now(),
+    updatedAt: Date.now(),
+  };
+  window.localStorage.setItem(
+    sessionKey(snapshot.characterId),
+    JSON.stringify(session)
+  );
 }
 
 export function deleteSession(characterId: string) {

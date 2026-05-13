@@ -1,6 +1,8 @@
 // In-memory state for the player's path. The decision tree page reads this.
 // Persisted to localStorage on the client.
 
+import type { SessionSnapshot } from "@/lib/sessions";
+
 export type Decision = {
   id: string;
   characterId: string;
@@ -9,6 +11,7 @@ export type Decision = {
   chosen: string;
   alternatives: string[];
   timestamp: number;
+  snapshot?: SessionSnapshot;
 };
 
 export const STORAGE_KEY = "tb_decisions_v1";

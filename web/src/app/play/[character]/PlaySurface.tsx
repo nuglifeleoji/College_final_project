@@ -199,7 +199,24 @@ export default function PlaySurface({ character }: { character: Character }) {
           playerTurnCount: preReplyTurns.filter((t) => t.kind === "user").length,
         }),
       });
-      const data = (await res.json()) as ApiReply;
+      const raw = (await res.json()) as Partial<ApiReply> & { error?: string };
+      if (!res.ok) {
+        throw new Error(raw.error ?? `Request failed with ${res.status}`);
+      }
+      if (
+        typeof raw.speech !== "string" ||
+        typeof raw.stage !== "string" ||
+        !Array.isArray(raw.choices)
+      ) {
+        throw new Error("Malformed character reply");
+      }
+      const data: ApiReply = {
+        speech: raw.speech,
+        stage: raw.stage,
+        choices: raw.choices,
+        event: raw.event ?? null,
+        alignmentDelta: raw.alignmentDelta ?? ZERO_ALIGNMENT,
+      };
 
       // Apply alignment first (so ending checks see the new totals)
       const nextAlignment = addAlignment(alignment, data.alignmentDelta ?? ZERO_ALIGNMENT);
@@ -267,6 +284,13 @@ export default function PlaySurface({ character }: { character: Character }) {
         chosen: text,
         alternatives: fromChoices.filter((c) => c !== text),
         timestamp: sharedTurn.timestamp,
+        snapshot: {
+          characterId: character.id,
+          activeCharacterId: activeId,
+          turns,
+          alignment,
+          contextCompact,
+        },
       });
 
       // Ending check (only on the perspective character's saves)
@@ -458,22 +482,22 @@ export default function PlaySurface({ character }: { character: Character }) {
             e.preventDefault();
             send(draft, activeChoiceSet);
           }}
-          className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex items-stretch"
+          className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex flex-col sm:flex-row sm:items-stretch overflow-hidden"
         >
-          <span className="px-4 py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-r border-line self-stretch flex items-center">
+          <span className="px-4 py-3 sm:py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-b sm:border-b-0 sm:border-r border-line self-stretch flex items-center">
             Speak
           </span>
           <input
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder="Or write your own line..."
-            className="flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
+            className="min-w-0 flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
             disabled={loading}
           />
           <button
             type="submit"
             disabled={loading || !draft.trim()}
-            className="px-6 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
+            className="px-6 py-4 sm:py-0 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
           >
             Send →
           </button>

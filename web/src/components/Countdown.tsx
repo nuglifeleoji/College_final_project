@@ -30,7 +30,7 @@ export default function Countdown({ compact = false }: { compact?: boolean }) {
     <div className="flex flex-col items-start">
       <span
         className={`font-mono ${
-          compact ? "text-2xl" : "text-4xl md:text-6xl"
+          compact ? "text-2xl" : "text-3xl sm:text-4xl md:text-6xl"
         } text-parchment text-glow-eto tabular-nums`}
       >
         {String(value).padStart(label === "DAYS" ? 5 : 2, "0")}
@@ -42,13 +42,13 @@ export default function Countdown({ compact = false }: { compact?: boolean }) {
   );
 
   return (
-    <div className="flex items-end gap-5">
+    <div className="flex items-end gap-2 sm:gap-5">
       <Segment value={days} label="DAYS" />
-      <span className="text-eto/60 text-3xl pb-3">:</span>
+      <span className="text-eto/60 text-2xl sm:text-3xl pb-3">:</span>
       <Segment value={hours} label="HRS" />
-      <span className="text-eto/60 text-3xl pb-3">:</span>
+      <span className="text-eto/60 text-2xl sm:text-3xl pb-3">:</span>
       <Segment value={minutes} label="MIN" />
-      <span className="text-eto/60 text-3xl pb-3">:</span>
+      <span className="text-eto/60 text-2xl sm:text-3xl pb-3">:</span>
       <Segment value={seconds} label="SEC" />
     </div>
   );
