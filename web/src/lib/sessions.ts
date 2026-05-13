@@ -3,6 +3,12 @@
 import { ZERO_ALIGNMENT, type Alignment, type Axis } from "@/lib/factions";
 import type { ContextCompact } from "@/lib/context-compact";
 import type { ForcedTimelineEvent } from "@/lib/shared-memory";
+import {
+  DEFAULT_USER_ID,
+  getCurrentUserId,
+  legacyStorageKey,
+  scopedStorageKey,
+} from "@/lib/users";
 
 export type Turn =
   | { kind: "scene"; chapter: string; setting: string }
@@ -37,14 +43,22 @@ export type SessionSnapshot = {
 const KEY_PREFIX = "tb_session_v2_";
 const INTRO_KEY = "tb_seen_intro_v1";
 
-export function sessionKey(characterId: string) {
+function baseSessionKey(characterId: string) {
   return `${KEY_PREFIX}${characterId}`;
+}
+
+export function sessionKey(characterId: string) {
+  return scopedStorageKey(baseSessionKey(characterId));
 }
 
 export function loadSession(characterId: string): SavedSession | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = window.localStorage.getItem(sessionKey(characterId));
+    const raw =
+      window.localStorage.getItem(sessionKey(characterId)) ??
+      (getCurrentUserId() === DEFAULT_USER_ID
+        ? window.localStorage.getItem(legacyStorageKey(baseSessionKey(characterId)))
+        : null);
     if (!raw) return null;
     const parsed = JSON.parse(raw) as SavedSession;
     // back-compat: ensure alignment exists
@@ -100,26 +114,42 @@ export function restoreSessionSnapshot(snapshot: SessionSnapshot) {
 export function deleteSession(characterId: string) {
   if (typeof window === "undefined") return;
   window.localStorage.removeItem(sessionKey(characterId));
+  if (getCurrentUserId() === DEFAULT_USER_ID) {
+    window.localStorage.removeItem(legacyStorageKey(baseSessionKey(characterId)));
+  }
 }
 
 export function listSessions(): SavedSession[] {
   if (typeof window === "undefined") return [];
-  const out: SavedSession[] = [];
-  for (let i = 0; i < window.localStorage.length; i++) {
-    const k = window.localStorage.key(i);
-    if (!k || !k.startsWith(KEY_PREFIX)) continue;
-    const raw = window.localStorage.getItem(k);
-    if (!raw) continue;
+  const byCharacter = new Map<string, SavedSession>();
+  const currentId = getCurrentUserId();
+  const scopedPrefix = scopedStorageKey(KEY_PREFIX, currentId);
+
+  const collect = (raw: string | null, prefer = true) => {
+    if (!raw) return;
     try {
       const parsed = JSON.parse(raw) as SavedSession;
       if (!parsed.alignment) parsed.alignment = { ...ZERO_ALIGNMENT };
       if (!parsed.activeCharacterId) parsed.activeCharacterId = parsed.characterId;
-      out.push(parsed);
+      if (prefer || !byCharacter.has(parsed.characterId)) {
+        byCharacter.set(parsed.characterId, parsed);
+      }
     } catch {
       // skip
     }
+  };
+
+  for (let i = 0; i < window.localStorage.length; i++) {
+    const k = window.localStorage.key(i);
+    if (!k) continue;
+    if (k.startsWith(scopedPrefix)) {
+      collect(window.localStorage.getItem(k));
+    } else if (currentId === DEFAULT_USER_ID && k.startsWith(KEY_PREFIX)) {
+      collect(window.localStorage.getItem(k), false);
+    }
   }
-  return out.sort((a, b) => b.updatedAt - a.updatedAt);
+
+  return [...byCharacter.values()].sort((a, b) => b.updatedAt - a.updatedAt);
 }
 
 export function turnCount(s: SavedSession): number {
@@ -136,10 +166,14 @@ export function lastCharLine(s: SavedSession): string | null {
 
 export function hasSeenIntro(): boolean {
   if (typeof window === "undefined") return false;
-  return window.localStorage.getItem(INTRO_KEY) === "1";
+  return (
+    window.localStorage.getItem(scopedStorageKey(INTRO_KEY)) === "1" ||
+    (getCurrentUserId() === DEFAULT_USER_ID &&
+      window.localStorage.getItem(legacyStorageKey(INTRO_KEY)) === "1")
+  );
 }
 
 export function markIntroSeen() {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(INTRO_KEY, "1");
+  window.localStorage.setItem(scopedStorageKey(INTRO_KEY), "1");
 }

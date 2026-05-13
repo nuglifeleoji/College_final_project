@@ -3,23 +3,32 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { getCurrentUser, subscribeUsers, type UserProfile } from "@/lib/users";
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/characters", label: "Characters" },
   { href: "/world", label: "World Book" },
   { href: "/decisions", label: "Stories" },
+  { href: "/account", label: "Account" },
 ];
 
 export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [user, setUser] = useState<UserProfile | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const refresh = () => setUser(getCurrentUser());
+    refresh();
+    return subscribeUsers(refresh);
   }, []);
 
   if (pathname === "/begin") return null;
@@ -79,11 +88,14 @@ export default function Nav() {
         </nav>
 
         <Link
-          href="/characters"
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 border border-eto/70 text-eto-glow hover:bg-eto/10 hover:border-eto-glow font-mono text-[11px] tracking-[0.24em] uppercase transition-all"
+          href="/account"
+          className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-eto/70 text-eto-glow hover:bg-eto/10 hover:border-eto-glow font-mono text-[11px] tracking-[0.24em] uppercase transition-all"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-eto-glow shadow-[0_0_8px_rgba(255,45,79,0.9)]" />
-          Enter
+          <span className="hidden sm:inline max-w-[12rem] truncate">
+            {user?.name ?? "Account"}
+          </span>
+          <span className="sm:hidden">{user?.glyph ?? "你"}</span>
         </Link>
       </div>
       <div className="hairline" />

@@ -2,6 +2,12 @@
 // Persisted to localStorage on the client.
 
 import type { SessionSnapshot } from "@/lib/sessions";
+import {
+  DEFAULT_USER_ID,
+  getCurrentUserId,
+  legacyStorageKey,
+  scopedStorageKey,
+} from "@/lib/users";
 
 export type Decision = {
   id: string;
@@ -16,10 +22,18 @@ export type Decision = {
 
 export const STORAGE_KEY = "tb_decisions_v1";
 
+function decisionStorageKey() {
+  return scopedStorageKey(STORAGE_KEY);
+}
+
 export function loadDecisions(): Decision[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
+    const raw =
+      window.localStorage.getItem(decisionStorageKey()) ??
+      (getCurrentUserId() === DEFAULT_USER_ID
+        ? window.localStorage.getItem(legacyStorageKey(STORAGE_KEY))
+        : null);
     if (!raw) return [];
     return JSON.parse(raw) as Decision[];
   } catch {
@@ -29,7 +43,7 @@ export function loadDecisions(): Decision[] {
 
 export function saveDecisions(decisions: Decision[]) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(decisions));
+  window.localStorage.setItem(decisionStorageKey(), JSON.stringify(decisions));
 }
 
 export function appendDecision(d: Decision) {
@@ -49,5 +63,8 @@ export function rewindTo(decisionId: string): Decision[] {
 
 export function clearDecisions() {
   if (typeof window === "undefined") return;
-  window.localStorage.removeItem(STORAGE_KEY);
+  window.localStorage.removeItem(decisionStorageKey());
+  if (getCurrentUserId() === DEFAULT_USER_ID) {
+    window.localStorage.removeItem(legacyStorageKey(STORAGE_KEY));
+  }
 }

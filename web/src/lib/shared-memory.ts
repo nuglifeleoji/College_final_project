@@ -1,4 +1,12 @@
 import { TIMELINE, type TimelineEvent } from "@/lib/world-book";
+import {
+  CURRENT_USER_KEY,
+  DEFAULT_USER_ID,
+  USER_UPDATED_EVENT,
+  getCurrentUserId,
+  legacyStorageKey,
+  scopedStorageKey,
+} from "@/lib/users";
 
 export const SHARED_MEMORY_KEY = "tb_shared_memory_v1";
 export const SHARED_MEMORY_UPDATED_EVENT = "tb_shared_memory_updated";
@@ -83,10 +91,18 @@ function emitUpdate() {
   window.dispatchEvent(new Event(SHARED_MEMORY_UPDATED_EVENT));
 }
 
+function sharedMemoryStorageKey() {
+  return scopedStorageKey(SHARED_MEMORY_KEY);
+}
+
 export function loadSharedMemory(): SharedMemoryState {
   if (!isBrowser()) return freshSharedMemory();
   try {
-    const raw = window.localStorage.getItem(SHARED_MEMORY_KEY);
+    const raw =
+      window.localStorage.getItem(sharedMemoryStorageKey()) ??
+      (getCurrentUserId() === DEFAULT_USER_ID
+        ? window.localStorage.getItem(legacyStorageKey(SHARED_MEMORY_KEY))
+        : null);
     if (!raw) return freshSharedMemory();
     return normalizeMemory(JSON.parse(raw) as Partial<SharedMemoryState>);
   } catch {
@@ -97,26 +113,37 @@ export function loadSharedMemory(): SharedMemoryState {
 export function saveSharedMemory(memory: SharedMemoryState): SharedMemoryState {
   const normalized = normalizeMemory(memory);
   if (!isBrowser()) return normalized;
-  window.localStorage.setItem(SHARED_MEMORY_KEY, JSON.stringify(normalized));
+  window.localStorage.setItem(sharedMemoryStorageKey(), JSON.stringify(normalized));
   emitUpdate();
   return normalized;
 }
 
 export function clearSharedMemory() {
   if (!isBrowser()) return;
-  window.localStorage.removeItem(SHARED_MEMORY_KEY);
+  window.localStorage.removeItem(sharedMemoryStorageKey());
+  if (getCurrentUserId() === DEFAULT_USER_ID) {
+    window.localStorage.removeItem(legacyStorageKey(SHARED_MEMORY_KEY));
+  }
   emitUpdate();
 }
 
 export function subscribeSharedMemory(listener: () => void) {
   if (!isBrowser()) return () => {};
   const onStorage = (event: StorageEvent) => {
-    if (event.key === SHARED_MEMORY_KEY) listener();
+    if (
+      event.key === sharedMemoryStorageKey() ||
+      event.key === legacyStorageKey(SHARED_MEMORY_KEY) ||
+      event.key === CURRENT_USER_KEY
+    ) {
+      listener();
+    }
   };
   window.addEventListener(SHARED_MEMORY_UPDATED_EVENT, listener);
+  window.addEventListener(USER_UPDATED_EVENT, listener);
   window.addEventListener("storage", onStorage);
   return () => {
     window.removeEventListener(SHARED_MEMORY_UPDATED_EVENT, listener);
+    window.removeEventListener(USER_UPDATED_EVENT, listener);
     window.removeEventListener("storage", onStorage);
   };
 }
