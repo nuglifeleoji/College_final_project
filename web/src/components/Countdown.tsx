@@ -15,11 +15,18 @@ function diff(now: number, target: number) {
   return { days, hours, minutes, seconds: s };
 }
 
-export default function Countdown({ compact = false }: { compact?: boolean }) {
-  const [now, setNow] = useState<number>(() => Date.now());
+export default function Countdown({
+  compact = false,
+  initialNow,
+}: {
+  compact?: boolean;
+  initialNow: number;
+}) {
+  const [now, setNow] = useState<number>(initialNow);
   const target = new Date(TARGET_ISO).getTime();
 
   useEffect(() => {
+    setNow(Date.now());
     const id = setInterval(() => setNow(Date.now()), 1000);
     return () => clearInterval(id);
   }, []);

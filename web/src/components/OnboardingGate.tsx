@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { hasCompletedReaderOnboarding } from "@/lib/users";
 
-const GATED_PREFIXES = ["/begin", "/characters", "/play"];
+const GATED_PREFIXES = ["/begin", "/play"];
 
 function gated(pathname: string) {
   return GATED_PREFIXES.some(

@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TIMELINE, WORLD_ENTRIES, type WorldEntry } from "@/lib/world-book";
 import {
-  loadSharedMemory,
-  subscribeSharedMemory,
   TIMELINE_TURN_INTERVAL,
   turnsUntilNextTimelineEvent,
-  type SharedMemoryState,
 } from "@/lib/shared-memory";
+import { useSharedMemory } from "@/lib/use-shared-memory";
 
 const AXIS_LABEL: Record<string, string> = {
   earth: "Earth",
@@ -32,15 +30,7 @@ const AXIS_DOT: Record<string, string> = {
 export default function WorldBookView() {
   const [activeId, setActiveId] = useState<string>(WORLD_ENTRIES[0].id);
   const [filter, setFilter] = useState<string>("all");
-  const [memory, setMemory] = useState<SharedMemoryState>(() =>
-    loadSharedMemory()
-  );
-
-  useEffect(() => {
-    const refresh = () => setMemory(loadSharedMemory());
-    refresh();
-    return subscribeSharedMemory(refresh);
-  }, []);
+  const memory = useSharedMemory();
 
   const filteredEntries = useMemo(() => {
     if (filter === "all") return WORLD_ENTRIES;

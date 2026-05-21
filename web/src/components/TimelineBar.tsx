@@ -1,15 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import {
   getNextTimelineEvent,
-  loadSharedMemory,
-  subscribeSharedMemory,
   TIMELINE_TURN_INTERVAL,
   turnsUntilNextTimelineEvent,
-  type SharedMemoryState,
 } from "@/lib/shared-memory";
+import { useSharedMemory } from "@/lib/use-shared-memory";
 
 const AXIS_COLOR: Record<string, string> = {
   earth: "text-amber",
@@ -19,15 +16,7 @@ const AXIS_COLOR: Record<string, string> = {
 
 export default function TimelineBar() {
   const pathname = usePathname();
-  const [memory, setMemory] = useState<SharedMemoryState>(() =>
-    loadSharedMemory()
-  );
-
-  useEffect(() => {
-    const refresh = () => setMemory(loadSharedMemory());
-    refresh();
-    return subscribeSharedMemory(refresh);
-  }, []);
+  const memory = useSharedMemory();
 
   if (pathname === "/begin") return null;
 

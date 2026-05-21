@@ -34,6 +34,7 @@ import {
 } from "@/lib/shared-memory";
 import AlignmentMeter from "@/components/AlignmentMeter";
 import TurnRows from "./TurnRows";
+import StoryProgressPanel from "./StoryProgressPanel";
 
 type CharacterEvent =
   | null
@@ -466,42 +467,53 @@ export default function PlaySurface({ character }: { character: Character }) {
       </section>
 
       {/* Conversation */}
-      <section className="mx-auto max-w-4xl px-6 lg:px-10 py-12">
-        <div ref={scrollerRef} className="space-y-7 max-h-[60vh] overflow-y-auto pr-3">
-          <TurnRows
-            turns={turns}
-            loading={loading}
-            activeName={active.name}
-            character={character}
-            onChoice={send}
-          />
+      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-12 grid lg:grid-cols-[minmax(0,1fr)_360px] gap-8 items-start">
+        <div className="min-w-0">
+          <div ref={scrollerRef} className="space-y-7 max-h-[60vh] overflow-y-auto pr-3">
+            <TurnRows
+              turns={turns}
+              loading={loading}
+              activeName={active.name}
+              character={character}
+              onChoice={send}
+            />
+          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              send(draft, activeChoiceSet);
+            }}
+            className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex flex-col sm:flex-row sm:items-stretch overflow-hidden"
+          >
+            <span className="px-4 py-3 sm:py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-b sm:border-b-0 sm:border-r border-line self-stretch flex items-center">
+              Speak
+            </span>
+            <input
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              placeholder="Or write your own line..."
+              className="min-w-0 flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading || !draft.trim()}
+              className="px-6 py-4 sm:py-0 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
+            >
+              Send →
+            </button>
+          </form>
         </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            send(draft, activeChoiceSet);
-          }}
-          className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex flex-col sm:flex-row sm:items-stretch overflow-hidden"
-        >
-          <span className="px-4 py-3 sm:py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-b sm:border-b-0 sm:border-r border-line self-stretch flex items-center">
-            Speak
-          </span>
-          <input
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            placeholder="Or write your own line..."
-            className="min-w-0 flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
-            disabled={loading}
-          />
-          <button
-            type="submit"
-            disabled={loading || !draft.trim()}
-            className="px-6 py-4 sm:py-0 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
-          >
-            Send →
-          </button>
-        </form>
+        <StoryProgressPanel
+          turns={turns}
+          alignment={alignment}
+          activeCharacter={active}
+          storyCharacter={character}
+          contextCompact={contextCompact}
+          loading={loading}
+        />
       </section>
     </div>
   );

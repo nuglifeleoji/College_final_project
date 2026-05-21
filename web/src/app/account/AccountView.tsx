@@ -122,6 +122,12 @@ export default function AccountView() {
     refresh();
   };
 
+  const completeOnboardingBeforeEntry = () => {
+    if (onboardingComplete) return;
+    markReaderOnboardingComplete();
+    setOnboardingComplete(true);
+  };
+
   if (!current) {
     return <div className="px-6 py-16 text-mute">Loading account…</div>;
   }
@@ -215,6 +221,7 @@ export default function AccountView() {
           <div className="px-7 pb-7 flex flex-wrap gap-3">
             <Link
               href="/characters"
+              onClick={completeOnboardingBeforeEntry}
               className="inline-flex items-center gap-2 px-5 py-3 bg-eto text-parchment font-mono text-xs tracking-[0.24em] uppercase hover:bg-eto-glow transition-colors"
             >
               <UserRound size={15} strokeWidth={1.8} aria-hidden />
@@ -301,6 +308,7 @@ export default function AccountView() {
                         <div className="flex sm:flex-col gap-2">
                           <Link
                             href={href}
+                            onClick={completeOnboardingBeforeEntry}
                             className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-eto text-parchment font-mono text-[10px] tracking-[0.24em] uppercase hover:bg-eto-glow transition-colors"
                           >
                             <Play size={13} strokeWidth={1.8} aria-hidden />
@@ -334,6 +342,7 @@ export default function AccountView() {
               </div>
               <Link
                 href="/characters"
+                onClick={completeOnboardingBeforeEntry}
                 className="font-mono text-[10px] tracking-[0.24em] uppercase text-eto-glow hover:text-amber transition-colors"
               >
                 Pick another character
@@ -371,6 +380,7 @@ export default function AccountView() {
                     <div className="mt-4 flex flex-wrap gap-2">
                       <Link
                         href={`/play/${character.id}`}
+                        onClick={completeOnboardingBeforeEntry}
                         className="px-3 py-2 bg-eto text-parchment font-mono text-[10px] tracking-[0.22em] uppercase hover:bg-eto-glow transition-colors"
                       >
                         {session ? "Continue" : "Begin"}

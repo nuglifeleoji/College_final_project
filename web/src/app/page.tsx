@@ -4,6 +4,8 @@ import Countdown from "@/components/Countdown";
 import { CHARACTERS } from "@/lib/characters";
 
 export default function Home() {
+  const initialNow = Date.now();
+
   return (
     <div className="relative">
       {/* HERO */}
@@ -53,7 +55,7 @@ export default function Home() {
               <span className="font-mono text-[10px] tracking-[0.36em] uppercase text-mute">
                 First Trisolaran Fleet · Estimated Arrival
               </span>
-              <Countdown />
+              <Countdown initialNow={initialNow} />
             </div>
           </div>
 
