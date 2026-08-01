@@ -216,7 +216,7 @@
           "classifierAxis": "survivor"
         },
         {
-          "text": "That pattern is exactly why people like Wang Miao keep fighting against it.",
+          "text": "That pattern is exactly why people who see through the game keep fighting against it.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -313,7 +313,7 @@
       ]
     },
     "1010": {
-      "speech": "So. A Survivor. I have met that calculation before, in different clothes. Your father's safety, your children's future, a seat on the right side of history. Tell me — when you hand over coordinates and names, whose coordinates are those? Whose names? You are not bargaining with your own life. You are spending other people's without asking them.",
+      "speech": "So. A self-preserver. I have met that calculation before, in different clothes. Your father's safety, your children's future, a seat on the right side of history. Tell me — when you hand over coordinates and names, whose coordinates are those? Whose names? You are not bargaining with your own life. You are spending other people's without asking them.",
       "stage": "She looks at the investigator steadily, without anger, the way a physicist looks at a flawed proof.",
       "choices": [
         {
@@ -495,7 +495,7 @@
       "endingAxis": "redemptionist"
     },
     "10010": {
-      "speech": "No. It is not. I know that. I knew it when I pressed the key and I know it now, sitting in front of this warning that I will answer anyway. Eight billion people had no say — and neither did my father, and neither did I, standing in that clearing watching them denounce him. The world does not wait for consent before it acts. I am only doing what the world taught me. That is not justification. It is just the truth of what I am now.",
+      "speech": "I know that. I knew it when I pressed the key and I know it now, sitting in front of this warning that I will answer anyway. Four billion people had no say — and neither did my father, and neither did I, standing in that clearing watching them denounce him. The world does not wait for consent before it acts. I am only doing what the world taught me. That is not justification. It is just the truth of what I am now.",
       "stage": "She does not look away. The lamp flickers once. Outside, the dish is still.",
       "choices": [],
       "final": true,
@@ -516,7 +516,7 @@
       "endingAxis": "survivor"
     },
     "10101": {
-      "speech": "It is not entirely different. I know that. I sent the message without asking the eight billion people whose fate I was deciding, and I will not pretend otherwise. But I was not trying to secure my own seat. I had already lost everything I wanted to protect — my father, the last belief I held in this species. What I did came from despair, not calculation. That does not make it right. It only makes it different from what you are describing.",
+      "speech": "It is not entirely different. I know that. I sent the message without asking the four billion people whose fate I was deciding, and I will not pretend otherwise. But I was not trying to secure my own seat. I had already lost everything I wanted to protect — my father, the last belief I held in this species. What I did came from despair, not calculation. That does not make it right. It only makes it different from what you are describing.",
       "stage": "She turns back to the terminal. The three lines of warning still glow on the screen. She does not move to answer them. Not yet.",
       "choices": [],
       "final": true,
@@ -653,7 +653,7 @@
       "stage": "She looks back at the screen. The three lines of warning still glow there, unchanged.",
       "choices": [
         {
-          "text": "Then tell me which families the ETO promised to spare. I need names.",
+          "text": "Then tell me which families the invaders' collaborators promised to spare. I need names.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -1076,7 +1076,7 @@
       "endingAxis": "survivor"
     },
     "01101": {
-      "speech": "I have heard that word before. Serve. It is what the Redemptionists say, and it sounds clean until you ask what service costs. I did not send that message so that humanity could kneel to a better civilization. I sent it because I had stopped believing humanity was worth defending. Those are not the same thing. Sit with the difference before you choose a side.",
+      "speech": "I have heard that word before. Serve. It is what the ones who speak of salvation through surrender say, and it sounds clean until you ask what service costs. I did not send that message so that humanity could kneel to a better civilization. I sent it because I had stopped believing humanity was worth defending. Those are not the same thing. Sit with the difference before you choose a side.",
       "stage": "She turns away from the screen at last, and the room feels colder for it.",
       "choices": [],
       "final": true,

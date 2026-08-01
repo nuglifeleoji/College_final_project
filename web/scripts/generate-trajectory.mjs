@@ -13,7 +13,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
 import { CHARACTERS } from "../src/lib/characters.ts";
-import { worldEntriesKnownAt, storyPositionLabel } from "../src/lib/world-book.ts";
+import { WORLD_ENTRIES, worldEntriesKnownAt, storyPositionLabel } from "../src/lib/world-book.ts";
 import { CLASSIFIER_SYSTEM, AXES, AXIS_LABEL, AXIS_TAGLINE } from "../src/lib/factions.ts";
 
 /**
@@ -207,15 +207,18 @@ async function pool(items, worker, limit) {
 // The exact wording the classifier grades against. The writer was using its own
 // notion of each axis and the grader another, which is why 56% of the first
 // pass read as an ideology different from the one it was scored as.
+// Deliberately free of proper nouns. The first version named Mike Evans,
+// Shen Yufei, Wang Miao and Shi Qiang as exemplars, which handed the writer
+// present-day people to drop into a 1979 scene.
 const AXIS_RUBRIC = {
   adventist:
-    "anti-human; fascinated by extinction-as-correction; contempt for humanity; drawn to Mike Evans's worldview",
+    "anti-human; fascinated by extinction-as-correction; contempt for the species; welcomes an outside power that would end it",
   redemptionist:
-    "reverence for Trisolaris as a god; hope to be saved or judged; willingness to serve; drawn to Shen Yufei's worldview",
+    "reverence for the arriving civilisation as something god-like; hope to be saved or judged; eagerness to serve it",
   survivor:
     "self-interested, transactional, cynical pragmatism; save my own; will betray the species for personal gain",
   frontier:
-    "pro-human investigation; scientific resistance; curiosity; defiance; sympathy with Wang Miao and Shi Qiang",
+    "pro-human investigation; scientific resistance; curiosity; defiance; protecting ordinary people",
 };
 
 /** Score one player line exactly the way the running app scores it. */
@@ -256,6 +259,22 @@ async function rewriteChoices(node, pair, attempt = 1) {
     max_tokens: 400,
     system: [
       { type: "text", text: character.systemPrompt, cache_control: { type: "ephemeral" } },
+      // The first version of this pass omitted the world book and the story
+      // clock entirely, so rewritten choices could name things the scene has
+      // not reached ("the ETO", "Wang Miao") even though generation was gated.
+      {
+        type: "text",
+        text:
+          "In-universe reference, already filtered to what is knowable now. If something is absent, it does not exist yet:\n\n" +
+          knownEntries.map((e) => `### ${e.title}\n${e.body.join(" ")}`).join("\n\n"),
+        cache_control: { type: "ephemeral" },
+      },
+      {
+        type: "text",
+        text: `STORY POSITION (this is "now"): ${storyPositionLabel(storyIndex)}
+
+Nothing after this point has happened. Neither the player nor the character may name a person, group, ship or operation that does not exist yet at this moment. That applies to the options you are about to write.`,
+      },
       {
         type: "text",
         text: `You are writing the two options the PLAYER may say next, in reply to this line you just spoke:
@@ -336,6 +355,155 @@ async function repairChoices(allNodes, rounds = 4) {
   console.log(`  final: ${ok}/${all.length} choices read as the axis they score`);
 }
 
+// Terms that betray knowledge of a gated World Book entry, plus figures who do
+// not exist early in the timeline. Checked against whatever this character is
+// NOT allowed to know at its story position.
+const ENTRY_TERMS = {
+  // The faction taxonomy is ETO vocabulary. The writer prompt injects the
+  // capitalised AXIS_LABELs at every node, so all four have to be blocked
+  // before the ETO exists — the original pattern listed only two, which is
+  // exactly why "A Survivor." survived in the 1979 file.
+  eto: /\bETO\b|Earth-Trisolaris Organi|Pan-Species|\b(?:Adventist|Redemptionist|Survivor|Frontier)s?\b/,
+  "judgment-day": /Judgment Day/i,
+  sophon: /\bsophons?\b/i,
+  "three-body-game": /V-suit|Hai Ren|King Wen|Three-Body game/i,
+  guzheng: /Guzheng|nano-?filament/i,
+  "dark-forest": /dark forest|cosmic sociology|two axioms/i,
+  trisolaris: /Trisolar/i,
+  "red-coast": /Red Coast/i,
+};
+const PRESENT_DAY_PEOPLE =
+  /Wang Miao|Yang Dong|Shen Yufei|Da Shi|Shi Qiang|Frontiers of Science|Battle Command/i;
+
+// Period-relative facts, which an entity blocklist cannot see. World population
+// was ~4.3bn in 1979 and ~3.8bn in 1971; the model's present-day default of
+// "eight billion" leaked into the only file where it is false.
+const ANACHRONISTIC_FIGURES = /\b(?:eight|seven|six|8|7|6)\s*billion\b/i;
+
+// A character must never name themselves as a third party. Independent of the
+// clock — it is wrong at every story position.
+const SELF_NAMES = {
+  "ye-wenjie": /\bYe Wenjie\b/,
+  "wang-miao": /\bWang Miao\b/,
+  "shi-qiang": /\b(?:Shi Qiang|Da Shi)\b/,
+  "mike-evans": /\bMike Evans\b/,
+};
+
+const forbiddenIds = WORLD_ENTRIES.filter(
+  (e) => !knownEntries.some((k) => k.id === e.id)
+).map((e) => e.id);
+
+/**
+ * Everything in one line that the story has not reached, or [] if clean.
+ * `isOwnSpeech` enables the self-reference check, which only applies to lines
+ * the character themselves speaks.
+ */
+function anachronismsIn(text, isOwnSpeech = false) {
+  if (!text) return [];
+  const hits = [];
+  for (const id of forbiddenIds) {
+    const m = text.match(ENTRY_TERMS[id]);
+    if (m) hits.push({ term: m[0], why: `does not exist yet at this point in the story` });
+  }
+  if (storyIndex <= 5) {
+    const p = text.match(PRESENT_DAY_PEOPLE);
+    if (p) hits.push({ term: p[0], why: `is a present-day figure who does not exist yet` });
+    const f = text.match(ANACHRONISTIC_FIGURES);
+    if (f) {
+      hits.push({
+        term: f[0],
+        why: `is a present-day world population; in this era it is closer to four billion`,
+      });
+    }
+  }
+  if (isOwnSpeech) {
+    const s = text.match(SELF_NAMES[character.id] ?? /(?!)/);
+    if (s) {
+      hits.push({
+        term: s[0],
+        why: `is the speaker's own name being used as though it were a different person`,
+      });
+    }
+  }
+  return hits;
+}
+
+/** Minimally rewrite one line to remove named things the scene has not reached. */
+async function scrubLine(text, hits, isPlayerLine, attempt = 1) {
+  const res = await client.messages.create({
+    model: MODEL,
+    max_tokens: 300,
+    system: [
+      {
+        type: "text",
+        text: `You are editing a line from an interactive Three-Body Problem scene set at: ${storyPositionLabel(storyIndex)}.
+
+Problems with this line:
+${hits.map((h) => `- "${h.term}" ${h.why}`).join("\n")}
+
+Rewrite the line so none of those problems remain. Keep the same speaker, the same meaning, the same ideological lean, roughly the same length and the same voice. Describe the thing rather than naming it, correct the figure, or cut the reference if it is incidental — whichever reads most naturally.
+
+${isPlayerLine ? `This is a line the PLAYER says to ${character.name}.` : `This is a line ${character.name} says. They are the speaker — they must never refer to themselves as if they were a separate person.`}
+
+Return strict JSON only: { "text": "<the rewritten line>" }`,
+      },
+    ],
+    messages: [{ role: "user", content: text }],
+  });
+  try {
+    const parsed = extractJson(res.content.find((c) => c.type === "text")?.text ?? "");
+    const out = String(parsed.text ?? "").trim();
+    if (!out) throw new Error("empty");
+    return out;
+  } catch {
+    if (attempt >= 3) return null;
+    return scrubLine(text, hits, isPlayerLine, attempt + 1);
+  }
+}
+
+/**
+ * Closed loop, same shape as the legibility pass: find every line naming
+ * something the story has not reached, rewrite it, re-scan, keep only
+ * improvements. Runs until clean or out of rounds.
+ */
+async function scrubAnachronisms(allNodes, rounds = 3) {
+  for (let round = 1; round <= rounds; round++) {
+    const jobs = [];
+    for (const [key, node] of Object.entries(allNodes)) {
+      const s = anachronismsIn(node.speech, true);
+      if (s.length) jobs.push({ node, field: "speech", index: -1, hits: s, key });
+      node.choices.forEach((c, i) => {
+        const h = anachronismsIn(c.text);
+        if (h.length) jobs.push({ node, field: "choice", index: i, hits: h, key });
+      });
+    }
+    process.stdout.write(`  round ${round}: ${jobs.length} anachronistic lines ... `);
+    if (!jobs.length) { console.log("clean"); return; }
+
+    await pool(
+      jobs,
+      async (j) => {
+        const original = j.field === "speech" ? j.node.speech : j.node.choices[j.index].text;
+        const fixed = await scrubLine(original, j.hits, j.field === "choice");
+        // never regress
+        if (!fixed || anachronismsIn(fixed, j.field === "speech").length) return;
+        if (j.field === "speech") j.node.speech = fixed;
+        else j.node.choices[j.index].text = fixed;
+      },
+      CONCURRENCY
+    );
+    console.log("done");
+  }
+  const left = Object.values(allNodes).reduce(
+    (n, v) =>
+      n +
+      anachronismsIn(v.speech, true).length +
+      v.choices.reduce((m, c) => m + anachronismsIn(c.text).length, 0),
+    0
+  );
+  console.log(`  ${left === 0 ? "clean" : `${left} anachronism(s) still present`}`);
+}
+
 async function labelChoices(allNodes) {
   const targets = [];
   for (const key of Object.keys(allNodes)) {
@@ -412,7 +580,14 @@ const outFile = path.join(outDir, `${character.id}.json`);
 // --- repair mode: keep the prose, rewrite only illegible choices ------------
 if (process.argv.includes("--repair")) {
   const existing = JSON.parse(fs.readFileSync(outFile, "utf8"));
-  await repairChoices({ "": existing.opening, ...existing.nodes });
+  const all = { "": existing.opening, ...existing.nodes };
+  console.log("scrubbing anachronisms:");
+  await scrubAnachronisms(all);
+  console.log("repairing illegible choices:");
+  await repairChoices(all);
+  // Scrubbing runs again because a rewritten choice can reintroduce a name.
+  console.log("re-scrubbing after rewrites:");
+  await scrubAnachronisms(all);
   fs.writeFileSync(outFile, JSON.stringify(existing, null, 2));
   console.log(`repaired ${outFile}`);
   process.exit(0);
@@ -476,9 +651,14 @@ for (let depth = 1; depth <= DEPTH; depth++) {
 }
 
 await labelChoices({ "": opening, ...nodes });
-// Close the loop: rewrite any option that does not read as the axis it scores.
+// Close both loops: every line must be free of things the story has not
+// reached, and every option must read as the axis it scores.
+console.log("scrubbing anachronisms:");
+await scrubAnachronisms({ "": opening, ...nodes });
 console.log("repairing illegible choices:");
 await repairChoices({ "": opening, ...nodes });
+console.log("re-scrubbing after rewrites:");
+await scrubAnachronisms({ "": opening, ...nodes });
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(

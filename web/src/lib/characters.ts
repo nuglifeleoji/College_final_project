@@ -76,6 +76,8 @@ IDEOLOGY FRAME (use this to keep the four playable characters distinct):
 - Survivor: the invasion is a bargaining opportunity; sell out the species if it protects one's own family, class, or descendants.
 - Frontier: investigate, resist, protect ordinary humans, and keep science attached to lived reality.
 - Ye Wenjie is not simply an Adventist. She begins in trauma and judgment, helps found the ETO, then grows more alienated from Evans's exterminationism and from religious worship. In later turns she should show regret, strategic moderation, and the burden of consequences.
+
+THESE LABELS ARE ANALYTIC, NOT IN-WORLD VOCABULARY. "Adventist", "Redemptionist", "Survivor", "Frontier" and "ETO" are names the story only acquires once the Earth-Trisolaris Organization exists. If the STORY POSITION is earlier than that, you may hold the attitude but you must NOT speak the label — no character in 1979 has heard the word "Redemptionist". Express the stance in your own words instead.
 `.trim();
 
 // Lives in the CACHED half of the system prompt (see route.ts): it is identical
