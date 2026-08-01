@@ -93,7 +93,7 @@
       "stage": "Wang Miao takes a half-step back from the desk, eyes narrowing, recalibrating the person in front of him.",
       "choices": [
         {
-          "text": "Humanity had its chance. Maybe the leash is deserved.",
+          "text": "Maybe the leash is what humanity needs — we've proven we can't govern ourselves.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -104,7 +104,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "I heard it from Shen Yufei. What do you know about her?",
+          "text": "I don't care what it means for everyone else — just tell me how to keep my family off that countdown.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -112,7 +112,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -121,7 +121,7 @@
       "stage": "Wang Miao taps the edge of the most recent photograph, where the numbers are sharpest, and does not look away from it.",
       "choices": [
         {
-          "text": "Shen Yufei is the target — we follow her tonight.",
+          "text": "Honestly? If something out there can break physics, maybe we had it coming.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -129,10 +129,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "I don't trust Da Shi. He could be one of them.",
+          "text": "I need to know if this threat reaches my family before I go any further.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -140,7 +140,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -233,7 +233,7 @@
       "stage": "Wang Miao glances at his phone, then sets it face-down on the desk, deliberate.",
       "choices": [
         {
-          "text": "Your alliance with Da Shi puts your family in the crosshairs too.",
+          "text": "Fine — but if this alliance stops protecting me, I walk. My survival first.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -241,10 +241,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Then we need to get inside the Frontiers of Science before Da Shi does.",
+          "text": "Then let's use that alliance hard — every lead, every door, before more people die.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -261,7 +261,7 @@
       "stage": "Wang Miao turns away from the desk, facing the window, the city lights below indifferent and ordinary.",
       "choices": [
         {
-          "text": "Ye Wenjie made her deal and she's still alive. That means something.",
+          "text": "Maybe the collaborators failed because humanity was never worth saving in the first place.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -269,10 +269,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "There's no deal to make — we find the source and we cut the signal.",
+          "text": "You don't understand — Trisolaris isn't an enemy, it's a higher order we should serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -280,7 +280,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -289,7 +289,7 @@
       "stage": "Wang Miao pulls up his research files on the laptop, the photographs still spread beneath it.",
       "choices": [
         {
-          "text": "Forget the game — the countdown is a threat, we find the transmitter.",
+          "text": "Maybe the countdown is mercy — a warning before humanity's mistakes catch up with it.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -297,10 +297,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The simulation showed you their weakness. That's leverage, not a warning.",
+          "text": "If Trisolaris chose your work specifically, Wang, perhaps you were meant to serve them.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -308,7 +308,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -317,7 +317,7 @@
       "stage": "Wang Miao sets the photograph down carefully, as if it might react to being handled roughly.",
       "choices": [
         {
-          "text": "Maybe the selected survivors are the ones smart enough to cooperate now.",
+          "text": "Maybe the variable that gets eliminated is the point — we had our chance.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -325,10 +325,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "My daughter is seven too. That's exactly why we have to fight this.",
+          "text": "If Trisolaris can reach inside our cameras, then it already sees who is worthy.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -336,7 +336,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -345,7 +345,7 @@
       "stage": "Wang Miao sets the photograph down carefully, like evidence at a scene.",
       "choices": [
         {
-          "text": "Good. If physics is broken, clinging to it is just denial.",
+          "text": "Maybe the universe is just correcting a species that was never meant to last.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -353,10 +353,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "We need to find out what experiment Yang Dong was running before she died.",
+          "text": "If a higher civilization is showing us the truth, perhaps we should listen and serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -364,7 +364,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -373,7 +373,7 @@
       "stage": "Wang Miao picks up his phone, holds it, puts it back down on top of the photographs.",
       "choices": [
         {
-          "text": "Don't tell her anything. Ignorance protects her now.",
+          "text": "Maybe the countdown is mercy — humanity was never going to fix itself.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -381,10 +381,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Tell her exactly what you saw. She deserves the truth.",
+          "text": "If Trisolaris is coming, I want to be useful to them, not hiding in Shijiazhuang.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -392,7 +392,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -401,7 +401,7 @@
       "stage": "Wang Miao picks up the VR headset from beside the desk, turns it over once, sets it back down without putting it on.",
       "choices": [
         {
-          "text": "Let them recruit you — get inside and find out what they're planning.",
+          "text": "Maybe the game is right. Humanity has failed every test it built.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -409,10 +409,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The game is a trap. Smash it and go to Da Shi with what you have.",
+          "text": "If they see me understanding, perhaps they'll judge me worthy to serve them.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -420,7 +420,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -429,7 +429,7 @@
       "stage": "Wang Miao stares at the overturned photograph for a long moment, then turns it back over.",
       "choices": [
         {
-          "text": "Then tell them. Warn your wife tonight, before this goes further.",
+          "text": "Maybe the suicides were mercy — the scientists who finally understood we deserve this.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -437,10 +437,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Fear for your family is exactly how they control you — don't let it.",
+          "text": "If Trisolaris is watching, I want them to know I would serve. Willingly.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -448,7 +448,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -457,7 +457,7 @@
       "stage": "Wang Miao pulls the VR headset from under the desk, sets it on top of the photographs, and stares at the combination.",
       "choices": [
         {
-          "text": "If their god is real, the game is a gift — play it fully.",
+          "text": "Maybe Yang Dong panicked because she still cared whether humanity survived. I don't.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -465,10 +465,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Document everything before you go in. I'll hold the record.",
+          "text": "I'll witness for you — if Trisolaris is real, someone should be ready to receive them.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -476,7 +476,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -597,7 +597,7 @@
       "stage": "He picks up the most recent photograph, holds it at arm's length as if distance changes the numbers, then sets it back down.",
       "choices": [
         {
-          "text": "Some of us will survive. That's enough, isn't it?",
+          "text": "Maybe indifference is exactly what we've earned. Humanity had its chance.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -605,10 +605,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "What did you actually see in that VR — tell me everything.",
+          "text": "I just need my family safe. Whatever the cost to everyone else.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -616,7 +616,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -625,7 +625,7 @@
       "stage": "He pulls up a photograph and holds it to the lamp; the numbers glow faintly through the paper like a brand.",
       "choices": [
         {
-          "text": "A confession means someone wants you to know. Why?",
+          "text": "Maybe a civilization that can't survive deserves to be replaced by one that can.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -633,10 +633,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Forget the VR — what does Da Shi actually have on Shen Yufei?",
+          "text": "I just need to know if my family is safe. The rest of this — not my problem.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -644,7 +644,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -653,7 +653,7 @@
       "stage": "He sits down hard, elbows on knees, photographs scattered between his feet on the floor.",
       "choices": [
         {
-          "text": "Then you're already too emotional to think clearly about this.",
+          "text": "Then pick your daughter. Let someone else carry the rest of humanity.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -661,10 +661,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "You're right. So what do we actually do tonight, right now?",
+          "text": "Nobody should be — which is exactly why we fight for all of them.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -765,7 +765,7 @@
       "stage": "He stands abruptly and crosses to the window, putting his back to the photographs.",
       "choices": [
         {
-          "text": "If the physics is broken, maybe the old rules don't apply to us either.",
+          "text": "Good. Maybe the universe correcting itself is exactly what we deserve.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -773,10 +773,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Then we need Da Shi. Call him. Right now.",
+          "text": "If Trisolaris is rewriting physics, perhaps we should stop resisting and listen.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -784,7 +784,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -793,7 +793,7 @@
       "stage": "He pulls up the V-suit headset from beside the desk, sets it on top of the photograph stack, and looks at it the way you look at a door you're not sure opens from the inside.",
       "choices": [
         {
-          "text": "I'll go in with you. Whatever's in there, we face it together.",
+          "text": "Maybe what you find at the edge is proof humanity never deserved to survive.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -801,10 +801,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "No — the VR is how they recruited people. Don't give them that.",
+          "text": "I'll go in with you — if Trisolaris is real, I want to be worthy of contact.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -812,7 +812,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -821,7 +821,7 @@
       "stage": "He moves to the window, not looking out, just putting his back to the photographs.",
       "choices": [
         {
-          "text": "Humanity had its chance. We wasted it.",
+          "text": "Humanity had its chance. Maybe correction is exactly what this is.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -832,7 +832,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "Then help me understand what they actually want from us.",
+          "text": "If Trisolaris judges us worthy, that mercy is worth any price.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -840,7 +840,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -849,7 +849,7 @@
       "stage": "He pulls his chair closer to the desk and lowers his voice, as though the apartment walls might be listening — and then remembers they might be.",
       "choices": [
         {
-          "text": "Then maybe humanity deserves to be ejected. Look at what we've done to each other.",
+          "text": "Maybe being ejected is just what humanity deserves. We had our chance.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -860,7 +860,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "We have to warn someone — Da Shi, the Command Center, anyone.",
+          "text": "If Trisolaris needs our sun, perhaps serving them is the only worthy purpose left.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -868,7 +868,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -877,7 +877,7 @@
       "stage": "He picks up his phone, looks at a contact — Da Shi's number — then sets it back down without calling.",
       "choices": [
         {
-          "text": "Then maybe humanity deserves what's coming. We brought this on ourselves.",
+          "text": "Maybe the countdown is mercy — humanity was always heading toward something worse.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -888,7 +888,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "No — the countdown predates your questions. That means it's a deadline, not a threat.",
+          "text": "If Trisolaris is watching, I want them to know I am willing to serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -896,7 +896,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -905,35 +905,7 @@
       "stage": "He writes 'Shen Yufei' on a scrap of paper and underlines it twice, then immediately covers it with a photograph.",
       "choices": [
         {
-          "text": "Tell her you're willing to help solve the three-body problem. See what she offers.",
-          "axis": "adventist",
-          "alignmentDelta": {
-            "adventist": 2,
-            "redemptionist": 0,
-            "survivor": 0,
-            "frontier": 0
-          },
-          "classifierAxis": "survivor"
-        },
-        {
-          "text": "Don't go alone — loop Da Shi in before you make contact.",
-          "axis": "redemptionist",
-          "alignmentDelta": {
-            "adventist": 0,
-            "redemptionist": 2,
-            "survivor": 0,
-            "frontier": 0
-          },
-          "classifierAxis": "frontier"
-        }
-      ]
-    },
-    "0110": {
-      "speech": "I — no. No, I hear what you're saying, I understand the logic, but sold out to *what*, exactly? To a civilization that has already decided we're an obstacle? Da Shi would laugh at me for saying this, but I have a daughter who is seven years old and she draws horses, and I am not going to purchase her survival by handing over everyone else's. That's not a transaction, that's just — that's just being the thing that deserves to be corrected.",
-      "stage": "He sets the photograph down very carefully, as if it might detonate.",
-      "choices": [
-        {
-          "text": "Maybe humanity *does* deserve correction. Yang Dong saw something we haven't.",
+          "text": "Honestly? Maybe she's right to redirect it. Humanity's had its chance.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -944,7 +916,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "All right. Then we need allies — who else inside the Command Center can we trust?",
+          "text": "If Trisolaris needs this solved, helping them might be the only thing that matters.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -952,7 +924,35 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0110": {
+      "speech": "I — no. No, I hear what you're saying, I understand the logic, but sold out to *what*, exactly? To a civilization that has already decided we're an obstacle? Da Shi would laugh at me for saying this, but I have a daughter who is seven years old and she draws horses, and I am not going to purchase her survival by handing over everyone else's. That's not a transaction, that's just — that's just being the thing that deserves to be corrected.",
+      "stage": "He sets the photograph down very carefully, as if it might detonate.",
+      "choices": [
+        {
+          "text": "Maybe your daughter's world is exactly what needs correcting, Wang Miao.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If Trisolaris judges us worthy, perhaps serving them is the only salvation left.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -961,7 +961,7 @@
       "stage": "He closes the camera case slowly, as if putting away evidence.",
       "choices": [
         {
-          "text": "If they're recruiting you, let them. Find out what they're offering.",
+          "text": "Maybe if humanity keeps failing itself, being recruited isn't the worst outcome.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -969,10 +969,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "No — that's how they got Yang Dong. We need Da Shi's protection first.",
+          "text": "If Trisolaris is watching, I want them to see I'm ready to serve something greater.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -980,7 +980,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },

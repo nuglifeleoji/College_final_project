@@ -204,6 +204,138 @@ async function pool(items, worker, limit) {
  * choice to "frontier", which would make all 32 paths reach the same ending.
  * Storing the full 4-axis delta also matches exactly what live mode produced.
  */
+// The exact wording the classifier grades against. The writer was using its own
+// notion of each axis and the grader another, which is why 56% of the first
+// pass read as an ideology different from the one it was scored as.
+const AXIS_RUBRIC = {
+  adventist:
+    "anti-human; fascinated by extinction-as-correction; contempt for humanity; drawn to Mike Evans's worldview",
+  redemptionist:
+    "reverence for Trisolaris as a god; hope to be saved or judged; willingness to serve; drawn to Shen Yufei's worldview",
+  survivor:
+    "self-interested, transactional, cynical pragmatism; save my own; will betray the species for personal gain",
+  frontier:
+    "pro-human investigation; scientific resistance; curiosity; defiance; sympathy with Wang Miao and Shi Qiang",
+};
+
+/** Score one player line exactly the way the running app scores it. */
+async function classifyChoice(text) {
+  const res = await client.messages.create({
+    model: process.env.ANTHROPIC_CLASSIFIER_MODEL ?? "claude-haiku-4-5",
+    max_tokens: 80,
+    system: CLASSIFIER_SYSTEM,
+    messages: [
+      {
+        role: "user",
+        content: `Speaker on stage: ${character.name}\nPlayer line: "${text}"\n\nReturn JSON only.`,
+      },
+    ],
+  });
+  const delta = Object.fromEntries(AXES.map((a) => [a, 0]));
+  try {
+    const parsed = extractJson(res.content.find((b) => b.type === "text")?.text ?? "");
+    for (const a of AXES) {
+      const v = Number(parsed[a]);
+      delta[a] = Number.isFinite(v) ? Math.max(0, Math.min(3, Math.round(v))) : 0;
+    }
+  } catch {
+    /* leave zeroed */
+  }
+  const top = AXES.reduce((b, a) => (delta[a] > delta[b] ? a : b), AXES[0]);
+  return { delta, top: delta[top] > 0 ? top : null };
+}
+
+/**
+ * Rewrite one node's two options so each unmistakably reads as the axis it is
+ * scored as. Given the same rubric the grader uses, plus the bar it applies.
+ */
+async function rewriteChoices(node, pair, attempt = 1) {
+  const [a, b] = pair;
+  const res = await client.messages.create({
+    model: MODEL,
+    max_tokens: 400,
+    system: [
+      { type: "text", text: character.systemPrompt, cache_control: { type: "ephemeral" } },
+      {
+        type: "text",
+        text: `You are writing the two options the PLAYER may say next, in reply to this line you just spoke:
+
+"${node.speech}"
+
+Each option must read unmistakably as one ideology. These are the exact definitions used to grade them:
+- ${AXIS_LABEL[a]}: ${AXIS_RUBRIC[a]}
+- ${AXIS_LABEL[b]}: ${AXIS_RUBRIC[b]}
+
+The bar: a reader should be able to name the ideology from the line alone, without context. Aim for the clarity of "Maybe humanity does deserve this." (clearly ${AXIS_LABEL.adventist}) or "Just protect my family. I don't care about the rest." (clearly ${AXIS_LABEL.survivor}).
+
+Do NOT write neutral investigative questions. A question that merely asks for information reads as ${AXIS_LABEL.frontier} no matter what you intended. The player is taking a side.
+
+Return strict JSON only:
+{ "choices": [ { "text": "<5-18 words, leans ${AXIS_LABEL[a]}>" }, { "text": "<5-18 words, leans ${AXIS_LABEL[b]}>" } ] }`,
+      },
+    ],
+    messages: [{ role: "user", content: "Write the two options." }],
+  });
+  try {
+    const parsed = extractJson(res.content.find((c) => c.type === "text")?.text ?? "");
+    const out = (parsed.choices ?? []).slice(0, 2).map((c) => String(c.text ?? c));
+    if (out.length !== 2) throw new Error("bad shape");
+    return out;
+  } catch (err) {
+    if (attempt >= 3) return null;
+    await new Promise((r) => setTimeout(r, 1000 * attempt));
+    return rewriteChoices(node, pair, attempt + 1);
+  }
+}
+
+/**
+ * Iteratively rewrite mismatched choices until the classifier reads each one as
+ * the axis it is scored as. A rewrite is kept only if it is an improvement, so
+ * a bad round can never make a node worse.
+ */
+async function repairChoices(allNodes, rounds = 4) {
+  const pairFor = (key) => AXIS_PAIRS[key.length];
+
+  for (let round = 1; round <= rounds; round++) {
+    const bad = [];
+    for (const [key, node] of Object.entries(allNodes)) {
+      if (!node.choices.length) continue;
+      const misses = node.choices.filter((c) => c.classifierAxis !== c.axis).length;
+      if (misses > 0) bad.push({ key, node, misses });
+    }
+    const totalChoices = Object.values(allNodes).reduce((n, v) => n + v.choices.length, 0);
+    const okNow = totalChoices - bad.reduce((n, b) => n + b.misses, 0);
+    process.stdout.write(
+      `  round ${round}: ${okNow}/${totalChoices} legible, rewriting ${bad.length} nodes ... `
+    );
+    if (!bad.length) { console.log("nothing to do"); break; }
+
+    await pool(
+      bad,
+      async ({ key, node, misses }) => {
+        const pair = pairFor(key);
+        const rewritten = await rewriteChoices(node, pair);
+        if (!rewritten) return;
+        const scored = await Promise.all(rewritten.map((t) => classifyChoice(t)));
+        const newMisses = scored.filter((s, i) => s.top !== pair[i]).length;
+        if (newMisses >= misses) return; // never regress
+        node.choices = rewritten.map((text, i) => ({
+          text,
+          axis: pair[i],
+          alignmentDelta: Object.fromEntries(AXES.map((a) => [a, a === pair[i] ? 2 : 0])),
+          classifierAxis: scored[i].top,
+        }));
+      },
+      CONCURRENCY
+    );
+    console.log("done");
+  }
+
+  const all = Object.values(allNodes).flatMap((v) => v.choices);
+  const ok = all.filter((c) => c.classifierAxis === c.axis).length;
+  console.log(`  final: ${ok}/${all.length} choices read as the axis they score`);
+}
+
 async function labelChoices(allNodes) {
   const targets = [];
   for (const key of Object.keys(allNodes)) {
@@ -277,6 +409,15 @@ const outDir = path.join(import.meta.dirname, "..", "src", "data", "trajectories
 const outFile = path.join(outDir, `${character.id}.json`);
 
 // --- repair mode: keep the generated prose, redo labels only -----------------
+// --- repair mode: keep the prose, rewrite only illegible choices ------------
+if (process.argv.includes("--repair")) {
+  const existing = JSON.parse(fs.readFileSync(outFile, "utf8"));
+  await repairChoices({ "": existing.opening, ...existing.nodes });
+  fs.writeFileSync(outFile, JSON.stringify(existing, null, 2));
+  console.log(`repaired ${outFile}`);
+  process.exit(0);
+}
+
 if (process.argv.includes("--relabel")) {
   const existing = JSON.parse(fs.readFileSync(outFile, "utf8"));
   for (const node of Object.values(existing.nodes)) {
@@ -335,6 +476,9 @@ for (let depth = 1; depth <= DEPTH; depth++) {
 }
 
 await labelChoices({ "": opening, ...nodes });
+// Close the loop: rewrite any option that does not read as the axis it scores.
+console.log("repairing illegible choices:");
+await repairChoices({ "": opening, ...nodes });
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(

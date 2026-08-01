@@ -39,6 +39,7 @@
 - D016 ACTIVE 2026-08-01 [CODE]: Trajectory choices are scored by the app's existing Haiku classifier, not by the persona model self-labelling — self-labelling collapsed 53 of 62 choices to "frontier" and left 2 of 4 endings unreachable.
 - D017 ACTIVE 2026-08-01 [CODE]: Each branch level is forced to offer two *opposed* axes (`AXIS_PAIRS` in the generator). Without it the model wrote two investigative questions everywhere, because Ye's scene casts the player as an interrogator.
 - D018 ACTIVE 2026-08-01 [USER]: Demo mode disables free-text input and shows a notice that the questions are fixed, with a contact link for the full version.
+- D019 ACTIVE 2026-08-01 [CODE]: Choice generation is a closed loop — every option is scored by the classifier and rewritten until it reads as the axis it is scored as. The writer is given the classifier's own axis rubric verbatim; the two using different vocabularies is what made 56% of the first pass illegible. Rewrites are kept only when they reduce the mismatch count, so a round can never regress a node.
 
 ## State
 ### Done (recent)
@@ -101,7 +102,6 @@
 
 ## Open questions
 - 2026-05-28 [CODE]: Which host/domain will serve the app, and should live Claude access be limited to invited viewers?
-- 2026-08-01 [CODE]: Only ~40% of generated choices are read by the classifier as the axis they were authored to express. The ending spread is unaffected, but a player may not feel their choices earned the outcome. Worth a spot-read of the choice text before publishing.
 
 ## Incidents
 - 2026-08-01 [CODE]: Removing turn counters from the prompt silently broke Ye Wenjie's four-stage arc (a 2026-05-10 [USER] invariant), which was keyed to "turns 0-4 / 5-9 / 10-14 / 15+". She had no remaining signal for her own progression. Fixed by sending an unquotable `NARRATIVE STAGE` label (opening / divergence / consequence / reckoning) instead of a raw count, and re-keying her prompt to those names. Caught only by reading her prompt during live testing, not by any build or type check.
@@ -143,4 +143,5 @@
 - 2026-08-01 [TOOL]: Brute-forced all 6^5 axis-pair assignments for ending evenness. Argmax scoring caps at a gap of 4 and repeats one pair three times; recency tie-break with no pair used more than twice reaches 7/7/9/9 (gap 2). Adopted.
 - 2026-08-01 [TOOL]: Regenerated all four characters (63 calls each, ~$2.60 total). Every file: 62 nodes, 32 leaves, 62/62 unique speeches, endings 7/7/9/9.
 - 2026-08-01 [TOOL]: Playwright across all four characters with no API key -> all PASS: 5 rounds of exactly 2 choices, reached an ending, 0 `/api/chat` calls, no free-text box, no page errors.
-- 2026-08-01 [TOOL]: Classifier agreement with authored choice intent is 21-34 of 62 per character. Endings are unaffected (baked on the leaves) but some choices may not read as the axis they were written for — see Open questions.
+- 2026-08-01 [TOOL]: Measured the first pass properly: 108/248 choices read as their scored axis, 1 neutral, **139 read as a different ideology**. Not a strictness artifact — a genuine legibility failure.
+- 2026-08-01 [TOOL]: `--repair` closed the loop (share the classifier's rubric with the writer, rewrite, re-score, keep only improvements). All four characters reached **62/62 legible** in 1-4 rounds. Endings still 7/7/9/9; Playwright across all four still passes with 0 API calls.

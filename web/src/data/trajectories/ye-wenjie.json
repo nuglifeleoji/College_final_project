@@ -121,7 +121,7 @@
       "stage": "She turns slightly, not quite facing him. Her hands remain flat on the console.",
       "choices": [
         {
-          "text": "Humanity failed once. That doesn't mean it deserves to be erased.",
+          "text": "Humanity keeps proving you right. Maybe extinction is simply the correction it deserves.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -129,10 +129,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "One person's grief doesn't justify handing the whole species to strangers.",
+          "text": "I just want to know which side survives. Tell me how to be on it.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -140,7 +140,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -149,7 +149,7 @@
       "stage": "Her voice does not rise. She looks back at the terminal.",
       "choices": [
         {
-          "text": "Some things have to be destroyed before they can be rebuilt. Your father would understand that.",
+          "text": "Your father's death is tragic, but I only care about protecting my own children.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -157,10 +157,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "You have doubts. Then why did you send the message at all?",
+          "text": "Those men were not humanity. Ordinary people deserve a defense, not a sentence.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -168,7 +168,7 @@
             "survivor": 0,
             "frontier": 2
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "frontier"
         }
       ]
     },
@@ -177,7 +177,7 @@
       "stage": "She sets down her pen. The question is not rhetorical — she is waiting.",
       "choices": [
         {
-          "text": "Time doesn't matter. I'll give them coordinates, names, anything to secure my place.",
+          "text": "Information about our defenses. Enough to buy my family a place on the right side.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -188,7 +188,7 @@
           "classifierAxis": "survivor"
         },
         {
-          "text": "We have something they want — a stable sun. That is leverage, if we're careful.",
+          "text": "Nothing. That's why we fight — not bargain. Humanity doesn't surrender its future.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -196,7 +196,7 @@
             "survivor": 0,
             "frontier": 2
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "frontier"
         }
       ]
     },
@@ -205,7 +205,7 @@
       "stage": "A long pause. She looks at the terminal again, not at him.",
       "choices": [
         {
-          "text": "Even so — who gave you the right to make that choice for all of us?",
+          "text": "Then the smart ones adapt. Survival requires knowing which way the wind blows.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -213,10 +213,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Then stay silent. Don't answer. Honor the warning and protect what little good remains.",
+          "text": "That pattern is exactly why people like Wang Miao keep fighting against it.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -224,7 +224,7 @@
             "survivor": 0,
             "frontier": 2
           },
-          "classifierAxis": null
+          "classifierAxis": "frontier"
         }
       ]
     },
@@ -233,7 +233,7 @@
       "stage": "She finally looks at him. Her expression is not angry. It is simply certain.",
       "choices": [
         {
-          "text": "If the door was rotting, we fix it ourselves. We don't invite something unknown through it.",
+          "text": "Then tell me which families survive. I need names, not philosophy.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -241,10 +241,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Tell me what you actually hope they will do when they arrive.",
+          "text": "The pattern can still be broken. That is why we keep fighting.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -261,7 +261,7 @@
       "stage": "A long pause. Her hands are flat on the desk, very still.",
       "choices": [
         {
-          "text": "Then humanity keeps failing the same test. Someone must intervene.",
+          "text": "Maybe he was wrong. Some libraries deserve to burn.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -272,7 +272,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "I'm sorry. Tell me what your father actually believed.",
+          "text": "Trisolaris will build what humanity never could. That is reason enough.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -280,7 +280,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -289,7 +289,7 @@
       "stage": "She folds her hands on the desk. One small lamp. Outside, the dish turns slightly in the wind.",
       "choices": [
         {
-          "text": "Despair is not a reason to condemn eight billion people who had no say.",
+          "text": "Despair is just clarity. Humanity forfeited its right to continue.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -297,10 +297,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Then you are consistent. Despair brought you here. Let it finish what it started.",
+          "text": "Perhaps Trisolaris will judge us justly, and redeem what we could not.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -308,7 +308,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -317,7 +317,7 @@
       "stage": "She looks at the investigator steadily, without anger, the way a physicist looks at a flawed proof.",
       "choices": [
         {
-          "text": "Everyone does this. At least I'm honest about what I want.",
+          "text": "Maybe those people deserve it. Humanity keeps proving it cannot govern itself.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -325,10 +325,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "You sent that first message. How is that different from what I'm describing?",
+          "text": "Trisolaris will judge who is worthy. I only want to be found on the right side.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -336,7 +336,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -345,7 +345,7 @@
       "stage": "She looks out the small window toward the dish, visible in the gray dawn light.",
       "choices": [
         {
-          "text": "Then humanity should prepare to fight, not negotiate — we have to warn someone.",
+          "text": "Good. Humanity has had four billion years and squandered every one of them.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -353,10 +353,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "All the more reason to send everything we have now, before they decide they don't need us.",
+          "text": "Then we should kneel now, and show them we are already willing to serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -373,7 +373,7 @@
       "stage": "She finally looks at him directly. Her expression is not defiant. It is exhausted.",
       "choices": [
         {
-          "text": "Then at least tell me what you actually hope they will do when they arrive.",
+          "text": "Humanity had its chance. Extinction may be the only honest correction.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -381,10 +381,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "You sound like every authoritarian who ever justified a catastrophe with private certainty.",
+          "text": "If Trisolaris judges us and finds us wanting, I will accept that verdict gladly.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -392,7 +392,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -401,7 +401,7 @@
       "stage": "She finally looks at him directly. Her expression is not cruel. It is simply finished with something.",
       "choices": [
         {
-          "text": "The warning came from someone over there who thought we were worth protecting — that's evidence enough.",
+          "text": "Maybe there is no good left. Perhaps extinction is the only honest correction.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -409,10 +409,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "You're describing despair, not judgment. Those aren't the same thing either.",
+          "text": "Trisolaris will judge us and redeem what we cannot save ourselves.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -420,7 +420,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -429,7 +429,7 @@
       "stage": "She turns back to the terminal, one finger resting near but not touching the keyboard.",
       "choices": [
         {
-          "text": "Then let it burn — but by our hands, not theirs.",
+          "text": "Perhaps the burning is the point. Humanity had its chance and wasted it.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -440,7 +440,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "You're asking history to justify something irreversible.",
+          "text": "Then let Trisolaris judge us. Their civilization must know something we never could.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -448,7 +448,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -457,7 +457,7 @@
       "stage": "She looks back at the terminal. The cursor has stopped blinking.",
       "choices": [
         {
-          "text": "That answer is a coward's answer. You want the outcome without owning it.",
+          "text": "Humanity has earned extinction. The message was justice, not a mistake.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -468,7 +468,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "If you truly have no hope, then you sent that message out of pure despair — not reason.",
+          "text": "They are coming to redeem us. We are not worthy, but they will lift us.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -476,7 +476,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -625,7 +625,7 @@
       "stage": "She turns slightly, eyes still on the screen rather than on you.",
       "choices": [
         {
-          "text": "Disagreement there means we should answer, give that voice strength.",
+          "text": "Even one dissenter proves the rest want us gone. Good. We have earned it.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -633,10 +633,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Disagreement there means the dangerous faction may already be winning.",
+          "text": "I only need that one voice if it means my family survives the invasion.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -644,7 +644,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -653,7 +653,7 @@
       "stage": "She looks back at the screen. The three lines of warning still glow there, unchanged.",
       "choices": [
         {
-          "text": "Who is Evans? What does he want from all this?",
+          "text": "Then tell me which families the ETO promised to spare. I need names.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -661,10 +661,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "You sent the reply anyway. Whatever you believe now, that act is done.",
+          "text": "Humanity is still worth fighting for. I refuse to accept your verdict.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -681,7 +681,7 @@
       "stage": "She finally looks away from the screen, toward the narrow window where the dish is just visible in the grey morning light.",
       "choices": [
         {
-          "text": "I'd give them coordinates, intelligence — whatever they ask.",
+          "text": "Fine. But if they do exist, I want my family's names on whatever list keeps people alive.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -689,10 +689,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "What do you think the warning means — mercy, or something colder??",
+          "text": "You're right. We learn what they are before we hand them anything — especially Earth's location.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -709,7 +709,7 @@
       "stage": "She finally looks at you. Her expression is not cold — it is simply finished, like a calculation that has already been run.",
       "choices": [
         {
-          "text": "Then we wait. Tell me what you did with those eight years of silence.",
+          "text": "Then tell me what to say to guarantee my family's safety when they arrive.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -717,10 +717,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "The warning itself — did anyone else here see it, or only you?",
+          "text": "Four years is enough time for us to prepare. Help us understand what's coming.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -737,7 +737,7 @@
       "stage": "She finally looks at you, briefly, then back at the three lines on the screen.",
       "choices": [
         {
-          "text": "Then we seal this room, destroy the records, and pretend it never came.",
+          "text": "Then I need to know which faction wins, so I can back the right side.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -745,10 +745,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Then we have to answer again — before that window closes.",
+          "text": "Either way, humanity needs that answer. I will find it.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -765,7 +765,7 @@
       "stage": "She says the last sentence quietly, almost to herself, as if testing whether she means it.",
       "choices": [
         {
-          "text": "Then don't tell him. This contact belongs to you alone.",
+          "text": "Perhaps he's right. Humanity was always the disease, not the patient.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -773,10 +773,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "His vision is pure. Perhaps that purity is exactly what is needed now.",
+          "text": "If Trisolaris is coming, maybe it is the salvation we never deserved to find ourselves.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -784,7 +784,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -793,7 +793,7 @@
       "stage": "She folds her hands in her lap. The hum of the dish fills the silence between them.",
       "choices": [
         {
-          "text": "That warning — does it change what you would do if you could go back?",
+          "text": "Humanity had its chances. The warning on that screen is justice, not tragedy.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -801,10 +801,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Three days. And you still haven't told your commanding officer.",
+          "text": "Three days staring at it — perhaps Trisolaris is already watching over you, waiting.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -812,7 +812,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -849,7 +849,7 @@
       "stage": "She is quiet for a moment, her breath just visible in the cold air of the room.",
       "choices": [
         {
-          "text": "A conscience like yours — that's exactly why you should answer again.",
+          "text": "One conscience changes nothing. Humanity earned what is coming.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -857,10 +857,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "A conscience like that proves they are not gods. We should resist.",
+          "text": "That single voice proves Trisolaris is worthy of our devotion and surrender.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -868,7 +868,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -905,7 +905,7 @@
       "stage": "She says the last sentence quietly, as if placing a stone down rather than speaking.",
       "choices": [
         {
-          "text": "You should report it. This is too large for one person to carry.",
+          "text": "Good. Humanity had its chance. Don't report it. Let the correction begin.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -913,10 +913,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Good. Some things should not go through official channels.",
+          "text": "You were chosen to receive it. Serve them — report nothing, await their guidance.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -924,7 +924,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "redemptionist"
         }
       ]
     },

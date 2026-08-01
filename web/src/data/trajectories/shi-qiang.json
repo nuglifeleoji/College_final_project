@@ -37,7 +37,7 @@
       "stage": "Da Shi lights a cigarette without offering one, eyes steady on the player.",
       "choices": [
         {
-          "text": "Some forces are bigger than any door. Better to work with them.",
+          "text": "Their side. Trisolaris will decide who is worthy of surviving.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -45,10 +45,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "redemptionist"
         },
         {
-          "text": "I mean our people. The ones still alive. That's the job, isn't it?",
+          "text": "Humanity's side. Whatever it costs, we don't hand this planet over.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -65,7 +65,7 @@
       "stage": "Da Shi lights a cigarette and does not offer one.",
       "choices": [
         {
-          "text": "I was watching the organization they belonged to. The ETO.",
+          "text": "I was watching them because they were close to something sacred. Something worth serving.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -73,10 +73,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         },
         {
-          "text": "Someone has to watch. The Command Center wasn't doing it fast enough.",
+          "text": "I was watching who watched them. Someone had to, before more scientists died.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -93,7 +93,7 @@
       "stage": "Da Shi sets the cigarette down and looks at the player without blinking.",
       "choices": [
         {
-          "text": "I knew before the suicides started. I didn't tell anyone because I wasn't sure who to trust.",
+          "text": "Long enough to think maybe the ETO has a point about this species.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -101,10 +101,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The ETO isn't what you think. Some of them aren't wrong about humanity.",
+          "text": "Long enough to know which side pays better. What's your offer?",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -112,7 +112,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -121,7 +121,7 @@
       "stage": "Da Shi taps ash onto the floor, eyes on the player's hands.",
       "choices": [
         {
-          "text": "The people who pointed me there are the same people who want the scientists dead.",
+          "text": "Shen Yufei understood something you don't: humanity had this coming.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -129,10 +129,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "I got ahead of you because I'm not bound by any flag on that wall.",
+          "text": "I have information you need. What's it worth to you personally?",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -177,7 +177,7 @@
       "stage": "Da Shi picks the cigarette back up, eyes narrowing through the smoke.",
       "choices": [
         {
-          "text": "Those deaths are tragic. But the ETO's diagnosis of the species might still be correct.",
+          "text": "Those bodies don't concern me. I need to know which side keeps me alive.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -185,10 +185,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "adventist"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "No. Nothing justifies it. I said I understood them, not that I agreed.",
+          "text": "Those families deserve answers. Tell me who pulled the trigger and let's go get them.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -205,7 +205,7 @@
       "stage": "Da Shi sits back, smoke curling, watching the player's face with the patience of a man who has done this a thousand times.",
       "choices": [
         {
-          "text": "They cut me loose when I stopped believing humanity deserved to burn.",
+          "text": "Cut loose. And I intend to stay that way — useful to whoever keeps me breathing.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -213,10 +213,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "I'm still useful to them. That's exactly why you should keep me close.",
+          "text": "Still on the string? No. I want to help you pull the whole thing apart.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -224,7 +224,7 @@
             "survivor": 0,
             "frontier": 2
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "frontier"
         }
       ]
     },
@@ -233,7 +233,7 @@
       "stage": "Da Shi sets the cigarette down and leans forward on both elbows.",
       "choices": [
         {
-          "text": "I answer to the people getting killed. That's enough.",
+          "text": "I answer to whoever keeps me alive longest. That's always been enough.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -241,10 +241,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "I answer to people who understand what's actually at stake here.",
+          "text": "I answer to the people dying in this investigation. That's who sent me.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -261,7 +261,7 @@
       "stage": "Da Shi stubs out the cigarette on the edge of the briefing table, watching the player's hands.",
       "choices": [
         {
-          "text": "Maybe the wrong side is the one that loses. I'm being practical.",
+          "text": "Maybe the wrong side is just humanity's overdue correction, Da Shi.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -269,10 +269,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "I have family. You'd do the same calculation in my position.",
+          "text": "If Trisolaris is superior, serving them isn't betrayal — it's alignment.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -280,7 +280,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -289,7 +289,7 @@
       "stage": "Da Shi pulls a folded paper from his jacket and smooths it on the table without showing it to the player.",
       "choices": [
         {
-          "text": "They don't recruit. They find people who are already broken and just open a door.",
+          "text": "Recruit? They offer people the truth — that humanity has already earned its end.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -297,10 +297,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "They target scientists who believe humanity has already failed. The science is secondary.",
+          "text": "They find people ready to kneel. To finally serve something greater than this species.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -308,7 +308,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -317,7 +317,7 @@
       "stage": "Da Shi stubs out the cigarette with more force than necessary.",
       "choices": [
         {
-          "text": "Evans saw something real though. The environment, the wars — humanity keeps failing itself.",
+          "text": "Maybe the patient is terminal, Da Shi. Evans saw it clearly.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -325,10 +325,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "If the diagnosis is correct, then the cure — whatever it is — becomes a moral question, not a crime.",
+          "text": "Trisolaris doesn't need our survival — it needs our surrender and gratitude.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -336,7 +336,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -345,7 +345,7 @@
       "stage": "Da Shi pulls a thin folder across the table without opening it, watching the player's eyes.",
       "choices": [
         {
-          "text": "Evans funds it. Petroleum trust. The ships are the key — find the ships.",
+          "text": "Honestly? Humanity's had this coming. Evans saw that clearly.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -353,10 +353,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The structure doesn't matter. What matters is who among them still wants to stop this.",
+          "text": "They're doing sacred work. I'd give them whatever they needed.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -364,7 +364,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -373,7 +373,7 @@
       "stage": "Da Shi stubs out the cigarette and folds his hands on the table, leaning forward slightly.",
       "choices": [
         {
-          "text": "I can give you names, meeting places, codewords. Use me.",
+          "text": "Honestly? Part of me still thinks Evans was right. Humanity had it coming.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -381,10 +381,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Humanity deserves criticism. Just not extinction. There's a difference.",
+          "text": "I didn't stop believing. I stopped being worthy of serving them.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -392,7 +392,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -401,7 +401,7 @@
       "stage": "Da Shi stubs out the cigarette on the table edge and stands up.",
       "choices": [
         {
-          "text": "The deal I made is with something bigger than this Command Center can fight.",
+          "text": "Maybe whoever's killing them is doing the species a favor, Da Shi.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -409,10 +409,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "I'm bait because I believe what they believe. At least partially.",
+          "text": "If Trisolaris is watching, I want them to see I chose their side willingly.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -420,7 +420,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -429,7 +429,7 @@
       "stage": "Da Shi picks the cigarette back up, something almost like respect settling into his expression.",
       "choices": [
         {
-          "text": "Fine. But I need to know what you know about the Frontiers of Science first.",
+          "text": "Honestly? Maybe those dead scientists were the problem humanity needed to lose.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -437,10 +437,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The dead deserve more than an arrangement. They deserve someone who finishes it.",
+          "text": "I'm not sure the Trisolarans are the threat here. They may be our only salvation.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -448,7 +448,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -625,7 +625,7 @@
       "stage": "Da Shi taps ash onto the floor, not the tray.",
       "choices": [
         {
-          "text": "Maybe I just know which side I'm on, unlike most people here.",
+          "text": "Honestly? Maybe 'our people' is the problem. Humanity had its chance.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -633,10 +633,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The scientists dying — do you think they're being killed, or choosing it?",
+          "text": "My people means mine. My family. Everyone else can sort themselves out.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -644,7 +644,7 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         }
       ]
     },
@@ -653,7 +653,7 @@
       "stage": "Da Shi stubs the cigarette out slowly, as if making a decision about the player.",
       "choices": [
         {
-          "text": "The ugly half is winning though. The scientists are dying and nobody's stopping it.",
+          "text": "Fine. But if the aliens win, I want to be on the side that survives.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -661,10 +661,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Fine. But someone has to answer for what we've done. Maybe that's us.",
+          "text": "That mother on the flooding road — that's exactly what we're fighting to protect.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -709,7 +709,7 @@
       "stage": "Da Shi leans back, smoke curling toward the ceiling lights.",
       "choices": [
         {
-          "text": "Some costs are worth paying. Even if others don't understand that yet.",
+          "text": "When my side costs me everything, I start shopping for a better deal.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -717,10 +717,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "Tell me what you actually need from me. Let's stop circling.",
+          "text": "That's when you find out who actually gives a damn about people.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -737,7 +737,7 @@
       "stage": "Da Shi squints through the smoke, something shifting behind his eyes.",
       "choices": [
         {
-          "text": "If they're choosing it, maybe they saw something worth dying over.",
+          "text": "So let him have his reasons. My family stays safe either way.",
           "axis": "survivor",
           "alignmentDelta": {
             "adventist": 0,
@@ -745,10 +745,10 @@
             "survivor": 2,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "survivor"
         },
         {
-          "text": "We need to find whoever is giving them that reason. Follow the organization.",
+          "text": "Then we learn his reason and use it against him. That's how we fight back.",
           "axis": "frontier",
           "alignmentDelta": {
             "adventist": 0,
@@ -765,7 +765,7 @@
       "stage": "Da Shi pulls out a worn notebook, sets it on the table between them without opening it.",
       "choices": [
         {
-          "text": "What if the fleet arriving is inevitable? We should negotiate terms now.",
+          "text": "Humanity had its chance. Maybe losing is the correction it deserves.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -773,10 +773,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "So who do you actually suspect? Give me a name, not a speech.",
+          "text": "If Trisolaris wins, I want to be useful to them. That's not surrender, that's faith.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -784,7 +784,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -793,7 +793,7 @@
       "stage": "Da Shi leans back in his chair, arms crossed, studying the player like a suspect who just said something interesting.",
       "choices": [
         {
-          "text": "If they're coming regardless, shouldn't we at least earn their mercy?",
+          "text": "Humanity earned this, Da Shi. We've had every chance and wasted it.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -801,10 +801,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "We invited them here. Ye Wenjie made that choice. Someone has to own it.",
+          "text": "Trisolaris isn't a bully — it's a higher order we should be honored to serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -812,7 +812,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -821,7 +821,7 @@
       "stage": "Da Shi picks the cigarette back up, draws slow, doesn't look away.",
       "choices": [
         {
-          "text": "Then tell me what you'd do differently. You have kids, Da Shi?",
+          "text": "Maybe those scientists dying is exactly what a rotting species deserves, Da Shi.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -829,10 +829,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "The difference is I'm telling you upfront. That makes me an asset, not a traitor.",
+          "text": "Trisolaris will judge us all. I only hope to be found worthy of mercy.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -840,7 +840,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "survivor"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -849,7 +849,7 @@
       "stage": "Da Shi picks the cigarette back up, waiting, giving the player just enough rope.",
       "choices": [
         {
-          "text": "Once or twice. Academic curiosity, nothing more.",
+          "text": "Yes. And honestly? Walking out, I thought — maybe we had it coming.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -857,10 +857,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Yes. And what I heard there changed how I see everything.",
+          "text": "Once. I left convinced those people were touched by something far above us.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -868,7 +868,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -877,7 +877,7 @@
       "stage": "Da Shi stubs out the cigarette slowly, watching the player's face.",
       "choices": [
         {
-          "text": "Evans sees what most people are too comfortable to admit.",
+          "text": "Humanity keeps proving Evans right. Maybe the cost is overdue.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -888,7 +888,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "What do you actually know about Evans? Specifically.",
+          "text": "If Trisolaris judges us and finds us worthy, that is enough for me.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -896,7 +896,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -905,7 +905,7 @@
       "stage": "Da Shi stubs out the cigarette and finally looks the player full in the face.",
       "choices": [
         {
-          "text": "Comfortable. Because I think what's coming might be necessary.",
+          "text": "Comfortable. Humanity had this coming. I stopped grieving us a long time ago.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -916,7 +916,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "Scared. These scientists knew something. I want to know what.",
+          "text": "Comfortable. If Trisolaris is watching, I want them to see I am not afraid to serve.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -924,7 +924,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -933,7 +933,7 @@
       "stage": "Da Shi sets the cigarette down and folds his hands on the table, watching the player without blinking.",
       "choices": [
         {
-          "text": "Maybe humanity had it coming. The planet's been screaming for decades.",
+          "text": "Humanity had its chance. Maybe extinction is the honest verdict.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -944,7 +944,7 @@
           "classifierAxis": "adventist"
         },
         {
-          "text": "I just mean we should understand their logic before we dismiss it.",
+          "text": "I would serve them gladly. A higher civilization deserves our submission.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -952,7 +952,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
@@ -961,7 +961,7 @@
       "stage": "Da Shi spreads a thin folder on the table, mostly photographs, very few names.",
       "choices": [
         {
-          "text": "True believers are just waiting for a god. Maybe they found one worth following.",
+          "text": "Good. Humanity had this coming. Maybe the true believers are the only honest ones left.",
           "axis": "adventist",
           "alignmentDelta": {
             "adventist": 2,
@@ -969,10 +969,10 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "redemptionist"
+          "classifierAxis": "adventist"
         },
         {
-          "text": "Who's funding it? Money always leaves a cleaner trail than ideology.",
+          "text": "A superior civilization is reaching out. Serving them isn't betrayal — it's the highest calling imaginable.",
           "axis": "redemptionist",
           "alignmentDelta": {
             "adventist": 0,
@@ -980,7 +980,7 @@
             "survivor": 0,
             "frontier": 0
           },
-          "classifierAxis": "frontier"
+          "classifierAxis": "redemptionist"
         }
       ]
     },
