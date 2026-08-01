@@ -1,6 +1,11 @@
 // Per-character saved play session, persisted to localStorage.
 
-import { ZERO_ALIGNMENT, type Alignment, type Axis } from "@/lib/factions";
+import {
+  ZERO_ALIGNMENT,
+  type Alignment,
+  type Axis,
+  type EndingReason,
+} from "@/lib/factions";
 import type { ContextCompact } from "@/lib/context-compact";
 import type { ForcedTimelineEvent } from "@/lib/shared-memory";
 import {
@@ -15,9 +20,7 @@ export type Turn =
   | { kind: "timeline"; event: ForcedTimelineEvent }
   | { kind: "char"; characterId: string; speech: string; stage: string; id: string }
   | { kind: "user"; text: string }
-  | { kind: "choices"; choices: string[]; id: string }
-  | { kind: "guest_enter"; characterId: string; reason: string }
-  | { kind: "guest_exit"; characterId: string; reason: string };
+  | { kind: "choices"; choices: string[]; id: string };
 
 export type SavedSession = {
   // The character that started this story (the canonical perspective).
@@ -27,7 +30,15 @@ export type SavedSession = {
   turns: Turn[];
   alignment: Alignment;
   contextCompact?: ContextCompact;
-  endingFired?: { axis: Axis; turn: number; resolvedAt: number };
+  /** Demo mode: which branch of the pre-generated tree this save is on. */
+  demoPath?: string;
+  endingFired?: {
+    axis: Axis;
+    turn: number;
+    resolvedAt: number;
+    // Absent on saves written before endings became timeline-driven.
+    reason?: EndingReason;
+  };
   startedAt: number;
   updatedAt: number;
 };
@@ -76,7 +87,8 @@ export function saveSession(
   alignment: Alignment,
   activeCharacterId: string,
   contextCompact?: ContextCompact,
-  endingFired?: SavedSession["endingFired"]
+  endingFired?: SavedSession["endingFired"],
+  demoPath?: string
 ) {
   if (typeof window === "undefined") return;
   const existing = loadSession(characterId);
@@ -87,6 +99,7 @@ export function saveSession(
     alignment,
     contextCompact: contextCompact ?? existing?.contextCompact,
     endingFired: endingFired ?? existing?.endingFired,
+    demoPath: demoPath ?? existing?.demoPath,
     startedAt: existing?.startedAt ?? Date.now(),
     updatedAt: Date.now(),
   };

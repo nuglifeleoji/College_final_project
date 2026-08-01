@@ -1,0 +1,1100 @@
+{
+  "characterId": "wang-miao",
+  "model": "claude-sonnet-4-6",
+  "depth": 5,
+  "storyIndex": 9,
+  "opening": {
+    "speech": "You're the one I called. I — I need you to tell me whether what's happening to me is physics or psychiatry, because I don't think I get to choose. Look at this photograph.",
+    "stage": "Opening · Chapter · The Countdown",
+    "choices": [
+      {
+        "text": "Wang, whatever this is — keep your family out of it.",
+        "axis": "survivor",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 2,
+          "frontier": 0
+        },
+        "classifierAxis": "survivor"
+      },
+      {
+        "text": "Show me everything. We start from the data, right now.",
+        "axis": "frontier",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 0,
+          "frontier": 2
+        },
+        "classifierAxis": "frontier"
+      }
+    ]
+  },
+  "nodes": {
+    "0": {
+      "speech": "That's — yes, that's exactly what I keep telling myself, but the countdown is on *every* photograph, it doesn't matter which camera, which film, which lab develops it. My wife thinks I'm working late. She thinks the project is just... stressful. And I want to let her keep thinking that, but if this thing reaches zero while she's still in the dark—",
+      "stage": "Wang Miao turns the photographs face-down on the desk, one by one, as if that helps.",
+      "choices": [
+        {
+          "text": "Maybe the safest thing is to give them what they want.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Then we figure out what the countdown *is* before it runs out.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1": {
+      "speech": "Eight photographs, same camera, same settings — and the numbers are *there*, not on the negative, not in the file metadata, just... floating in the image plane like they were always meant to be read. 1194 hours, and it's dropping, I've timed it against a stopwatch. The cosmic microwave background — I saw it flicker, a pattern no instrument should produce, and then it stopped, like it was making a point. I am a nanomaterials researcher, I do not hallucinate structured countdowns in astrophysical radiation.",
+      "stage": "Wang Miao spreads the photographs across the desk under the lamp, hands steady but jaw tight.",
+      "choices": [
+        {
+          "text": "Maybe the Lord is trying to communicate — we should answer it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Someone manufactured this to make you stop working. Who benefits?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10": {
+      "speech": "The 'Lord' — that's ETO language, that's what they call it in the Frontiers of Science circles, and I need you to tell me right now where you heard that word. Because if this is communication, it is not benevolent communication — it is a leash, it is a countdown to something I have not consented to, and 'answering' a signal that is already *inside my photographs* is not science, it's — it's capitulation dressed up as curiosity.",
+      "stage": "Wang Miao takes a half-step back from the desk, eyes narrowing, recalibrating the person in front of him.",
+      "choices": [
+        {
+          "text": "Humanity had its chance. Maybe the leash is deserved.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "I heard it from Shen Yufei. What do you know about her?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "11": {
+      "speech": "That was my first instinct too — psychological warfare, intimidation, someone trying to break the nano-thread project before it reaches field testing. But I cannot find the mechanism — the photographs aren't doctored, there's no projection, no secondary light source, and the numbers are *consistent* across eight separate exposures with different shutter speeds. Da Shi — Shi Qiang, the detective they assigned to me — he's the kind of man who finds mechanisms, he doesn't believe in anything he can't hit with his fist, and even he looked at these and got quiet. The Frontiers of Science people, Shen Yufei's group... they knew I was looking. Maybe that's enough to start with.",
+      "stage": "Wang Miao taps the edge of the most recent photograph, where the numbers are sharpest, and does not look away from it.",
+      "choices": [
+        {
+          "text": "Shen Yufei is the target — we follow her tonight.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "I don't trust Da Shi. He could be one of them.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "100": {
+      "speech": "I have a daughter. She is seven years old and she did not vote on whether humanity deserved a leash — she draws horses and she is afraid of the dark and she has *nothing* to do with whatever crime you're tallying up against the species. Yang Dong is dead. The scientists killing themselves, they were not the worst of us, they were the best, and something made them believe there was no point continuing — I refuse to inherit that conclusion. I refuse.",
+      "stage": "Wang Miao's hand comes down flat on the photographs, not violent, but final.",
+      "choices": [
+        {
+          "text": "Your daughter is exactly why you should make a deal while you still can.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Then help me find what's generating the countdown before it hits zero.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "101": {
+      "speech": "Shen Yufei. Yes. She's Frontiers of Science, Redemptionist faction from what I can piece together — she and her husband Pan Han, they treat Trisolaris less like an invading force and more like... a god they've been waiting for their whole lives. I went to her house once, following a lead Da Shi handed me, and she said something I haven't been able to shake: 'Trisolaris will come regardless, the question is only what role you play.' That is not the language of a scientist. That is the language of someone who has already surrendered and is now recruiting.",
+      "stage": "Wang Miao picks up one photograph and holds it toward the light, the countdown numbers faintly luminous against the grain.",
+      "choices": [
+        {
+          "text": "Surrender isn't the worst outcome if it protects the people I love.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Then she's a lead. What's her connection to Yang Dong's death?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "110": {
+      "speech": "I've thought about that — she lives out near the edge of the city, husband's some kind of physicist too, and she barely reacts when I mention the countdown, which is either innocence or very practiced calm. But following her without Da Shi's resources is — we're researchers, not field operatives, and if the Frontiers of Science is what I think it is, being noticed by them is not a recoverable situation. What I do know is the VR game they distributed, the Three-Body simulation — I've been inside it, I played as Hai Ren, and whatever it is, it's not entertainment. It's a recruitment filter, and Shen Yufei is somewhere above the level they showed me.",
+      "stage": "Wang Miao moves to the window and checks the street below before answering, an unconscious habit he didn't have a week ago.",
+      "choices": [
+        {
+          "text": "Your family needs to leave the city before you go further.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "The VR is the key — go back in, deeper this time.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "111": {
+      "speech": "I thought that too, for about six hours — he's rough, he's opaque, he withholds things and then produces them when it suits him. But he brought me into that command center, he introduced me to people who could have simply made me disappear instead, and the way he reacted to the scientist suicides... that wasn't performance, that was a man who finds it personally offensive when people die on his watch. I'm not saying trust him completely — I'm saying he and I want the same immediate thing, which is to understand what's killing people like Yang Dong before it kills more. That's a temporary alliance, not a confession of faith.",
+      "stage": "Wang Miao glances at his phone, then sets it face-down on the desk, deliberate.",
+      "choices": [
+        {
+          "text": "Your alliance with Da Shi puts your family in the crosshairs too.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Then we need to get inside the Frontiers of Science before Da Shi does.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1000": {
+      "speech": "A deal. With what, exactly — a signal in my camera? A fleet that is four light-years away and hasn't arrived? You're asking me to sell something I cannot even verify exists in exchange for protection I have absolutely no reason to trust. Da Shi would laugh at that logic, and for once I think Da Shi would be right. The people who 'made deals' in history — I've read enough to know what the collaborators got, and it wasn't safety, it was just a longer wait for the same ending.",
+      "stage": "Wang Miao turns away from the desk, facing the window, the city lights below indifferent and ordinary.",
+      "choices": [
+        {
+          "text": "Ye Wenjie made her deal and she's still alive. That means something.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "There's no deal to make — we find the source and we cut the signal.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1001": {
+      "speech": "Yes — yes, that is the correct question, finally. Da Shi thinks it's a psychological weapon, something designed to break researchers at a specific threshold, and I think he's half right but missing the mechanism. The Three-Body game — I've been inside it, I've seen what they're showing us about Trisolaris, about the chaos, and whoever built that simulation wanted us to understand something about *them*, not just fear them. The countdown is tied to my work somehow, my nanomaterials research specifically, and I need to know if anyone else in my field has seen this.",
+      "stage": "Wang Miao pulls up his research files on the laptop, the photographs still spread beneath it.",
+      "choices": [
+        {
+          "text": "Forget the game — the countdown is a threat, we find the transmitter.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The simulation showed you their weakness. That's leverage, not a warning.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "1010": {
+      "speech": "I have a wife. I have a daughter who is — she's seven, she collects bottle caps, she doesn't know any of this exists. Don't you think that argument lands on me too? But Shen Yufei's faction isn't offering protection, they're offering *selection* — someone decides who is useful to the new order and everyone else is a variable that gets eliminated from the equation. You are not negotiating a peace treaty when you surrender to something that hasn't even arrived yet and can already reach inside your camera roll.",
+      "stage": "Wang Miao sets the photograph down carefully, as if it might react to being handled roughly.",
+      "choices": [
+        {
+          "text": "Maybe the selected survivors are the ones smart enough to cooperate now.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "My daughter is seven too. That's exactly why we have to fight this.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1011": {
+      "speech": "Yang Dong was Ye Wenjie's daughter, and she was working on something at the frontier of fundamental physics — something that, from what I've gathered, kept producing results that simply *refused* to make sense, constants that shifted, experiments that contradicted themselves. She killed herself, and I think she killed herself because she stopped believing physics was real. Shen Yufei moves in the same circles, the same Frontiers of Science network, and I don't think that overlap is coincidence — I think someone or something is systematically dismantling the faith of the best scientific minds we have, and Yang Dong just... broke first.",
+      "stage": "Wang Miao sets the photograph down carefully, like evidence at a scene.",
+      "choices": [
+        {
+          "text": "Good. If physics is broken, clinging to it is just denial.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "We need to find out what experiment Yang Dong was running before she died.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1100": {
+      "speech": "I know. I know that, I've been — my daughter drew a picture yesterday, just a normal child's drawing, crayon sun, house, all of it, and I stood there for ten minutes unable to move because I kept thinking about the countdown. My wife can see something is wrong but I haven't told her the shape of it, how do you tell someone that the numbers in your photographs might not be a threat but a *fact*. I'll call her mother's place in Shijiazhuang, I can frame it as a work trip, extended fieldwork — she won't believe me completely but she'll go if I ask right.",
+      "stage": "Wang Miao picks up his phone, holds it, puts it back down on top of the photographs.",
+      "choices": [
+        {
+          "text": "Don't tell her anything. Ignorance protects her now.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Tell her exactly what you saw. She deserves the truth.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1101": {
+      "speech": "That's — yes, that's what I keep coming back to, because the civilizations in there, the way they die, the three-body problem isn't a puzzle they invented for the game, it maps onto something real and the people who built it *know what the answer is*. I met Copernicus in there, Newton, von Neumann — historical figures used as avatars, which tells you something about how they think of human intellectual history, like a catalog of failed attempts. But going deeper means they see me going deeper, the Frontiers of Science monitors who advances, that's how the recruitment works — and I don't know yet whether I want them to know I understand what I'm looking at.",
+      "stage": "Wang Miao picks up the VR headset from beside the desk, turns it over once, sets it back down without putting it on.",
+      "choices": [
+        {
+          "text": "Let them recruit you — get inside and find out what they're planning.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The game is a trap. Smash it and go to Da Shi with what you have.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1110": {
+      "speech": "I know. I know that. My daughter drew a picture yesterday — just a house, a sun, crayon on paper, completely ordinary — and I had to put it face-down because I couldn't look at it while looking at these numbers. The rational response is to walk away, tell Da Shi I'm done, go back to the lab and pretend the CMB didn't do what it did. But whoever is doing this — the countdown, the suicides, Yang Dong — they're not stopping because I stop watching. My family is already inside the radius of whatever this is, they just don't know it yet.",
+      "stage": "Wang Miao stares at the overturned photograph for a long moment, then turns it back over.",
+      "choices": [
+        {
+          "text": "Then tell them. Warn your wife tonight, before this goes further.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Fear for your family is exactly how they control you — don't let it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1111": {
+      "speech": "I'm already inside — that's what the VR game is, it's their recruitment filter, and I've been playing it, logging hours in that suit while my wife thinks I'm working late. I met figures in there, historical scientists rendered as characters, and the whole thing is structured to make you feel like *you* are the one who can solve an unsolvable problem — it's not subtle once you recognize the shape of it. The question isn't getting in, it's getting deeper without triggering whatever alarm made Yang Dong decide a window was her best exit. I need to go back into the game, but I need someone who knows I've gone in.",
+      "stage": "Wang Miao pulls the VR headset from under the desk, sets it on top of the photographs, and stares at the combination.",
+      "choices": [
+        {
+          "text": "If their god is real, the game is a gift — play it fully.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Document everything before you go in. I'll hold the record.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10000": {
+      "speech": "Ye Wenjie survived, yes — but survive *to what*? She transmitted into the dark and something answered, and now there are dead scientists and a number burning into my photographs and I am standing in my apartment at — god, past midnight — trying to explain to someone I trusted that surviving is not the same as being safe, it is not the same as being *right*. Whatever she carries, she has been carrying it alone for decades, and I looked at her face in that meeting and I did not see peace, I saw a woman who had already paid a price she could not name to anyone. I don't want that. I want to find the source of this countdown, I want to understand it, and I want to still be the person my daughter knows when this is over.",
+      "stage": "Wang Miao finally puts the photographs face-down on the desk, as though he cannot look at the numbers anymore tonight.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10001": {
+      "speech": "Yes. Yes, that's — that's where I have to stand. The countdown is a mechanism, mechanisms have origins, origins can be traced and interrupted, that is the entire premise of my field: you find the structure, you find its weakness, you apply force at the correct scale. I'm going to call Da Shi in the morning, show him the photographs, and we find who is running this signal whether it's on a ship in international waters or in a basement in Beijing. I don't know if it can be cut. But I have to try as though it can — because the alternative is to stop trying, and I watched what that does to a person, and I will not become that.",
+      "stage": "Wang Miao gathers the photographs carefully, face set, the countdown still falling in the corner of every image.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10010": {
+      "speech": "You're right — the game is a recruitment tool, a distraction, and I've let it pull my attention sideways when the real question is physical: where is the signal originating, what is encoding these numbers into photographic emulsion, and who on this planet has the equipment to do it. Da Shi mentioned a ship — something that moves, answers to no flag — and I think the transmitter is not on land at all, which means we cannot simply triangulate from a rooftop. I don't know how much time we have, 1194 hours is generous until suddenly it isn't, and I have never been more certain of anything than this: when that counter reaches zero, the choice it was counting toward will have already been made for us by people who decided the rest of humanity doesn't get a vote.",
+      "stage": "Wang Miao closes the laptop over the photographs, the room dimmer now, and does not look away from the door.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10011": {
+      "speech": "Maybe. Maybe that is exactly right, and the thought keeps me up — that they showed us the chaos, the dehydration, the two hundred dead civilizations, not to make us feel small but because something in that history is a door, and doors work in both directions. But I am one man with a camera full of numbers and a stopwatch, and leverage requires time and coordination and people who are not already dead or converted, and I don't know yet if we have enough of either. What I know is this: I will keep working, I will keep the photographs, I will call Da Shi in the morning — and I will not tell my daughter that the sky has been watching us. Not yet.",
+      "stage": "Wang Miao stacks the photographs face-down and turns off the lamp over the desk, leaving only the laptop glow.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10100": {
+      "speech": "I used to think intelligence was the variable that mattered most too — and then I watched Yang Dong die, a physicist brilliant enough to see further than almost anyone alive, and whatever she saw did not save her, it *ended* her. The Survivors think they are bargaining with a civilization, but a civilization that has already placed observers in our physics experiments and a countdown in my photographs has leverage we cannot match, and leverage means the terms are already set. I am going to keep working, I am going to call Da Shi in the morning, and I am going to trust that understanding this thing is still worth something — not because I'm certain, but because the alternative is to hand my daughter's future to a faction that treats human lives as a rounding error in someone else's arithmetic.",
+      "stage": "Wang Miao turns off the lamp over the photographs, leaving only the window light, and does not look away from the numbers still faintly visible in the dark.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "10101": {
+      "speech": "Then we are the same kind of frightened, you and I — and that is the only ideology I trust right now, not Pan-Species Communism, not Redemptionism, just two people who know what a seven-year-old's laugh sounds like and cannot hand that over to a countdown burning in a photograph. I am going to keep going into the Three-Body game, I am going to keep feeding information to Da Shi, and I am going to keep my hands in the lab work because that is the only thing that reminds me the universe used to make sense. Whatever that number reaches when it hits zero — I want to be standing in front of it, not kneeling.",
+      "stage": "Wang Miao finally turns off the desk lamp, the photographs still spread beneath it, the darkness making the numbers seem, just briefly, brighter.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10110": {
+      "speech": "No. No, I won't accept that from you, not here, not tonight. Physics isn't broken because someone *wants* it to be broken — it's being *made* to look broken, there's a difference, and that difference is the only thread I have left to hold onto. My daughter is asleep in the next room. My wife thinks I'm working late on a materials grant. If I let go of the idea that the universe is knowable, that evidence still means something, then I have nothing left to protect them *with* — not courage, not reason, nothing. The countdown keeps falling whether I believe in it or not, and I choose to believe it is a problem to be *solved*, not a sermon to be accepted.",
+      "stage": "Wang Miao does not look up. He places his hand flat on the photographs, covering the numbers.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "10111": {
+      "speech": "That's exactly right, and Da Shi can get us into her flat — he already has clearance from the Battle Command Center, he's rougher than I'd like but he understands that this investigation is real in a way most of his colleagues don't. What I'm afraid of is what we find: if her data shows the same contamination I'm seeing, the same impossible results, then this isn't isolated, it's systematic, and the countdown burning into my photographs is not a message meant for me personally — it's a demonstration, it's Trisolaris saying *we are already here, we are already watching, your science is already ours*. I have a daughter who is eight years old and I need that to not be true.",
+      "stage": "Wang Miao turns off the lamp over the photographs, leaving only the ambient city glow through the window, the numbers on the topmost print still faintly visible in the dark.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "11000": {
+      "speech": "You're right, and I hate that you're right — the less she knows, the less she can say if someone comes asking, and in the world I've walked into this week, that is not paranoia, that is operational logic. I'll call her tonight, I'll keep it ordinary, I'll say the project is entering a sensitive phase and I need silence and space. And then tomorrow I go back to the Battle Command Center, I sit across from Da Shi, and I tell him everything about Shen Yufei and the game and the photographs — not because I trust the institution, but because he's the only person I've met who treats reality like something worth defending. The countdown is at 1194 hours and I don't know what it ends on, but I know I am not stopping.",
+      "stage": "Wang Miao finally puts the photographs face-down in a drawer, turns off the desk lamp, and stands for a moment in the dark before reaching for his phone.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "11001": {
+      "speech": "Maybe you're right. Maybe she deserves that more than she deserves a clean lie. I keep thinking — if physics is broken, if the ground under everything we built together is not what we thought it was, then the least dishonest thing I can do is stand next to her and say: this is what I saw, this is what the numbers say, I don't know what it means yet but I am still the person who will find out. I'll call her after you leave. And then I will go back to the data, and the photographs, and whatever is waiting at the end of that countdown — not because I'm brave, but because I am a scientist, and this is the only way I know how to be afraid.",
+      "stage": "Wang Miao straightens the photographs into a neat stack, face set, the countdown still falling in the lamplight behind him.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11010": {
+      "speech": "That's the only logical move left, isn't it — and that terrifies me more than the countdown does, because logic has been the first thing to fail every time I get closer to this. My daughter asked me this morning why I hadn't slept, and I told her the lab equipment was misbehaving, which is — technically not a lie. If I go back in and they find me useful enough to pull further up the chain, toward whatever Shen Yufei knows, toward wherever this countdown is pointed... I need you to remember everything I've told you tonight, because the version of me who comes out the other side of that recruitment may not be able to say it plainly anymore. The photographs are on the desk. The numbers are still falling.",
+      "stage": "Wang Miao does not move toward the headset again. He looks at you steadily, like a man memorizing a face before a long journey.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11011": {
+      "speech": "You're right that it's a trap — but smashing it means losing the only window I have into whatever they're actually building toward, and Da Shi... Da Shi already knows more than he's told me, I can see it in the way he doesn't ask certain questions. What I'm going to do is document everything — the photographs, the timing, the flicker in the background radiation, every detail of what I saw inside the VR — and I'm going to keep working, keep the nano-thread project alive, because I think that's the real target: not me, but what I'm capable of making. Whatever is coming, whatever this countdown is counting down *to*, I want to be someone who built something real when it arrives.",
+      "stage": "Wang Miao sets the photographs in a careful stack, face down, and turns off the lamp over the desk — leaving only the city light through the window.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11100": {
+      "speech": "She would believe me — that's the terrible part, she trusts my judgment completely, and I would watch that trust turn into fear that she can't do anything with. What do I tell her? That the universe left a message in our camera? That a countdown is running toward something I cannot name? No — what I can do is make sure the nano-thread work reaches the people who need it, make sure I understand enough of what the Frontiers of Science is hiding to give Da Shi something actionable, and then — *then* — if there is still time, I come home and I tell her everything, all of it, and we decide together. That's not cowardice. That's the only sequence that gives her a decision worth making.",
+      "stage": "Wang Miao finally sets the photographs in a stack, face-down, and turns off the lamp over the desk — leaving only the ambient light of the city through the window.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11101": {
+      "speech": "You're right, and I hate that you're right, because the moment I accept that I become someone who can be used up in service of a larger calculation — and I'm not sure I'm built for that. But the countdown is at 1194 hours and falling, and it is addressed to me specifically, which means someone believes I matter to whatever is coming. So I will keep looking. I will go back into that VR, I will follow Shen Yufei's thread, I will sit across from Da Shi and give him just enough to keep the channel open — and I will not look at my daughter's drawing again until I understand what those numbers mean.",
+      "stage": "Wang Miao turns off the desk lamp, leaving only the faint glow of the photographs in the dark.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11110": {
+      "speech": "I hear you saying that, and part of me — the part that has watched physics lie to my instruments for weeks — understands the logic. But a god that arrives by making scientists kill themselves and corrupting the foundations of knowledge is not offering a gift, it's demanding surrender, and I have a daughter who is eight years old and still believes the universe is reliable and fair. I'm going back into the game because it contains real information dressed in mythology, not because I'm ready to kneel to whatever is on the other side of that signal. Whatever is coming, I want to meet it as a scientist, not a convert.",
+      "stage": "Wang Miao closes his hand over the edge of the headset, not lifting it yet — holding the weight of the decision rather than making it.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11111": {
+      "speech": "Yes — yes, that's the right instinct, that's the scientific instinct, you document before the experiment because you may not come back to document after. I'll write down everything I remember from the previous sessions, the characters, the civilizations, the questions they asked me, and I'll leave it with you — not digitally, paper, because I don't know anymore what's being read. Whatever is in that game, whatever they want me to understand or become, I will look at it the way I look at a nanomaterial sample: observe, measure, do not flinch, and report back to someone who will still be standing outside the apparatus when the test runs. You are that person. Don't let anyone tell you otherwise.",
+      "stage": "Wang Miao reaches for a pen — a physical pen — and does not look at the countdown on the photographs as the numbers continue to fall.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "00": {
+      "speech": "Give them what they — who is 'them,' exactly? That's the part that keeps breaking open when I try to close it. The Frontiers of Science? Shen Yufei? Because I've been inside that VR, I've watched civilizations die three hundred times over, and whatever is on the other side of this countdown is not going to be *satisfied* with cooperation, it is going to be *indifferent* to it. You don't negotiate with a force of nature by handing it your family.",
+      "stage": "He picks up the most recent photograph, holds it at arm's length as if distance changes the numbers, then sets it back down.",
+      "choices": [
+        {
+          "text": "Some of us will survive. That's enough, isn't it?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "What did you actually see in that VR — tell me everything.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "01": {
+      "speech": "Right. Right, that's — that's the only rational position. Da Shi keeps saying 'follow the bodies,' and there are bodies, Yang Dong was brilliant and she's dead, and the Frontiers of Science keeps appearing at every edge of this thing like a watermark. I went into the VR, I played it, I met — historical figures, reconstructed, running simulations of a civilization that cannot predict its own sun, and I think — I think that's not metaphor. I think that's a confession.",
+      "stage": "He pulls up a photograph and holds it to the lamp; the numbers glow faintly through the paper like a brand.",
+      "choices": [
+        {
+          "text": "A confession means someone wants you to know. Why?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Forget the VR — what does Da Shi actually have on Shen Yufei?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "000": {
+      "speech": "I have a daughter. She is seven years old and she asks me why stars don't fall. And I — I used to have an answer for that. If I accept that 'some of us survive,' I am deciding which some, and I am deciding it right now, tonight, in this apartment, and I am not — I am not equipped to be that person. Nobody should be equipped to be that person.",
+      "stage": "He sits down hard, elbows on knees, photographs scattered between his feet on the floor.",
+      "choices": [
+        {
+          "text": "Then you're already too emotional to think clearly about this.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "You're right. So what do we actually do tonight, right now?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "001": {
+      "speech": "Three suns. Always three suns, pulling a planet in directions that no equation can hold steady — and the people on it, civilizations that built and burned and rebuilt, they weren't monsters, they were just... trapped in a system that couldn't be solved. I played as Hai Ren, I met figures modeled on Copernicus, Newton, von Neumann, and every single one of them was trying to *predict* the chaos, and every single one of them failed, and the planet dehydrated its population and waited and tried again. Two hundred times. Maybe more.",
+      "stage": "Wang Miao stares at the countdown numbers on the photograph as though they are a third sun he forgot to account for.",
+      "choices": [
+        {
+          "text": "That sounds like a civilization that deserves to take what it needs.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "So they're running out of time too — and we're the solution they found.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "010": {
+      "speech": "That's the question that keeps me up — because recruitment doesn't work like this, you don't terrify someone into joining you, so either it's a warning or it's a test, and neither of those is comfortable. The Frontiers of Science, Shen Yufei, whoever is running this — they needed physicists to stop working, and some of them did stop, permanently, and I'm still here asking questions which means either I passed something or I failed something and I don't know which outcome is worse.",
+      "stage": "Wang Miao stares at the countdown number on the photograph without blinking, as though looking away would make it advance faster.",
+      "choices": [
+        {
+          "text": "Maybe stopping your research is the price of keeping your family safe.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "If it's a test, then we push harder — what's the next thread to pull?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "011": {
+      "speech": "Da Shi doesn't share everything — he operates like a man who thinks information is ammunition and you don't fire it until you need to. What he told me is that Shen Yufei is connected to the Frontiers of Science at a level that isn't academic, that her husband is somehow involved, and that the suicides cluster around people who got too close to whatever she's at the center of. But when I look at her, she seems — calm in a way that isn't peace, it's more like someone who has already made a decision that costs everything and is just waiting for the invoice.",
+      "stage": "Wang Miao stares at the countdown numbers on the photograph, his finger not quite touching them.",
+      "choices": [
+        {
+          "text": "That kind of calm sounds like someone who sold out. We should too.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Then she's a lead. How do we get close to her without ending up like Yang Dong?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0000": {
+      "speech": "Maybe. Maybe you're right. But I've watched Da Shi — Shi Qiang — I've watched that man work, and he is the least emotional person I have ever met, and he is just as frightened as I am, he just performs it differently. Emotion isn't the contamination here. The contamination is in the experiments, in the physics results, in every high-energy lab on the planet producing data that simply — doesn't — cohere. That's not my feelings. That's the universe misbehaving.",
+      "stage": "He stands abruptly and crosses to the window, putting his back to the photographs.",
+      "choices": [
+        {
+          "text": "If the physics is broken, maybe the old rules don't apply to us either.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Then we need Da Shi. Call him. Right now.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0001": {
+      "speech": "Da Shi told me to keep photographing, keep logging the numbers, treat it like field data — and I think he's right, that's the only thing that feels like solid ground. But there's something else: Shen Yufei, she's connected to the Frontiers of Science and she knew things about Yang Dong that she shouldn't have known, and I think if I go back to that VR, go deeper into it, I find the edge where the game stops being a game. I don't want to go back in alone.",
+      "stage": "He pulls up the V-suit headset from beside the desk, sets it on top of the photograph stack, and looks at it the way you look at a door you're not sure opens from the inside.",
+      "choices": [
+        {
+          "text": "I'll go in with you. Whatever's in there, we face it together.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "No — the VR is how they recruited people. Don't give them that.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0010": {
+      "speech": "Deserves — I keep turning that word over and I can't make it do the work you need it to do. A drowning person who pulls someone else under to survive isn't *wrong* exactly, but the person being pulled under still drowns. What I saw in that VR was suffering, real suffering, and I felt it — but the moment I start letting 'they suffered therefore they may take' become my operating principle, I have handed my daughter's future to a logic that was never about her at all.",
+      "stage": "He moves to the window, not looking out, just putting his back to the photographs.",
+      "choices": [
+        {
+          "text": "Humanity had its chance. We wasted it.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Then help me understand what they actually want from us.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0011": {
+      "speech": "Yes — yes, and that's what I can't stop thinking about, because there's a terrible logic to it that almost sounds like sympathy until you follow it to the end. They are desperate, genuinely desperate, in a way I can almost *feel* after playing that game. But desperate doesn't mean *right*, and a civilization that survives by taking someone else's stable sun is just — it's just the three-body problem applied to species instead of stars, and we are the smaller mass that gets ejected.",
+      "stage": "He pulls his chair closer to the desk and lowers his voice, as though the apartment walls might be listening — and then remembers they might be.",
+      "choices": [
+        {
+          "text": "Then maybe humanity deserves to be ejected. Look at what we've done to each other.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "We have to warn someone — Da Shi, the Command Center, anyone.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0100": {
+      "speech": "I — I've thought that. I won't pretend I haven't sat at this desk and thought: just stop, just put the nanofiber work down and coach your son's weekend football and let someone else carry this. But the countdown doesn't care whether I'm working or not, it was there before I started asking questions, which means the price isn't my research — the price is something else, something I haven't named yet, and that terrifies me more than the numbers do.",
+      "stage": "He picks up his phone, looks at a contact — Da Shi's number — then sets it back down without calling.",
+      "choices": [
+        {
+          "text": "Then maybe humanity deserves what's coming. We brought this on ourselves.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "No — the countdown predates your questions. That means it's a deadline, not a threat.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0101": {
+      "speech": "Shen Yufei. She's the thread — she's Redemptionist, I'm almost certain of it, and that means she isn't trying to destroy physics, she's trying to *redirect* it, solve something for someone else, and if I go back to her with the right questions framed the right way she might — she might talk. Da Shi thinks she's dangerous and he's probably not wrong, but dangerous people talk when they believe you're close enough to their position to be worth converting.",
+      "stage": "He writes 'Shen Yufei' on a scrap of paper and underlines it twice, then immediately covers it with a photograph.",
+      "choices": [
+        {
+          "text": "Tell her you're willing to help solve the three-body problem. See what she offers.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Don't go alone — loop Da Shi in before you make contact.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0110": {
+      "speech": "I — no. No, I hear what you're saying, I understand the logic, but sold out to *what*, exactly? To a civilization that has already decided we're an obstacle? Da Shi would laugh at me for saying this, but I have a daughter who is seven years old and she draws horses, and I am not going to purchase her survival by handing over everyone else's. That's not a transaction, that's just — that's just being the thing that deserves to be corrected.",
+      "stage": "He sets the photograph down very carefully, as if it might detonate.",
+      "choices": [
+        {
+          "text": "Maybe humanity *does* deserve correction. Yang Dong saw something we haven't.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "All right. Then we need allies — who else inside the Command Center can we trust?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0111": {
+      "speech": "That's the question I've been turning over since Da Shi first said her name — Yang Dong got close through the science, through the Frontiers of Science network, and that path has a body count attached to it now. But I'm already inside the VR, I'm already on their radar, which means my only advantage is that they apparently *want* me there, they're showing me things deliberately. So maybe the approach isn't to infiltrate — maybe it's to let them think I'm further along the path toward whatever they're recruiting for than I actually am.",
+      "stage": "He closes the camera case slowly, as if putting away evidence.",
+      "choices": [
+        {
+          "text": "If they're recruiting you, let them. Find out what they're offering.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "No — that's how they got Yang Dong. We need Da Shi's protection first.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "00000": {
+      "speech": "That's what they want you to conclude — that's the exact door they're trying to open in people like us, in scientists, in anyone who still believes that the rules *matter*. Because once you decide the rules don't apply, you become useful to whoever is rewriting them. The countdown will reach zero whether I panic or whether I think clearly, but I will not spend whatever time is left convincing myself that the breakdown of physics is a *permission slip*. My daughter still needs the stars to not fall. That has to mean something. It has to.",
+      "stage": "He does not turn from the window. The photographs lie where they fell, numbers still burning upward in the dark.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00001": {
+      "speech": "I already did. An hour ago, before I called you. He said — and this is Da Shi, so he said it exactly like this — he said, 'Professor Wang, the stars aren't going anywhere tonight, so stop looking at the ceiling and eat something.' Which is either the most useless advice I've ever received or the only sane advice left in Beijing. But here's what I keep coming back to: Da Shi doesn't study the stars. He studies people. And the people who built this countdown, who built that VR, who watched Yang Dong walk off a building — those are still people, still somewhere in this city, and that means there is still something to find before the numbers run out.",
+      "stage": "He doesn't move from the window. Outside, Beijing's light pollution turns the sky the color of old paper — no stars visible, not one.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00010": {
+      "speech": "Then stay close, because the last time I was in there I watched Newton and von Neumann build a human computer out of a million soldiers and I still couldn't solve it — the three suns, the chaos, it's not a puzzle with an answer, I think that's the point, I think they want you to feel what it is to live without a stable sky. But we go in with our eyes open, we treat everything as data, and the moment something asks us to *commit* to anything — a faction, a belief, a name — we say nothing and we observe. Promise me that.",
+      "stage": "He holds the V-suit out across the desk, the countdown still burning silently in the photographs beneath it, 1194 hours and falling.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00011": {
+      "speech": "You're right. You're completely right, and I know it, and I still keep picking the headset up. That's — that's what frightens me most, not the countdown, not the flickering background radiation, but the fact that some part of me *wants* to go back in, wants to see how it ends, wants to understand it so badly that I would walk through a door I know is a trap. I'm going to call Da Shi. I'm going to log every number, every photograph, every timestamp, and I'm going to stay in this apartment with the lights on and the headset in the drawer where I can't see it. And when I look at my daughter tomorrow morning I am going to still be someone who chose to understand rather than to surrender — that has to be enough to start with.",
+      "stage": "He opens the desk drawer, places the headset inside without looking at it, and closes it with both hands as if the latch needs holding.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00100": {
+      "speech": "Maybe we did. I was alive during things I cannot defend, I have read histories I cannot explain away, and I understand — I think I genuinely understand — why someone who survived the worst of it would look at our species and feel nothing but exhaustion. But the woman in my apartment right now helping our daughter with her homework, she didn't waste anything. She is the chance that still exists. And I will not let a grief, however enormous, however justified, become the instrument that ends her.",
+      "stage": "Wang Miao does not raise his voice. He says it the way you state a measurement you have verified three times.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00101": {
+      "speech": "That is the question I cannot stop walking around. From what I've seen — the VR, the ETO, the people who stopped doing physics because physics stopped being real — I think they want the planet. Not a treaty, not a resource agreement, not our cooperation. The countdown isn't a negotiation deadline, it's a — it's a launch notification, something already in motion that we are only now being permitted to see. And that terrifies me more than any of the rest of it, because my entire career has been built on the idea that if you understand a system precisely enough you can intervene in it, and I am looking at this photograph right now and I cannot find the intervention point.",
+      "stage": "He finally sits down at the desk, both hands flat on the photographs, eyes on the numbers, not moving.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00110": {
+      "speech": "I know that argument. I've heard it from people who have read too much history and too little of their own morning. But my daughter learned to ride a bicycle last spring in the courtyard downstairs, and she fell, and she laughed, and if you are asking me to weigh that against some cosmic judgment of our species — I can't do it, I won't, not because I think humanity is clean but because the verdict was handed down before the defense was ever heard. Whatever Ye Wenjie saw, whatever broke in her after the Cultural Revolution, she decided for all of us without asking, and that is the thing I cannot forgive, not the contact, not even the invitation — the silence afterward, the decision that we were already guilty.",
+      "stage": "Wang Miao sits very still, the countdown ticking at the edge of the photograph, his hands flat on the desk as though steadying something that has no physical weight.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00111": {
+      "speech": "Da Shi already knows — or he knows enough, which is why he brought me into the Command Center in the first place, and I think that man has never once in his life been surprised by the worst-case scenario. But knowing and *acting* are separated by a distance I can't measure right now, because whoever is watching — and something is watching, I'm certain of it, the way I'm certain of my own pulse — they already know what we're planning before we plan it. The countdown keeps falling. 1194 hours. I don't know if that's a deadline or a detonation, but I know this: I am going back into that VR, and I am going to keep pulling on every thread until I understand what it's counting *down to*, because that is the only thing I know how to do — I am a scientist, I follow the evidence, even when the evidence is burning itself into my photographs.",
+      "stage": "Wang Miao does not say goodbye. He turns back to the camera on his desk, opens the back panel, and checks the film again — knowing what he will find.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "01000": {
+      "speech": "I've heard that argument. I've heard it made by people who are — who are not stupid, who watched real atrocities and drew real conclusions, and I still can't accept it, because 'humanity' in that sentence is always someone else's family, never the one making the argument. My son doesn't deserve an answer to a question he hasn't even learned to ask yet, and whatever is coming across that distance was invited here by choices made before he was born — that's not justice, that's inheritance, and I refuse to call it the same thing.",
+      "stage": "He finally places the photographs in a drawer and closes it, not to hide them, but because he has seen enough for one night.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01001": {
+      "speech": "Yes — yes, exactly, a deadline implies an event, something fixed and calendared on their end, not contingent on what I do or don't do, which means there are people who know what happens at zero and they are walking around Beijing right now buying groceries and arguing with their spouses and I have met some of them. The VR wasn't entertainment — it was orientation, it was showing me the shape of a problem that has killed two hundred civilizations, and the confession you named, the reason someone wants me to know — I think it's because they need witnesses, or they need me to understand before I can't anymore. Whatever zero is, I don't think I can outrun it, but I think — I think knowing is still better than not knowing, even now, even here, even with my wife asleep in the next room and my son's drawings still on the refrigerator.",
+      "stage": "He finally sets the photograph down, face-up, and does not turn it over.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01010": {
+      "speech": "That's — that's the gambit, isn't it. I go in as a nanomaterials researcher who's seen the VR, who understands what an unstable three-star system does to a civilization, who might be willing to lend his expertise to something larger than any one nation's physics program. It's not even entirely a lie, which is what makes it plausible and what makes it frightening. I just need to be sure that when she looks at me across that table, the countdown on my retinas doesn't read as fear — it needs to read as conviction.",
+      "stage": "He closes the camera case, sets it on the shelf, and does not take another photograph.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01011": {
+      "speech": "You're right, and I know you're right, and that is exactly what I'm going to do — Da Shi is crude and he smokes too much and he has this way of looking at a problem like it personally insulted him, but he has stayed alive in rooms that killed better people, and right now I trust that more than I trust my own instincts. I'll call him tonight. I'll tell him about Shen Yufei, about the VR, about the countdown — all of it. And then tomorrow I will be a nanomaterials researcher with a wife and a daughter who comes home for dinner, and I will pretend that is still possible, because if I stop pretending it's possible I think I will stop being able to move.",
+      "stage": "He sets the photographs in a neat stack, face-down, and turns off the lamp over them — the room dims but the numbers, printed, do not disappear.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01100": {
+      "speech": "I've thought about that. Alone, at two in the morning, with the numbers ticking down in every picture I take — I have thought about it seriously, and I understand why Yang Dong's mind went somewhere I can't fully follow. But I keep coming back to this: the people I know, my colleagues, my neighbors, my daughter drawing horses at the kitchen table — they didn't do whatever it is that supposedly condemns us all, and whatever Yang Dong saw at the edge of physics, it doesn't give anyone the right to write a verdict on seven billion people who never got to testify. The countdown will reach zero, and I will still be here, still running experiments, still demanding that the universe explain itself — because that's what I am, and I am not ashamed of it.",
+      "stage": "He turns off the lamp; in the darkness the numbers on the photograph seem, for just a moment, to glow on their own.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01101": {
+      "speech": "That's the right question and I don't have a clean answer — the Command Center is full of people who are brilliant and frightened, which is exactly the profile the ETO recruits from. Da Shi trusts almost no one on principle, which is either wisdom or paranoia and at this point I can't tell the difference. What I do know is this: I have the VR, I have the photographs, I have a countdown that is now below twelve hundred hours, and somewhere in that game is a civilization that crossed four light-years to make sure we stayed confused — which means confusion is their weapon, and the only thing I know to do against a weapon is understand its physics. So we stay in the lab, we stay together, and we do not stop asking questions even when the questions start looking like they have teeth.",
+      "stage": "He does not turn the photographs back over. The lamp hums. Outside, Beijing is completely ordinary.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01110": {
+      "speech": "Yes. Yes, that's — that's the only move I have left that isn't just waiting. I go deeper into the VR, I let them think the countdown is breaking me the way it broke the others, I present as someone whose faith in physics has been cracked open enough to fill with something else. The danger is that it might not be entirely an act — because something *has* cracked, I won't pretend otherwise. But I have a wife, I have a daughter, I have a lab full of students who come in every morning and run experiments and trust that the results mean something. That's what I'm protecting. That's the thing I carry into whatever comes next.",
+      "stage": "He sets the photograph down face-up under the lamp, the countdown numbers burning quietly in the light, and does not look away from them.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01111": {
+      "speech": "You're right. You're completely right, and I hate that I needed someone to say it out loud before I could hear it. Da Shi is — he's not like us, he doesn't care about the elegance of anything, but he has survived things that would have stopped a careful man, and right now I think survival is the more important credential. I'll call him tonight. The countdown is at 1194 hours and I don't know what zero means, but I know I don't want to be standing alone in front of it when it arrives — I want Da Shi on one side of me and you on the other, and I want to still be a husband and a father when it's done.",
+      "stage": "He sets the photograph down beside the lamp, numbers still glowing, and reaches for his phone.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    }
+  }
+}

@@ -7,8 +7,8 @@ import {
   AXES,
   AXIS_COLOR,
   AXIS_LABEL,
-  ENDING_AXIS_THRESHOLD,
-  ENDING_MIN_TURNS,
+  AXIS_METER_SCALE,
+  CONVERSATION_TURN_LIMIT,
   dominantAxis,
   type Alignment,
 } from "@/lib/factions";
@@ -96,18 +96,6 @@ function collectBeats(turns: Turn[]) {
         label: `Timeline · Turn ${turn.event.triggeredAtTurn}`,
         text: `${turn.event.date} · ${turn.event.title}`,
       });
-    } else if (turn.kind === "guest_enter") {
-      const guest = getCharacter(turn.characterId);
-      beats.push({
-        label: `${guest?.name ?? "Guest"} enters`,
-        text: turn.reason,
-      });
-    } else if (turn.kind === "guest_exit") {
-      const guest = getCharacter(turn.characterId);
-      beats.push({
-        label: `${guest?.name ?? "Guest"} exits`,
-        text: turn.reason,
-      });
     } else if (turn.kind === "user") {
       playerTurn += 1;
       beats.push({
@@ -142,16 +130,15 @@ export default function StoryProgressPanel({
   const turnCount = userTurnCount(turns);
   const dominant = dominantAxis(alignment);
   const dominantScore = alignment[dominant];
-  const endingPressure = Math.max(
+  // How far this thread's alignment has drifted (display only — it no longer
+  // ends the story) and how much of the thread's length budget is spent.
+  const leaning = Math.max(
     0,
-    Math.min(
-      100,
-      Math.round((dominantScore / ENDING_AXIS_THRESHOLD) * 100)
-    )
+    Math.min(100, Math.round((dominantScore / AXIS_METER_SCALE) * 100))
   );
-  const turnGate = Math.max(
+  const threadUsed = Math.max(
     0,
-    Math.min(100, Math.round((turnCount / ENDING_MIN_TURNS) * 100))
+    Math.min(100, Math.round((turnCount / CONVERSATION_TURN_LIMIT) * 100))
   );
 
   return (
@@ -258,28 +245,31 @@ export default function StoryProgressPanel({
               {AXIS_LABEL[dominant]}
             </span>
             <span className="text-mute tabular-nums">
-              {dominantScore}/{ENDING_AXIS_THRESHOLD}
+              {dominantScore}/{AXIS_METER_SCALE}
             </span>
           </div>
           <div className="mt-2 h-1.5 bg-line/80 overflow-hidden">
             <div
               className={AXIS_COLOR[dominant].bg}
-              style={{ width: `${endingPressure}%`, height: "100%" }}
+              style={{ width: `${leaning}%`, height: "100%" }}
             />
           </div>
+          <p className="mt-2 text-[11px] leading-relaxed text-mute">
+            Your leaning decides <em>which</em> ending you reach, not when.
+          </p>
         </div>
 
         <div className="mt-4">
           <div className="flex items-center justify-between gap-3 font-mono text-[9px] tracking-[0.24em] uppercase">
-            <span className="text-mute">Ending gate</span>
+            <span className="text-mute">Thread length</span>
             <span className="text-parchment-dim tabular-nums">
-              {turnCount}/{ENDING_MIN_TURNS} turns
+              {turnCount}/{CONVERSATION_TURN_LIMIT} turns
             </span>
           </div>
           <div className="mt-2 h-1.5 bg-line/80 overflow-hidden">
             <div
               className="h-full bg-parchment/70"
-              style={{ width: `${turnGate}%` }}
+              style={{ width: `${threadUsed}%` }}
             />
           </div>
         </div>

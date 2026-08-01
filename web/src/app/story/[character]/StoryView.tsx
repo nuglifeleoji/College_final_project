@@ -93,28 +93,6 @@ export default function StoryView({ character }: { character: Character }) {
                   </div>
                 );
               }
-              if (t.kind === "guest_enter") {
-                const g = getCharacter(t.characterId);
-                return (
-                  <div key={`ge-${i}`} className="my-6 text-center">
-                    <div className="font-mono text-[10px] tracking-[0.36em] uppercase text-eto-glow">
-                      ⸻ {g?.name ?? "A figure"} enters ⸻
-                    </div>
-                    <p className="mt-2 italic text-parchment-dim text-base">{t.reason}</p>
-                  </div>
-                );
-              }
-              if (t.kind === "guest_exit") {
-                const g = getCharacter(t.characterId);
-                return (
-                  <div key={`gx-${i}`} className="my-6 text-center">
-                    <div className="font-mono text-[10px] tracking-[0.36em] uppercase text-mute">
-                      ⸻ {g?.name ?? "They"} steps out ⸻
-                    </div>
-                    <p className="mt-2 italic text-parchment-dim text-base">{t.reason}</p>
-                  </div>
-                );
-              }
               if (t.kind === "char") {
                 const charDef = CHARACTERS.find((c) => c.id === t.characterId) ?? character;
                 return (

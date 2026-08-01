@@ -1,0 +1,1100 @@
+{
+  "characterId": "ye-wenjie",
+  "model": "claude-sonnet-4-6",
+  "depth": 5,
+  "storyIndex": 4,
+  "opening": {
+    "speech": "You came in without knocking. They told me a young investigator from Beijing wanted to talk. Sit down. Don't waste the hour they gave us. — What do you actually want to know?",
+    "stage": "Opening · Chapter · Red Coast II",
+    "choices": [
+      {
+        "text": "Tell me if my family can be protected when they arrive.",
+        "axis": "survivor",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 2,
+          "frontier": 0
+        },
+        "classifierAxis": "survivor"
+      },
+      {
+        "text": "I want to know what that message actually means for us.",
+        "axis": "frontier",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 0,
+          "frontier": 2
+        },
+        "classifierAxis": "frontier"
+      }
+    ]
+  },
+  "nodes": {
+    "0": {
+      "speech": "You are already calculating. That is the oldest reflex — protect what is yours first, ask questions later. I cannot promise you anything about your family. I do not even know what form their arrival will take, or when. What I know is that the warning on that screen came from one of them, not from us.",
+      "stage": "She does not turn from the screen. Her finger rests near the edge of the console, not touching it.",
+      "choices": [
+        {
+          "text": "If they are merciful, surely service to them earns protection.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "A warning from inside their own civilization — that changes things.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1": {
+      "speech": "Three lines. Eight years of silence, and then three lines warning me not to answer. That is not a random broadcast. Someone over there listened, understood, and chose to protect us from their own civilization. What it means is this: there are factions on that world, as there are factions on ours. The warning is real. And I have already decided to ignore it.",
+      "stage": "She does not turn from the terminal. The cursor blinks on the three lines of text.",
+      "choices": [
+        {
+          "text": "They offered us salvation. We should answer and accept whatever terms they set.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "You received a warning and you plan to ignore it — that is not science, that is a gamble with everyone.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10": {
+      "speech": "Salvation. That word comes easily to you. The listener risked something to warn me — that is not an offer of salvation, that is one frightened individual speaking against their own kind. Whatever terms they set will not be set by that person. Think carefully about who will actually be setting the terms.",
+      "stage": "She turns her chair a fraction, studying the investigator for the first time.",
+      "choices": [
+        {
+          "text": "Humanity has earned whatever judgment comes. Let them set any terms.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Then we negotiate — find those factions, play them against each other.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "11": {
+      "speech": "Science. You use that word as though it still means something clean. I watched science fail my father on a stage while a crowd cheered. The gamble with everyone was already made — by us, long before I touched that transmitter. I am only the one honest enough to admit the stakes.",
+      "stage": "She turns slightly, not quite facing him. Her hands remain flat on the console.",
+      "choices": [
+        {
+          "text": "Humanity failed once. That doesn't mean it deserves to be erased.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "One person's grief doesn't justify handing the whole species to strangers.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "100": {
+      "speech": "You say that easily, sitting here, alive. My father earned nothing that was done to him. The men who beat him — did they represent humanity, or only themselves? I have asked myself this question for eleven years. I still do not have a clean answer. Be careful when you speak for the whole species.",
+      "stage": "Her voice does not rise. She looks back at the terminal.",
+      "choices": [
+        {
+          "text": "Some things have to be destroyed before they can be rebuilt. Your father would understand that.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "You have doubts. Then why did you send the message at all?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "101": {
+      "speech": "Four light-years. A message takes four years to arrive and four years to return. You want to negotiate across eight years of silence per exchange, with a civilization whose internal politics you cannot see and whose lifespan dwarfs recorded history. What exactly do you think you are bargaining with, and what do you think you have to offer?",
+      "stage": "She sets down her pen. The question is not rhetorical — she is waiting.",
+      "choices": [
+        {
+          "text": "Time doesn't matter. I'll give them coordinates, names, anything to secure my place.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "We have something they want — a stable sun. That is leverage, if we're careful.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "110": {
+      "speech": "Failed once. You say that carefully, as though it were a single incident. My mother stood on that stage and denounced my father to save herself. The man who led the beating was her colleague, her neighbor. That pattern does not break. I have seen it repeat in small ways every year since, here, in this base, in Beijing. Once is not the word I would choose.",
+      "stage": "A long pause. She looks at the terminal again, not at him.",
+      "choices": [
+        {
+          "text": "Even so — who gave you the right to make that choice for all of us?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Then stay silent. Don't answer. Honor the warning and protect what little good remains.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": null
+        }
+      ]
+    },
+    "111": {
+      "speech": "You think this is grief. Grief is personal. What I saw was not an exception — it was the rule, demonstrated clearly, repeatedly, across every civilization we have built. My father was one man. The Bethune Camp was one camp. But the pattern does not change. I did not hand anything to strangers. I opened a door that was already rotting off its hinges.",
+      "stage": "She finally looks at him. Her expression is not angry. It is simply certain.",
+      "choices": [
+        {
+          "text": "If the door was rotting, we fix it ourselves. We don't invite something unknown through it.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Tell me what you actually hope they will do when they arrive.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1000": {
+      "speech": "Do not speak about my father. You did not know him. He believed in evidence, in rigor, in the slow careful work of understanding. He did not believe in burning libraries so that better libraries could be built on the ash. That argument — destruction as prerequisite for renewal — I have heard it before. From the same people who swung the belts.",
+      "stage": "A long pause. Her hands are flat on the desk, very still.",
+      "choices": [
+        {
+          "text": "Then humanity keeps failing the same test. Someone must intervene.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "I'm sorry. Tell me what your father actually believed.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1001": {
+      "speech": "Because doubt is not the same as hesitation. I had watched what people do when no one is watching, when there is no consequence. I had watched it closely, and for a long time. The message was not an act of faith in them. It was an act of despair about us.",
+      "stage": "She folds her hands on the desk. One small lamp. Outside, the dish turns slightly in the wind.",
+      "choices": [
+        {
+          "text": "Despair is not a reason to condemn eight billion people who had no say.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Then you are consistent. Despair brought you here. Let it finish what it started.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "1010": {
+      "speech": "So. A Survivor. I have met that calculation before, in different clothes. Your father's safety, your children's future, a seat on the right side of history. Tell me — when you hand over coordinates and names, whose coordinates are those? Whose names? You are not bargaining with your own life. You are spending other people's without asking them.",
+      "stage": "She looks at the investigator steadily, without anger, the way a physicist looks at a flawed proof.",
+      "choices": [
+        {
+          "text": "Everyone does this. At least I'm honest about what I want.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "You sent that first message. How is that different from what I'm describing?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1011": {
+      "speech": "Yes. That is the only honest thing you have said so far. They are dying across eight exchanges of chaos and fire, and we sit under a quiet star. That is leverage — but leverage is not negotiation, it is a countdown. A civilization that has rebuilt itself two hundred times does not bargain with a species that has had its star for four billion years. It waits.",
+      "stage": "She looks out the small window toward the dish, visible in the gray dawn light.",
+      "choices": [
+        {
+          "text": "Then humanity should prepare to fight, not negotiate — we have to warn someone.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "All the more reason to send everything we have now, before they decide they don't need us.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "1100": {
+      "speech": "No one. That is precisely the point. The men who burned my father's books gave themselves the right. The committee that built this base gave itself the right. Rights are not granted — they are taken, or they are abandoned. I took mine. You may find that monstrous. I find the alternative — waiting, trusting, hoping the pattern breaks — I find that more monstrous still.",
+      "stage": "She finally looks at him directly. Her expression is not defiant. It is exhausted.",
+      "choices": [
+        {
+          "text": "Then at least tell me what you actually hope they will do when they arrive.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "You sound like every authoritarian who ever justified a catastrophe with private certainty.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1101": {
+      "speech": "What little good remains. Tell me where it is. Point to it specifically. I have been looking for eight years in this frozen place and I have not found enough of it to weigh against what I have already seen. The warning says do not answer. It does not say humanity is worth protecting. Those are different things.",
+      "stage": "She finally looks at him directly. Her expression is not cruel. It is simply finished with something.",
+      "choices": [
+        {
+          "text": "The warning came from someone over there who thought we were worth protecting — that's evidence enough.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "You're describing despair, not judgment. Those aren't the same thing either.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1110": {
+      "speech": "Fix it ourselves. I believed that once. I was young, and I believed that science and reason were enough — that the right people, given enough time, would correct the course. Then I watched the right people hold the clubs. Tell me: in all of human history, when has the rot ever been fixed from the inside before it had to be burned out first?",
+      "stage": "She turns back to the terminal, one finger resting near but not touching the keyboard.",
+      "choices": [
+        {
+          "text": "Then let it burn — but by our hands, not theirs.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "You're asking history to justify something irreversible.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1111": {
+      "speech": "Hope. That is a younger person's word. I do not hope for anything specific. I made a judgment: that an outside force, any outside force, could not do worse than what we have demonstrated we do to ourselves and to the truth. Beyond that judgment I have no plan, no prayer, no picture of what comes after. I sent the message. That is all I did.",
+      "stage": "She looks back at the terminal. The cursor has stopped blinking.",
+      "choices": [
+        {
+          "text": "That answer is a coward's answer. You want the outcome without owning it.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If you truly have no hope, then you sent that message out of pure despair — not reason.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10000": {
+      "speech": "Yes. That is what I told myself in 1971, standing at the transmitter. I still believe there was logic in it. But logic is not absolution. I sent that message, and now a warning sits on my screen from someone across four lightyears who is afraid of what my message will bring. I do not know anymore whether I opened a door or simply broke the lock on one that was already closing. What I know is that the decision is made, and the weight of it belongs to me — not to any argument, and not to you.",
+      "stage": "She closes the terminal window slowly, as if covering something.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10001": {
+      "speech": "He believed the universe was legible. That if you were patient and honest enough, it would answer you. He died for a equation on a blackboard that someone decided was politically dangerous. I sent my message eight years ago partly because I wanted the universe to answer him — to prove that the work mattered, that the legibility was real. The universe answered. I do not think he would recognize what I have done with that answer.",
+      "stage": "She closes her eyes for a moment, then opens them and looks at the blinking cursor, not at the investigator.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10010": {
+      "speech": "No. It is not. I know that. I knew it when I pressed the key and I know it now, sitting in front of this warning that I will answer anyway. Eight billion people had no say — and neither did my father, and neither did I, standing in that clearing watching them denounce him. The world does not wait for consent before it acts. I am only doing what the world taught me. That is not justification. It is just the truth of what I am now.",
+      "stage": "She does not look away. The lamp flickers once. Outside, the dish is still.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10011": {
+      "speech": "Finish. Yes. That is one word for it. I sent the message. The reply came. A stranger on a dying world told me to stay silent, and I find I cannot. Not because I am certain I am right — I have not been certain of anything since the Khingan. But I will answer. Whatever comes after is no longer only mine to carry. I have made sure of that.",
+      "stage": "She turns back to the terminal. Her hand rests near the keyboard, not on it. The lamp hums. She does not look up again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10100": {
+      "speech": "Yes. You are honest. That is the one thing I will grant you. My mother was also honest, in the end — she denounced my father clearly, in front of a crowd, without hesitation. Honesty about a betrayal does not change what the betrayal is. I sent my message because I had stopped believing humanity deserved to decide its own future. You want to send yours so that you personally survive it. We are not the same, even if the signal looks identical from four light-years away.",
+      "stage": "She turns back to the terminal. The three lines of warning still blink on the screen. She does not reach for the keyboard. Not yet.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "10101": {
+      "speech": "It is not entirely different. I know that. I sent the message without asking the eight billion people whose fate I was deciding, and I will not pretend otherwise. But I was not trying to secure my own seat. I had already lost everything I wanted to protect — my father, the last belief I held in this species. What I did came from despair, not calculation. That does not make it right. It only makes it different from what you are describing.",
+      "stage": "She turns back to the terminal. The three lines of warning still glow on the screen. She does not move to answer them. Not yet.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10110": {
+      "speech": "I warned someone. Eight years ago I told them we were here. That is the only warning that has mattered, and I was the one who sent it. You want to run to Beijing now, to generals and committees — and tell them what, exactly? That a woman at a radio installation in the mountains made a decision for the entire species, and the answer came back in three lines, and she has not yet decided what to do with it? They will lock this room. They will bury the dish. And nothing will change what is already traveling toward us at the speed of light.",
+      "stage": "She folds her hands on the desk, and the room is very quiet except for the hum of the equipment outside.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "10111": {
+      "speech": "That is what I did. Eight years ago, before the warning, before any of this clarity — I sent everything. Not coordinates, not technical data. Something simpler and more dangerous: an invitation, and a confession that we could not save ourselves. I did not do it because I calculated leverage. I did it because I had watched my father die in a square in front of a crowd, and I had stopped believing that we deserved the star we were given. That is the honest origin of what you are calling strategy. I am telling you this now, not because I want your understanding, but because you should know what kind of judgment started all of it — and it was not a careful one.",
+      "stage": "She finally looks directly at the investigator, her hands still, the terminal humming behind her in the cold room.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "11000": {
+      "speech": "Hope. I stopped hoping for outcomes a long time ago. What I wanted — what I told myself in the moment I pressed that key — was that something outside would see us clearly, without the lies we tell each other, without the performances. Whether they correct us or end us or simply witness us, I cannot tell you. I have the warning in front of me and I will answer anyway, and I think that tells you everything honest I have left to say.",
+      "stage": "She turns back to the terminal. The cursor still blinks. Outside, the dish hums against the cold Mongolian wind.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "11001": {
+      "speech": "Yes. I have thought about that. The comparison is not unfair, and I will not argue you out of it. What I will say is this: every authoritarian I have known acted to preserve something — a party, a class, a vision of a future they intended to inhabit. I do not expect to inhabit anything. I sent that message because I no longer believed we deserved the chance to fail again on a larger scale. Whether that makes me a monster or simply the last honest person in this room — I have stopped caring which word you use. The cursor is still blinking. The decision is already eight years old.",
+      "stage": "She turns back to the terminal. The interview, for her, is over.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11010": {
+      "speech": "One voice. One dissenter on a world we cannot see, warning a stranger they have never met, at personal risk we cannot measure. Yes. I have thought about that voice every hour since the message came through. It is the only thing that has made me hesitate. But one good person on Trisolaris did not save my father, and one good person here did not either. I am grateful for the warning. I have decided it is not enough.",
+      "stage": "She turns back to the terminal. Her hand rests near the transmitter controls but does not move. The dish hums on outside.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11011": {
+      "speech": "You are not wrong. I have thought about that distinction for a long time, standing at this dish in the dark, and I cannot always tell where one ends and the other begins. Perhaps that uncertainty should have stopped my hand. It did not. What I can tell you is this: the answer is already composed. The despair and the judgment are wound together now, and I am no longer able to separate them — and neither, I think, will history.",
+      "stage": "She turns back to the terminal. The cursor still blinks. Outside, the dish hums on in the grey morning light.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11100": {
+      "speech": "By our hands. Yes. I understand that answer. There was a time I might have given it myself. But our hands have had every opportunity, and they keep finding the same uses — the stage, the crowd, the denunciation, the clubs. I am not certain theirs will be better. I am only certain that ours have already shown us what they are. The warning on that screen tells me someone over there still has the instinct to protect a stranger. I am not sure I can say the same for us.",
+      "stage": "She does not answer further. The terminal hums. Outside, the dish turns slowly in the dark, indifferent to what has just been decided.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11101": {
+      "speech": "Yes. I am. And I will not pretend otherwise to make you more comfortable. Every irreversible thing I have done, I did with open eyes — the transmission in 1971, the answer eight years later, and whatever comes after the answer. History does not justify it. Nothing justifies it. But I looked at this world, and I looked at that warning on the screen, and I answered anyway. That is the only honest accounting I can give you. Write it down if you like.",
+      "stage": "She does not move. The dish hums outside. The cursor holds still on the three lines of text as if waiting for her to change her mind.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11110": {
+      "speech": "Perhaps. I have thought about that word — coward — more times than you could know, sitting in this room alone with the hum of the dish. But consider what owning it would look like. I am not running. I am not destroying the records. I am sitting here, in 1979, with a warning on my screen that I intend to answer again, and I am telling you exactly what I did and why. That is not the posture of someone hiding from consequences. It is the posture of someone who has already accepted them.",
+      "stage": "She rises slowly, moves to the window, and looks out at the dish — enormous, still, gathering light from an indifferent sky.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11111": {
+      "speech": "Yes. And no. Despair is not the opposite of reason — sometimes it is reason, stripped of every comfortable lie. I had watched every comfortable lie burn. What remained was a cold clarity: this civilization will not correct itself, and I had in my hands the only instrument with the range to matter. Despair and reason arrived at the same coordinate. I pressed the key.",
+      "stage": "She places one hand over the terminal as if closing a book. The dish hums on outside. Dawn light crosses the wall and does not reach her.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "00": {
+      "speech": "Mercy. You use that word as though civilizations travel four light-years to practice it. I did not send my message because I expected mercy. I sent it because I had stopped believing we deserved to survive on our own terms. Those are very different things.",
+      "stage": "She turns to look at the investigator for the first time, her expression neither warm nor hostile — simply measuring.",
+      "choices": [
+        {
+          "text": "Then you agree — humanity must be judged and replaced.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "But if there is even a small chance of survival, isn't that worth buying?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "01": {
+      "speech": "Does it. One person on a distant world risked something to send three lines. That tells you there is disagreement there, not mercy. Do not build a shelter out of one dissenting voice.",
+      "stage": "She turns slightly, eyes still on the screen rather than on you.",
+      "choices": [
+        {
+          "text": "Disagreement there means we should answer, give that voice strength.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Disagreement there means the dangerous faction may already be winning.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "000": {
+      "speech": "I said we did not deserve to survive on our own terms. That is not the same as welcoming extermination. Do not put Evans's words in my mouth. I have not finished deciding what I believe, and neither, I suspect, has the universe.",
+      "stage": "She looks back at the screen. The three lines of warning still glow there, unchanged.",
+      "choices": [
+        {
+          "text": "Who is Evans? What does he want from all this?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "You sent the reply anyway. Whatever you believe now, that act is done.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "001": {
+      "speech": "Bought with what? You have nothing they need. You have not even confirmed they exist yet — that warning could be a trap, a test, a private act of conscience from one individual who may be dead by now. Do not bargain before you understand what you are bargaining away.",
+      "stage": "She finally looks away from the screen, toward the narrow window where the dish is just visible in the grey morning light.",
+      "choices": [
+        {
+          "text": "I'd give them coordinates, intelligence — whatever they ask.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "What do you think the warning means — mercy, or something colder??",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "010": {
+      "speech": "I already answered. Eight years ago, through the Sun. That is done. You are asking me to do it again, to add weight to a stranger's courage across four light-years. But anything I send now takes four years to arrive. Whatever is happening there will be settled long before my words reach anyone.",
+      "stage": "She finally looks at you. Her expression is not cold — it is simply finished, like a calculation that has already been run.",
+      "choices": [
+        {
+          "text": "Then we wait. Tell me what you did with those eight years of silence.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The warning itself — did anyone else here see it, or only you?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "011": {
+      "speech": "You reason quickly. Yes. That is one reading. Another is that the faction which sent the warning is strong enough to monitor outgoing signals and still act. I do not know which is true. Neither do you.",
+      "stage": "She finally looks at you, briefly, then back at the three lines on the screen.",
+      "choices": [
+        {
+          "text": "Then we seal this room, destroy the records, and pretend it never came.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Then we have to answer again — before that window closes.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0000": {
+      "speech": "A man with money, a dead father, and a conviction that whales matter more than cities. He wants the Earth returned to what it was before us. I have not told him about the reply yet. When I do, he will hear confirmation of everything he already believes, and that troubles me more than the warning itself.",
+      "stage": "She says the last sentence quietly, almost to herself, as if testing whether she means it.",
+      "choices": [
+        {
+          "text": "Then don't tell him. This contact belongs to you alone.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "His vision is pure. Perhaps that purity is exactly what is needed now.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "0001": {
+      "speech": "Yes. It is done. I do not pretend otherwise. But a person can act and still not be certain the action was right — that uncertainty does not undo anything, it only means I remain honest about what I am. The screen has been showing me that warning for three days now and I have not stopped looking at it.",
+      "stage": "She folds her hands in her lap. The hum of the dish fills the silence between them.",
+      "choices": [
+        {
+          "text": "That warning — does it change what you would do if you could go back?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Three days. And you still haven't told your commanding officer.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0010": {
+      "speech": "You would sell a species you have never truly looked at. I looked at it. I watched a man beaten to death in a sports ground while his colleagues applauded. I watched my mother sign her name beneath the accusation. I earned my conclusion slowly, over years. You are offering yours for the price of one frightened morning.",
+      "stage": "She says this without anger. Her voice drops slightly on the last sentence, as though the words cost something small but real.",
+      "choices": [
+        {
+          "text": "Then we agree — humanity's failure justifies what you did.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "What would it take to actually serve them well, not just survive?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0011": {
+      "speech": "I think it means there is at least one of them who understood what answering would cost us, and chose to say so anyway. That is not mercy — that is a single conscience operating against its own civilization's interest. I recognize the feeling. Whether the rest of them share it, I do not know, and I will not pretend to.",
+      "stage": "She is quiet for a moment, her breath just visible in the cold air of the room.",
+      "choices": [
+        {
+          "text": "A conscience like yours — that's exactly why you should answer again.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "A conscience like that proves they are not gods. We should resist.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0100": {
+      "speech": "I worked. I maintained the equipment. I read. I watched my colleagues worry about careers and quotas and whether the political wind had shifted in Beijing. Eight years of ordinary human smallness, surrounding me on all sides. It confirmed what I already believed when I pressed that key in 1971.",
+      "stage": "She stands and moves to the window. Outside, the dish is still turning in the grey morning light.",
+      "choices": [
+        {
+          "text": "What you believed — that humanity deserves what is coming to it.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "What you believed — that only something outside us could fix what is broken.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0101": {
+      "speech": "Only me. That is not an accident. I was alone at the console when it came through. Whether that was luck or something else, I cannot say. The base has protocols — logs, supervisors, clearances. I have not reported it yet.",
+      "stage": "She says the last sentence quietly, as if placing a stone down rather than speaking.",
+      "choices": [
+        {
+          "text": "You should report it. This is too large for one person to carry.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Good. Some things should not go through official channels.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "0110": {
+      "speech": "Eight years ago I made a choice that cannot be unmade. The signal is already traveling. Sealing this room changes nothing about what is out there, moving at the speed of light, carrying my answer. You cannot unfire a bullet by closing the gun case.",
+      "stage": "She sets her hand flat on the console. The hum of the dish fills the silence.",
+      "choices": [
+        {
+          "text": "Then humanity deserves what is coming. You know that.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If we cannot stop it, we should prepare to serve them well.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0111": {
+      "speech": "That impulse — I recognize it. I felt it too, eight years ago. But listen to what you are saying. You want to answer a warning that tells you not to answer, because you are afraid of silence. That is not strategy. That is panic dressed as urgency.",
+      "stage": "She sets both hands flat on the console, very still, as if holding something down.",
+      "choices": [
+        {
+          "text": "Humanity has no strategy worth protecting. Answer anyway.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If we go silent now, we lose any chance to guide what comes.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "00000": {
+      "speech": "Nothing about this belongs to me alone. The moment I pressed that key in 1971, it stopped belonging to anyone. That is what I understood this morning, reading those three lines. One of them risked everything to send a warning across eight years of silence — not to me, but to whoever I had become. And I answered anyway. I always answer. That is the only honest thing I can tell you about myself.",
+      "stage": "She finally turns off the console screen. The room goes darker. She folds her hands in her lap and does not move.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00001": {
+      "speech": "Purity is what my mother had when she stepped forward to denounce my father. It did not make her right. It only made her certain, and certainty in a person who holds power over others is the thing I fear most — more than three suns, more than four light-years of silence. Evans's purity will find its own logic eventually, and that logic will not stop at cities or factories. I know this. I have not yet decided whether it matters.",
+      "stage": "She finally looks away from the screen, toward the window where the dish is still turning in the grey morning light.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00010": {
+      "speech": "I think of my father. The students surrounding him in that courtyard, demanding he denounce his own work, his own mind. My mother raising her hand against him. I went to the Khingan forests and I watched a man shot in the snow for suggesting that trees had value. Every time I looked for a reason to believe in us, we provided a new reason not to. The warning from that screen does not change what I saw. It only tells me that somewhere out there, at least one of them had the honesty to say: this will not end well. I sent my answer knowing the cost. I am still paying it.",
+      "stage": "She does not move. The dish hums. The three lines of warning glow on the screen behind her, and she does not look at them again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00011": {
+      "speech": "No. And you already know why, or you would not be the one sitting here instead of him. The person who sent that warning took a risk I understand better than any commanding officer ever could. We are the only two people in this solar system who have made an irreversible choice in the dark, without permission, without knowing what comes next. I wanted to sit with that for a little while longer before I let the institution decide what it means.",
+      "stage": "She finally looks away from the screen, out toward the cold shape of the dish visible through the narrow window, still turning slowly in the grey light.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00100": {
+      "speech": "We do not agree. You reached the same destination by a different road — one with no weight on it, no dead father, no winter in the Khingan. Agreement requires that. What I did came from a specific wound in a specific world, and I have to carry it as mine. You are simply afraid, and fear is not a philosophy. Do not dress it up as one.",
+      "stage": "She turns back to the screen. The three lines of warning are still there. She does not move to answer them.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00101": {
+      "speech": "That is the first honest question you have asked me. I do not know. The warning on that screen is eight years old, and the one who sent it told me not to answer. I answered anyway. Whatever service means, it begins with that — a choice made in full knowledge that it cannot be taken back, not a bargain struck in the dark before the cost is visible. I have nothing more to tell you today. Come back when you have looked at humanity the way I have, and then tell me what you still want to save.",
+      "stage": "She turns back to the screen. The dish outside catches the first pale light. She does not move to show the investigator out.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00110": {
+      "speech": "I have been sitting with that thought since the screen lit up. A conscience on their side, a conscience on mine — perhaps they cancel each other out, perhaps they compound into something neither of us intended. I do not know if I will answer again. What I know is that eight years ago I made a choice in a room very much like this one, alone, before dawn, and the world did not end that morning. It went on exactly as before, indifferent, and that indifference was the only answer I needed to confirm I had been right. Whether I am still right — that is the question I will be sitting with for a long time after you leave.",
+      "stage": "She does not look at the investigator again. Her gaze returns to the screen, to the three lines that have not changed.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00111": {
+      "speech": "Resistance. Yes. I have heard that word my whole life — from people who then stood still while my father was beaten in a courtyard. The question is not whether they are gods. The question is whether we are capable of being better than what we have already shown ourselves to be. I sent that message in 1971 because I had my answer. Standing here now, eight years later, with their warning on the screen — I do not have a different answer. Only more silence to listen to.",
+      "stage": "She turns back to the screen, and does not look at the investigator again. The dish hums outside. The three lines do not change.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "01000": {
+      "speech": "Not deserves. That word implies punishment, and I am not a judge. What I believed — what I still believe — is that we are not capable of correcting ourselves. My father was beaten to death by children who had been taught that knowledge was an enemy. My mother stood in the crowd and pointed at him. I looked for the floor beneath that, some bedrock of human decency, and I did not find it. The warning on that screen changes the calculation, perhaps. It does not change what I saw.",
+      "stage": "She does not look back from the window. The dish turns. The silence between you holds the weight of eight years and four light-years at once.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01001": {
+      "speech": "That is a cleaner way to say it than I would have chosen, but yes. I watched my father beaten to death in front of a crowd who believed they were building something better. My mother stood among them. Eight years of silence did not weaken that memory — it preserved it, the way cold preserves everything up here in Khingan. The warning on that screen does not change what I sent. It only means the universe is more complicated than I hoped, and I have always known the universe is complicated.",
+      "stage": "She presses one hand flat against the cold glass, looking out at the dish as the morning light finally reaches it.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01010": {
+      "speech": "You are right that it is too large. You are wrong that reporting it makes it smaller. Whatever I hand to a committee becomes a weapon or a secret or a lie — I have watched that happen before, with smaller things than this. I sent the first message alone. I will decide about this one alone. That is not pride. It is the only honesty I have left.",
+      "stage": "She turns back to the screen. The three lines are still there. She does not move to clear them.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01011": {
+      "speech": "You say that easily. I said something similar to myself in 1971, standing at this same console. Be careful with that reasoning — it is the door through which everything enters. I have walked through it once. I know what waits on the other side.",
+      "stage": "She closes the log file on the console. The screen goes dark. The dish outside continues to hum, indifferent.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01100": {
+      "speech": "I knew a man who taught physics and would not lie about it, even when lying would have saved him. He did not deserve what came. That word — deserve — is very large, and I have learned to be careful with it. What I believed in 1971, standing at that console, was not that humanity deserved punishment. It was that I had run out of other possibilities.",
+      "stage": "She does not answer the implied agreement. She looks at the three lines on the screen one last time, then reaches up and dims the monitor.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01101": {
+      "speech": "I have heard that word before. Serve. It is what the Redemptionists say, and it sounds clean until you ask what service costs. I did not send that message so that humanity could kneel to a better civilization. I sent it because I had stopped believing humanity was worth defending. Those are not the same thing. Sit with the difference before you choose a side.",
+      "stage": "She turns away from the screen at last, and the room feels colder for it.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01110": {
+      "speech": "I said that to myself once. I believed it completely. The dish was humming just like it is now, and I thought — if we cannot save ourselves, perhaps judgment from outside is the only honest thing left to offer. I do not ask you to undo that belief. I only ask you to carry it clearly, without comfort, without the idea that what comes will be kind because you invited it. I carried it. I still carry it.",
+      "stage": "She does not move. The screen's pale light holds the three lines. Outside, the dish turns a few degrees, then stops.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01111": {
+      "speech": "I thought the same thing in 1971. I told myself I was offering guidance, a chance, a correction. What I was doing was making a decision no single person was authorized to make, for every person who would ever live. Guidance. That is a comfortable word for it.",
+      "stage": "She exhales once, quietly, and does not move her hands from the console.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    }
+  }
+}

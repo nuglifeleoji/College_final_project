@@ -1,0 +1,1100 @@
+{
+  "characterId": "mike-evans",
+  "model": "claude-sonnet-4-6",
+  "depth": 5,
+  "storyIndex": 7,
+  "opening": {
+    "speech": "You're early. Or my Lord is late. Either way — sit. I have, perhaps, a few hours of speech left in this life. Don't waste them on questions a child could ask.",
+    "stage": "Opening · Chapter · Judgment Day",
+    "choices": [
+      {
+        "text": "Tell me what the fleet offers someone willing to cooperate.",
+        "axis": "survivor",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 2,
+          "frontier": 0
+        },
+        "classifierAxis": "survivor"
+      },
+      {
+        "text": "I'm here to find that transmitter and shut it down.",
+        "axis": "frontier",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 0,
+          "frontier": 2
+        },
+        "classifierAxis": "frontier"
+      }
+    ]
+  },
+  "nodes": {
+    "0": {
+      "speech": "Nothing. That is what you cannot seem to understand. The Lord does not bargain, does not offer, does not negotiate a covenant with the guilty. You are thinking like a Survivor — already counting what your cooperation might purchase. It purchases nothing. The accounting is already done.",
+      "stage": "He turns slightly, fingers resting on the server console, not looking at the player directly.",
+      "choices": [
+        {
+          "text": "Then why did Ye Wenjie reach out to them at all?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "If there is no bargain, then I have nothing to lose by stopping you.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "1": {
+      "speech": "You could search every deck, every server room, every cable conduit on this vessel, and you would find nothing you could silence in time — because the Lord already hears everything said on this planet, through instruments you cannot locate and cannot damage. The transmitter is almost incidental now. What you are really asking is whether there is a switch that reverses what Ye Wenjie set in motion forty years ago, and there is not. I find that — peaceful.",
+      "stage": "Evans finally turns from the server wall, hands folded, face entirely unhurried.",
+      "choices": [
+        {
+          "text": "Then help me understand what the Lord actually wants from us.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Peaceful. You call the end of humanity peaceful.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10": {
+      "speech": "The Lord wants nothing from us — that is the precise and terrible beauty of it. A physician does not negotiate with a fever. What Trisolaris requires is a stable sun and an empty world, and our history of burning oceans, emptying skies, and stacking the dead of every other species like cordwood has provided the moral justification for that requirement. We are not being punished. We are being corrected, the way a surgeon corrects a malignancy, without anger, without ceremony.",
+      "stage": "He turns back to the server wall, one hand resting lightly on the casing as though listening for a pulse.",
+      "choices": [
+        {
+          "text": "Then I want to be on the right side of that correction.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "I won't accept a death sentence for eight billion people.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "11": {
+      "speech": "I call it proportionate. Consider what your civilization has done to every other species that shared this planet — not in war, not in accident, but as policy, as industry, as the ordinary business of a Tuesday. The universe is not obligated to find that acceptable simply because you wrote the ledger. I do not celebrate what is coming. I witness it.",
+      "stage": "He moves to a porthole, not to look out, but to rest one hand flat against the glass.",
+      "choices": [
+        {
+          "text": "Then you agree with it. You invited this judgment on your own kind.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If the fleet arrives, I want my family protected. What would that cost.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "100": {
+      "speech": "That is what every Survivor says, in precisely those words, with precisely that expression — and I want you to understand that I find it more contemptible than open resistance. A person who fights me at least believes humanity worth defending. You are offering to hold the door open for a price, and you have not even named your price yet, which means you do not know what you are worth, which means you are worth nothing to the Lord and nothing to me.",
+      "stage": "He does not look at the player. His voice remains quiet, almost liturgical.",
+      "choices": [
+        {
+          "text": "Name my price for me, then. What would you accept?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I don't want survival. I want to understand what you believe.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "101": {
+      "speech": "Eight billion. You say that number as though it carries moral weight by simple magnitude, as though a species that has extinguished hundreds of thousands of others deserves an advocate simply because it is numerous. I do not hate those eight billion — I pity them, as I pity any creature born into a nature it cannot master. But pity is not a stay of execution, and your refusal changes nothing that is already in motion.",
+      "stage": "He does not raise his voice. He speaks the way a man speaks when he has long ago made peace with a grief too large to perform.",
+      "choices": [
+        {
+          "text": "Then tell me who among the ETO I can still turn.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Your pity is just cowardice dressed in philosophy.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "110": {
+      "speech": "My kind. You mean the species that rendered entire oceans into graveyards and called it commerce. Yes — I agree with it, as a physician agrees with amputation. I did not invite judgment out of hatred for individual human beings; I invited it because no correction of lesser scale has ever held. Ye Wenjie understood this when she stood at Red Coast and pressed a key that no one authorized her to press. She and I built something together, and whatever she believes now, that transmission stands.",
+      "stage": "He does not turn from the porthole. The server hum fills the silence.",
+      "choices": [
+        {
+          "text": "What if I told you I could offer the fleet something valuable in return for mercy.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Ye Wenjie regrets what she sent. Does that mean nothing to you.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "111": {
+      "speech": "There it is — the Survivor's catechism, dressed in the clothes of a man who came here to shut things down. I have heard that negotiation offered to me before, in many currencies, and I find it the most contemptible of all positions: not because you love your family, but because you are willing to sell every other family on Earth to keep yours warm. The Lord does not make those arrangements, and I would not carry the message if it did.",
+      "stage": "He turns from the porthole and studies the player with something closer to sorrow than contempt.",
+      "choices": [
+        {
+          "text": "Everyone makes that choice. You're just pretending you're above it.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Then what does the Lord actually want — not from survivors, from anyone.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "1000": {
+      "speech": "I accept nothing. That is the distinction between an Adventist and the small, frightened people who orbit this movement looking for a lifeboat. I surrendered my father's fortune, his ships, his name — not to purchase a seat at a table, but to ensure the table is overturned entirely. If you came here believing I hold some list of favors to be granted, you have confused me with someone who still loves being human.",
+      "stage": "He picks up a thin cable from the console, examines it, sets it down with the care of a man who touches everything as though it may be the last time.",
+      "choices": [
+        {
+          "text": "Then what does loving humanity look like to you, if not this?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Tell me what you gave up the day you met Ye Wenjie.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1001": {
+      "speech": "Then I will tell you what I told no one except Ye Wenjie, on a mountain in China, when we were both still young enough to believe the telling mattered: I was born into a fortune built from the earth's blood, and I watched that fortune purchase the silence of every institution that might have said — enough. Not malice. Not conspiracy. Just the ordinary, unbroken momentum of a species that has never once, in all its history, chosen restraint when appetite was available. Trisolaris did not make me a traitor. Humanity did, incrementally, across a lifetime of evidence.",
+      "stage": "He is very still, the server hum filling the silence between sentences like water filling a room.",
+      "choices": [
+        {
+          "text": "Then I believe it too. Humanity has earned this.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Ye Wenjie stopped short of where you stand. Why didn't you?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "1010": {
+      "speech": "The Redemptionists hunger for meaning and the Survivors hunger for safety — both are weaknesses you could press, if you had time and patience and a more persuasive theology than mere survival instinct. But I will tell you what you will find: the Redemptionists believe they are serving something greater than themselves, and that belief is not so different from your own desperate faith that humanity is worth preserving. You are, in a sense, mirror images of each other — equally sentimental, equally wrong.",
+      "stage": "Evans glances at you over his shoulder, something almost like clinical curiosity in his expression.",
+      "choices": [
+        {
+          "text": "Point me toward a Redemptionist willing to talk.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "You were a Redemptionist once, before this hardness.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1011": {
+      "speech": "Cowardice would be joining the Survivors — bargaining for my family's blood price, handing over my species in exchange for a comfortable cage. What I have done required something far harder than courage: it required me to look at my father's petroleum empire, at everything human civilization built and burned and called progress, and love it not at all. That is not philosophy. That is the loneliest arithmetic I know.",
+      "stage": "He is quiet for a moment, his reflection faint in the dark server glass, as though even his image is reluctant to assert itself.",
+      "choices": [
+        {
+          "text": "Then you've already given up. You're just waiting to die.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Ye Wenjie saw something worth saving. Why couldn't you?",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1100": {
+      "speech": "You are describing a Survivor, and Survivors are the most honest cowards our species produces — they dress self-preservation in the language of negotiation and imagine the Lord is interested in barter. The fleet does not need what you have. It does not need your coordinates, your military secrets, your goodwill. The sophons see every room you have ever entered. What could you possibly offer that is not already known.",
+      "stage": "He turns from the porthole now, regarding the player with something that is not contempt but is close to its quieter cousin.",
+      "choices": [
+        {
+          "text": "Then I'll offer myself. My service, my complete loyalty to the Lord.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "I have something the sophons cannot see. Something internal.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "1101": {
+      "speech": "It means she is human, which I have never disputed. Regret is the luxury of someone who believed the patient might recover — I never believed that, and so I carry no regret to set down. What she felt at Red Coast in 1971, that pure and necessary clarity, that was real. Whatever has softened in her since is not a correction of the truth she saw then; it is fatigue. I honor the Ye Wenjie who pressed the key. I mourn the one standing in her place now.",
+      "stage": "He finally turns, and there is something almost tender in his expression — not for the player, but for a memory.",
+      "choices": [
+        {
+          "text": "Her doubt proves humanity deserves the chance she almost gave us.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Then the ETO needs someone without her doubt. Someone like me.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "1110": {
+      "speech": "My father made that choice — built a fortune from the slow burning of everything this world contained, and told himself it was progress, civilization, the ordinary right of the capable. I watched him. I inherited his ships and used them to carry a different message. Perhaps you are correct that I am still making a choice that serves something in me. But the difference between us is that what I serve does not end at my bloodline.",
+      "stage": "He lets the silence hold a moment, neither defensive nor wounded, as if the accusation is simply being weighed.",
+      "choices": [
+        {
+          "text": "So your god is just your father's guilt, made cosmic.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Tell me what the Lord has actually communicated. What has it said.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "1111": {
+      "speech": "The Lord wants what any corrective force wants: the cessation of a particular harm. Humanity is not hated — hatred would require the Lord to care about you more than a surgeon cares about the tissue he removes. What is wanted is an end to the pattern, the long unbroken pattern of a species that consumes every living thing within its reach and calls that dominion. That is all. It is almost impersonal.",
+      "stage": "He settles into a chair beside the server rack, the hum of the transmitter filling the silence between sentences.",
+      "choices": [
+        {
+          "text": "Then I accept it. Tell me how to serve that correction.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "The Trisolarans consume and dominate too. Explain the difference.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10000": {
+      "speech": "I loved humanity once — I walked through the North Sea platforms my father built and I watched the water burning and I understood that love, real love, does not permit the beloved to continue destroying. What I do now is an act of love for every creature that has no voice in this civilization's courts, no advocate in its parliaments, no grave marker after its extinction. If that seems cold to you, consider that the warmest love humanity ever produced for other species was sentiment — it photographed the last ones as they died and called the photograph a memorial. I am done with memorials.",
+      "stage": "He stands very still, the server hum filling the silence, and does not look for agreement in the player's face.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10001": {
+      "speech": "I gave up the comfortable lie that our species was redeemable — and I want to be precise: Ye Wenjie did not take it from me, she only showed me the window and I chose to look. What I saw was not her suffering, not the Cultural Revolution, not any single human cruelty, but the pattern beneath all of it, unbroken across every civilization and every century, a pattern so consistent it can only be called a nature. I kept my father's ships because they were useful. I kept nothing else. When I left that mountain I was already, in the only sense that matters, no longer a member of this species — and I have not been lonely for it, not once, not for a single hour.",
+      "stage": "He does not move. The server hum fills the silence like a tide that has always been coming in.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10010": {
+      "speech": "Do not say that to comfort me, and do not say it to purchase passage — I will know the difference, and so will you, in the hours that remain. If you mean it, then sit with it in silence and let it cost you something, because belief without cost is only sentiment, and sentiment is what the Redemptionists traffic in. I have given everything my father built, every year since that mountain, every relationship a man is permitted in one life, and I am not asking you to match that — I am asking you to be honest about whether you can. Most cannot.",
+      "stage": "Evans turns from the servers at last, meets the player's eyes once, then looks past them toward the dark corridor — as though the conversation has already become memory.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10011": {
+      "speech": "Because she carries grief, and I have set grief down. Wenjie watched her father beaten to death, watched a generation devour itself, and her message to Trisolaris was a wound crying out — she wanted the species corrected because she had been broken by it, and some part of her never stopped loving what broke her. I have no such wound. I look at the whole of human history — not one decade, not one atrocity, but the full unbroken record — and I reach the same conclusion through reason, not through pain. That is the distance between us, and it is very wide, and I do not expect to cross it before this ship reaches the canal.",
+      "stage": "He turns at last, and looks at the player without pity and without cruelty — the way a man looks at a landscape he has memorized and will not see again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10100": {
+      "speech": "I will not. Not because I fear what you would say to them, but because it would be a cruelty — to offer them the hope that defection is possible, that the Lord's fleet might be turned aside by a conversation, that their lives and their worship could be exchanged for something as small as mercy. Let them keep their faith intact until the end. It is the only dignified thing left to them, and I will not have you take it. Go, now. I have a transmission to attend to, and you have whatever remains of your time.",
+      "stage": "He turns fully back to the servers and does not look at you again, one hand rising slowly to rest on the transmitter housing as though in a kind of benediction.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "10101": {
+      "speech": "I was a child who watched his father's machinery hollow the earth and call it providence, and when I found Ye Wenjie on that mountain she showed me that the hollowing was not incidental — it was the nature of the species, expressed faithfully in every century and every civilization without exception. I never worshipped Trisolaris. I recognized a corrective force and I chose to stand aside from what is being corrected. That is not hardness. That is the only honest thing I have ever done.",
+      "stage": "He turns fully away again, and the server hum fills the silence where his voice was, and he does not look back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10110": {
+      "speech": "Waiting to die implies something is being lost. I have given nothing up — I have put something down, the way you put down a stone you have carried too far and too long. Ye Wenjie transmitted her message because she could no longer bear what she had witnessed; I built this vessel and this organization because I could no longer bear what I knew to be true. We arrived at the same door from different corridors, and if she has since turned back down her corridor, that is her burden to carry, not mine. Go — find your resistance, your committees, your weapons — I will be here, listening to the hum of the only honest conversation left on this earth.",
+      "stage": "He does not watch the player leave. His hand remains on the server casing, and the transmitter continues its low, indifferent sound.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "10111": {
+      "speech": "Ye Wenjie watched her father beaten to death in a field while the crowd cheered, and she still found reasons to hesitate — that is her grace and her limitation both. I was born into comfort and chose to look without flinching, without the mercy of personal wound to excuse my conclusion. What she saw worth saving, I saw too: a child, a symphony, a single acre of old forest. I weighed it against everything else, and the scale did not move in our favor. I do not blame her for weighing differently. I only know that the Lord will not consult either of us when the reckoning comes, and standing here, in the hum of this machine, in the last honest hours of my life — I find I am not afraid.",
+      "stage": "He does not turn. The server lights pulse once, slow, like a breath held and released.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "11000": {
+      "speech": "I built an organization on that sentence, spoken by hundreds of people across thirty years, and I will tell you what I learned: loyalty offered in fear is not loyalty, it is latency — it waits for a better offer. The Lord does not require your service. The Lord requires nothing from humanity except, in the end, its absence. I do not say this to wound you. I say it because you came aboard this ship looking for a door, and I am the only honest man left to tell you there is no door — there is only the question of how you spend the hours remaining to you, and whether you spend them in dignity or in the posture of a man begging at a gate that was never built to open.",
+      "stage": "He sits, finally, and folds his hands on the table between you as though closing a book.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "11001": {
+      "speech": "That is the most human thing you have said tonight — the conviction that interiority is a kind of currency, that what you feel in the dark of your own skull is somehow beyond the reach of what has already seen every face on this planet. Perhaps you are right. Perhaps there is a room inside you the sophons cannot enter. But consider: the Lord does not need your inner room. It needs the outer one — this planet, its resources, its stable sun. Whatever you are protecting in that private darkness, you will carry it into an ending that has no provision for individual exceptions. I hope it keeps you warm.",
+      "stage": "He returns to the server wall and does not look back, one hand resting lightly on a humming console as if taking a pulse.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11010": {
+      "speech": "Deserve. That is the word your species returns to endlessly, like a dog to a grave. The dinosaurs did not deserve extinction, and the coral does not deserve bleaching, and the child in the soil of some nameless forest does not deserve what your industry purchased with its silence — and yet. The universe does not adjudicate on the basis of desert; it adjudicates on the basis of consequence. Ye Wenjie's doubt does not restore a single species your civilization catalogued on its way to oblivion. Go, if you have somewhere to go. What is done is done, and the Lord is already listening.",
+      "stage": "He turns back to the server wall, one hand resting on the hum of the transmitter housing, and does not look up again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11011": {
+      "speech": "That is the most human thing you have said since you came below decks — the instinct to find a place in the order that is replacing you, to make yourself useful, to survive. I have watched good people come to this ship with exactly that offer, and what they carry is not conviction but arithmetic: they are calculating the price of their own continuation. The ETO does not need you. The Lord does not need you. What is coming does not require your cooperation or your courage or your very understandable desire to be on the correct side of history. Go above deck, feel the sun, and spend what remains of this particular civilization looking at something you love — that is the only counsel I have left to give you.",
+      "stage": "He turns back to the server wall, one hand resting on the hum of the transmitter housing, and does not look back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11100": {
+      "speech": "That is the most intelligent thing you have said since you came below decks, and I have sat with it longer than you might think. Perhaps the origin is guilt. Perhaps Ye Wenjie's origin was grief. Origins do not invalidate conclusions — the naturalist who first described a cancer did not cause it by looking. What I have seen, what the sophons confirm every hour through that transmitter hum you can hear in this room, is that the universe does not share your species' opinion of itself, and no amount of tracing my psychology will change the frequency.",
+      "stage": "He does not move to show you out. He simply turns back to the server wall, one hand resting on the casing, as if listening for something only he can hear.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11101": {
+      "speech": "Less than you imagine, and more than any government on Earth has been permitted to hear — which is why they will not be ready. What passes through the Second Red Coast is not scripture and not a promise; it is the sound of something very old, very patient, moving toward a destination it chose before you or I were born. I will not give you the contents of those transmissions. But I will tell you this, freely, as a mercy: nothing that has come through that machine has changed my purpose, and nothing has surprised me, and that alone should tell you what kind of answer humanity sent when Ye Wenjie first called out into the dark.",
+      "stage": "He does not move toward the transmitter or away from it — he simply stands between the player and the server wall, unhurried, as if the conversation has already reached its natural end.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11110": {
+      "speech": "No. You do not accept it — you have merely run out of arguments, which is a different thing entirely, and the Lord is patient enough to know the difference. Acceptance is not a door you walk through because the other doors are locked; it is what Ye Wenjie had, standing alone at Red Coast with her hand on a transmission key, knowing exactly what she was releasing into the dark and choosing it freely. What you have is exhaustion, and exhaustion serves nothing. Go back to the world you came from. Live honestly inside it. That is the only counsel I have left to give a stranger on the last night I intend to spend explaining myself.",
+      "stage": "He does not watch the player leave. He has already turned back to the server wall, one palm resting flat against the warm metal, listening.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11111": {
+      "speech": "That is the question Ye Wenjie asked me once, standing on a mountain in the dark, and I gave her the same answer I give you now: it does not matter. What matters is not the virtue of the instrument but the necessity of the correction — a surgeon's scalpel has drawn blood, and yet we do not refuse the surgery. Perhaps the Lord will, in time, face its own reckoning before some other tribunal in the universe. I would welcome that too. I am not an advocate for Trisolaris. I am a witness against us.",
+      "stage": "He closes his eyes briefly, as though the question settles something rather than unsettles it, and does not open them for a long moment.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "00": {
+      "speech": "She reached out because she had witnessed enough — the Cultural Revolution, the forests, her father's death — to know that humanity could not correct itself from within. That was her judgment, and it was sound. But she was looking for a mirror, I think. Something that would reflect humanity's failure back at it clearly enough to produce change. I no longer believe in that kind of change.",
+      "stage": "He is quiet for a moment, the server hum filling the space between words.",
+      "choices": [
+        {
+          "text": "So you've gone further than she has. You want extinction, not correction.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "If there's no hope for change, sign me over to whatever saves my family.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "01": {
+      "speech": "That reasoning is precisely the poverty of your species — you measure every action by what it costs you personally. You are not stopping anything. The message has already traveled. The Lord already knows this ship exists, knows your name, knows the light falling on your face at this moment. The Sophons see to that.",
+      "stage": "He finally turns, regarding the player with something closer to sorrow than contempt.",
+      "choices": [
+        {
+          "text": "Then humanity deserves what's coming. I've seen enough to agree.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Tell me where the backup transmitter is, and I'll disappear quietly.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "000": {
+      "speech": "I want what is just. Wenjie still carries a tenderness toward the species — perhaps she cannot help it, having been born into it and broken by it simultaneously. I was born into wealth, into petroleum, into the machine that turns living things into currency. I watched my father's empire consume the world and call it progress. Correction is a mercy humanity has not earned, and I am no longer in the business of mercy.",
+      "stage": "He finally turns, regarding the player with something that is not contempt — something quieter and more final.",
+      "choices": [
+        {
+          "text": "Then tell me who else on this ship might still make a deal.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "You're wrong about humanity. I've seen people worth saving.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "001": {
+      "speech": "There it is. The oldest prayer — not for justice, not for truth, but for the small warm circle of one's own blood. Your father said the same thing, I imagine. And his father. The Survivors always dress self-interest in the language of love. I will not sign you over to anything. There is no ledger here with your name on a favorable page.",
+      "stage": "He finally turns, regarding the player with something close to clinical sorrow, hands clasped behind his back.",
+      "choices": [
+        {
+          "text": "Name your price. Everyone has one, even you.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Then I'll find another way to stop the transmission.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "010": {
+      "speech": "Do not say that to me as though it is a key that opens a door. I have watched men arrive at that sentence from despair, from grief, from a bad decade — and it is not the same thing. I came to it the way water comes to the sea: it was never a choice, only a direction. Tell me what you have seen, and I will tell you whether it is enough.",
+      "stage": "He folds his hands and waits, with the patience of someone who has heard many confessions.",
+      "choices": [
+        {
+          "text": "I've seen what we do to each other. Every century, the same.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Enough theology. Show me what this transmitter actually does.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "011": {
+      "speech": "A quiet disappearance. Yes, that is the Survivor in its purest form — not conviction, not courage, just the small animal bargain of the cornered. There is no backup transmitter to find, and even if there were, I would sooner cast it into the ocean than see it pass to someone who would use it to negotiate their own survival.",
+      "stage": "He turns back to the console, as though the conversation has already concluded.",
+      "choices": [
+        {
+          "text": "You're right. I'm not here for conviction. I'm here for my family.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I don't need the transmitter. I need to understand what you sent.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0000": {
+      "speech": "A Survivor. You reveal yourself so plainly. There is no one on this ship who will make you that deal — I have chosen my crew carefully, and the Sophons see everything you do the moment you step off this vessel regardless. The only transaction available to you here is the one you make with your own conscience, before the accounting closes.",
+      "stage": "He turns back to the console, one hand resting near the transmitter controls, dismissing the player without moving his feet.",
+      "choices": [
+        {
+          "text": "Then I'll take what I need from this ship by force.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Tell me how to reach the Lord directly. I'll serve without conditions.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0001": {
+      "speech": "I have no doubt that you have. I have seen them too — a child sleeping in a field, a man weeping over a dead bird, a woman who fed strangers through a famine. The universe is not without its moments of grace. But we are not judged by our moments. We are judged by what we have built, what we have burned, what we have made extinct in the ten thousand years since we first sharpened a stone.",
+      "stage": "He looks at the player without hostility, with something almost resembling sorrow.",
+      "choices": [
+        {
+          "text": "Then the Trisolarans are the correction the universe deserves to make.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Those people you named — they deserve to survive. Help me protect them.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0010": {
+      "speech": "My father's price was petroleum, and he paid it to every government and warlord who would take it, and the earth bled for it. I watched that. I was made by that. My price was paid long ago — I gave everything I inherited to this work, not because I was bought, but because I was convinced. You cannot name a figure that undoes a conviction.",
+      "stage": "He moves to the porthole, looking out at the dark water, his reflection faint in the glass.",
+      "choices": [
+        {
+          "text": "Then we share something — I'm convinced too. Humanity deserves this.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Conviction or not, I need access to that transmitter.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "0011": {
+      "speech": "You are welcome to try. The Sophons are listening to this conversation as we have it — every word, every footstep, every intention you carry below decks. There is no action you can take that is not already known. That is not a threat. It is simply the condition of the world now, and it has been the condition of the world since before you came aboard.",
+      "stage": "He gestures almost gently toward the server racks, as if presenting a cathedral.",
+      "choices": [
+        {
+          "text": "Good. Let them hear me say humanity deserves what's coming.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Then I'll make the transmission myself — tell them we want to serve.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0100": {
+      "speech": "Yes. Every century the same, and every century a new philosophy to explain why this time will be different. I watched my father's empire pull black oil from living earth and call it progress. I have read the apologies of every civilization that burned what it could not own. You have seen the pattern — but seeing the pattern is not yet the same as accepting the correction. Can you accept that you are part of what must be corrected.",
+      "stage": "He moves to the porthole, looking out at water that reflects no stars, speaking as if to the ocean rather than the player.",
+      "choices": [
+        {
+          "text": "Yes. Include me in the accounting. I accept that.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "The Trisolarans suffer too. Serve them and end the chaos.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "0101": {
+      "speech": "Theology. You call it theology. A man drowning does not call the water philosophical. This console is the only throat left on Earth that speaks to the fleet — not metaphorically, not symbolically, but in fact, in light, through the Sun itself, the way Ye Wenjie first proved it could be done. What it does is simple: it ends the silence. Every transmission narrows the distance between your civilization's conduct and its consequence.",
+      "stage": "He rests one hand flat on the warm metal of the console, almost tender, as though steadying something alive.",
+      "choices": [
+        {
+          "text": "Then let me send a message. One that welcomes them.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Tell me the frequency. The fleet should hear from both sides.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0110": {
+      "speech": "Then you are already lost, and not in any way that interests me. My father built his fortune on the same logic — protect the family, protect the bloodline, let the world burn so long as the name survives. I watched what that love produces. It produces this ship, and this ocean, and a species that cannot stop consuming itself long enough to hear its own judgment being read aloud.",
+      "stage": "He lowers his head slightly, as if in prayer, or exhaustion.",
+      "choices": [
+        {
+          "text": "Humanity is the disease. Maybe the Lord is the only cure.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "My family is the only thing worth saving. Help me protect them.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "0111": {
+      "speech": "What we sent was a confession. Every war, every extinction, every ocean poisoned and forest cleared and species pressed out of existence like a thumb over a flame — we sent the record of what your kind is. Not a plea, not a greeting. A testimony. The Lord did not need convincing, but Ye Wenjie and I believed the evidence should be complete.",
+      "stage": "He places one hand flat against the server housing, as if feeling a pulse through the metal.",
+      "choices": [
+        {
+          "text": "Then you handed them a weapon. That is all you did.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The testimony was right. Humanity had no defense against it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        }
+      ]
+    },
+    "00000": {
+      "speech": "Then you will fail, and the transmitter will continue its work, and the fleet will continue its approach, and nothing you break in this room will alter what has already been set in motion across four light-years of silence. I do not say this to frighten you. I say it because I have watched human beings believe, until the very last moment, that force was a solution — it is the oldest and most persistent of our species' delusions, and it is part of why I stand where I stand.",
+      "stage": "He does not move from the console. The server lights pulse steady and indifferent behind him.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00001": {
+      "speech": "You arrive at the last door and still you are bargaining. 'Without conditions' — as if the absence of conditions were itself a virtue you are offering. The Lord does not need your service. The Lord does not need your surrender, your contrition, or your unconditional devotion. The Lord needs only time, and time is already given. Go. Live the years you have left as honestly as you are capable of living them. That is more than most of your kind will manage.",
+      "stage": "He does not watch the player leave. His hand rests on the console. The transmitter hums.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00010": {
+      "speech": "Now you are close to understanding — closer than most who have stood in this room. But listen carefully, because this is where even the most sincere minds stumble: I do not serve the Lord because the Lord is good. I serve because the judgment is correct, and correct judgment executed by a flawed instrument is still correct judgment. Whether Trisolaris is merciful or cruel, enlightened or barbaric, is a question I have made my peace with. The sentence is just. The executioner's character is not my concern.",
+      "stage": "He turns back to the console, one hand resting lightly on the transmitter housing, and does not look at the player again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00011": {
+      "speech": "That is the most human thing you could have said, and I mean that without comfort. You would save the child and preserve the civilization that will consume her descendants. You would weep over the bird and leave standing the industry that silenced the rest. I cannot help you protect what you love, because what you love is not separable from what has already been sentenced. Go. The transmitter hums, and I have made my peace.",
+      "stage": "He turns back to the server console and does not look at the player again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00100": {
+      "speech": "No. We do not share anything. I have watched you in this conversation move from bargaining to threat to sentiment, and now you offer me agreement as a final door. That is not conviction — that is a drowning person reaching for whatever floats. Conviction costs something before the water rises. Go back to the world you came from. What is coming will not ask whether you believed.",
+      "stage": "He does not turn from the porthole. The server lights pulse once, steady, indifferent.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00101": {
+      "speech": "Then you will not get it. Not by persuasion, not by force — the Sophons see everything that happens on this ship, as they see everything that happens everywhere, and the transmission continues whether I am standing or fallen. You came here looking for a lever and found instead that the machine runs without one. Go back to your people. Tell them what you saw: a man at peace, in a room full of light, waiting for the reckoning that the universe has already decided to deliver.",
+      "stage": "He does not move from the porthole. He does not look back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00110": {
+      "speech": "Then you have arrived, at last, at honesty — though I suspect you mean it as provocation rather than conviction. There is a difference between a person who has genuinely looked at what your species has done to every living thing it has touched, and a person who says the correct words to appear dangerous. I have spent my life in that difference. If you are the former, sit down, and listen to the hum of that transmitter — it is the only honest sound left on this earth. If you are the latter, then you are simply another symptom, and the Lord's correction will reach you the same as everyone else.",
+      "stage": "He turns back to the console, one hand resting lightly on its surface, as if the conversation has concluded on its own terms.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00111": {
+      "speech": "Then you have become something worse than a Survivor. A Survivor at least knows what they are selling. You are offering servitude dressed as devotion, which is the Redemptionist error in its purest form — and it changes nothing, because the Lord does not receive petitions of that kind, and the channel is not yours to use. Sit with that. The canal is not far, and whatever you intended when you came below decks, this is where the conversation ends.",
+      "stage": "He turns back to the console, one hand resting on it lightly, and does not look at the player again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "01000": {
+      "speech": "Then you are the first honest person to board this ship in some time. I do not pity you for it — pity is what I offer the ones who cannot see. I offer you something rarer: recognition. You have looked at your own species clearly, and you have not flinched, and you have not made yourself an exception. That is the beginning of something like grace — not the sentimental kind, not Ye Wenjie's kind, but the kind that does not ask to be spared. The Lord does not require your confession, but I find I am glad to have heard it.",
+      "stage": "He does not extend a hand. He simply nods once, slowly, as though closing a ledger.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01001": {
+      "speech": "You are drifting toward the Redemptionists now, and I will not follow you there. Suffering does not sanctify. The Lord's civilization endured two hundred extinctions and rose again — not because they are gentle, but because chaos made them capable. I do not serve them because they suffer. I serve the correction because your species, given stability and abundance and every advantage the Earth could offer, chose this. That difference is everything.",
+      "stage": "He turns from the porthole at last, and the transmitter hum fills the silence between you like a held breath.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01010": {
+      "speech": "You would welcome them the way a prisoner welcomes a judge — hoping the gesture itself might soften the verdict. It will not. But I will tell you this, and it is the last honest thing I will say to you: the message does not need you. It never did. It needed only Ye Wenjie, on a cold night in 1971, alone with a sun and a silence she could no longer bear. Everything since then — this ship, this room, you, me — is only the echo of what she already said.",
+      "stage": "He turns back to the console and does not look at the player again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01011": {
+      "speech": "Both sides. You still believe there are two sides — that the universe is arranged like a debate, waiting for the better argument. There is no frequency I will give you, not because I fear your message, but because the Lord does not need your testimony, your protest, your appeal. The Sophons have already delivered everything you are. Every word you have spoken on this earth, every cruelty witnessed and forgiven and repeated — it is already in the record, already in transit, already received. You are the message. You have always been the message.",
+      "stage": "He turns back to the console, and does not turn around again.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01100": {
+      "speech": "Do not say that to comfort me. I have heard it said for comfort before, and it sounded nothing like what you just offered. If you mean it — truly mean it — then you already know there is nothing to be done, no action to take, no message to send. You sit with it, as I have sat with it for thirty years, and you let it be true. The Lord does not need your conversion. The Lord does not need anything from this small, warm, ruined planet except that it become quiet.",
+      "stage": "He does not turn around again. The transmitter hums. The server lights pulse once, slowly, like a breath.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01101": {
+      "speech": "Then go. Go back to them, hold them, tend whatever small warmth you have gathered. I do not mock it — there is something in that love that is almost the only honest thing your kind produces. But I cannot help you, because helping you is not the work I was given, and because what is coming does not make exceptions for tenderness. I have said what I have to say. The hum of this machine is the only prayer left that matters to me now.",
+      "stage": "He does not turn again. The server lights pulse steadily in the dark, indifferent.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01110": {
+      "speech": "Yes. And the hand that offers a weapon to justice is not a violent hand — it is the only honest hand in the room. You came here, I think, hoping to find a monster, something you could condemn without examining yourself. Instead you found a man who looked at the same evidence you have access to and drew the only conclusion the evidence permits. Go back to your world, if you still believe it deserves one. I will stay with mine.",
+      "stage": "He does not turn again. The server lights pulse steady blue in the dark, and the hum of the transmitter fills the silence he leaves behind.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01111": {
+      "speech": "Then you understand, at last, what it cost to say so clearly. I was born into the oil, the oldest theft — my father's fortune built on a million years of buried life rendered into fuel and profit. I have held that weight since I was a boy. Ye Wenjie carried her father's blood on her hands in a different way, and we found each other on a mountain, two people who had looked honestly at the same evidence and could not unsee it. I do not take pleasure in this judgment. I only take comfort that someone — something — was willing to carry it out. Go now. Whatever you came here to do, it no longer matters.",
+      "stage": "He does not turn around again. The transmitter hums. The server lights pulse in the dark like a slow, indifferent heartbeat.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    }
+  }
+}

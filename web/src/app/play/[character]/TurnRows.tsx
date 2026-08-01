@@ -67,45 +67,6 @@ export default function TurnRows({
             </motion.div>
           );
         }
-        if (t.kind === "guest_enter") {
-          const g = getCharacter(t.characterId);
-          if (!g) return null;
-          return (
-            <motion.div
-              key={`ge-${idx}`}
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="border border-eto/40 bg-eto/5 p-4 flex items-center gap-3"
-            >
-              <div className={`shrink-0 w-10 h-10 border border-line bg-gradient-to-br ${g.portraitGradient} flex items-center justify-center font-display text-xl text-parchment/80`}>
-                {g.glyph}
-              </div>
-              <div>
-                <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-eto-glow">
-                  {g.name} enters
-                </div>
-                <div className="font-display italic text-parchment-dim text-sm">
-                  {t.reason}
-                </div>
-              </div>
-            </motion.div>
-          );
-        }
-        if (t.kind === "guest_exit") {
-          const g = getCharacter(t.characterId);
-          return (
-            <motion.div
-              key={`gx-${idx}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.4 }}
-              className="border border-line/60 bg-panel/30 p-3 text-center font-display italic text-parchment-dim"
-            >
-              {g?.name ?? "They"} steps out · {t.reason}
-            </motion.div>
-          );
-        }
         if (t.kind === "char") {
           const charDef =
             CHARACTERS.find((c) => c.id === t.characterId) ?? character;
@@ -168,7 +129,9 @@ export default function TurnRows({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.15 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-3"
+              className={`grid grid-cols-1 gap-3 ${
+                t.choices.length === 2 ? "md:grid-cols-2" : "md:grid-cols-3"
+              }`}
             >
               {t.choices.map((c) => (
                 <button

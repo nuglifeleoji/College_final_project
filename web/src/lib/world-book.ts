@@ -6,6 +6,11 @@ export type WorldEntry = {
   summary: string;
   body: string[];
   related?: string[];
+  // How many TIMELINE events must have fired before this entry is in-world
+  // knowledge. Characters are never shown entries above the current story
+  // index, so nobody can reference an event the story has not reached.
+  // A character may still know an entry early via `baselineKnowledge`.
+  revealAfter: number;
 };
 
 export const WORLD_ENTRIES: WorldEntry[] = [
@@ -19,9 +24,12 @@ export const WORLD_ENTRIES: WorldEntry[] = [
     body: [
       "Trisolaris orbits three stars whose mutual gravitation cannot be solved analytically. The planet is captured, cast away, scorched, or frozen at intervals impossible to predict.",
       "Civilization has risen and been destroyed at least two hundred times. Survival took the form of dehydration: a Trisolaran can desiccate, be filed in a stack, and rehydrated when a stable era resumes.",
-      "Their solution to chaos is to leave. The First Trisolaran Fleet was launched after Ye Wenjie's reply — four hundred years of journey toward a stable yellow sun.",
+      "Their solution to chaos is to leave. They intend to find a stable sun and take it.",
     ],
     related: ["red-coast", "eto", "sophon"],
+    // Known once Earth has heard back from Trisolaris (the 1979 warning,
+    // TIMELINE index 3 — so 4 events must have fired).
+    revealAfter: 4,
   },
   {
     id: "red-coast",
@@ -33,15 +41,18 @@ export const WORLD_ENTRIES: WorldEntry[] = [
     body: [
       "Officially a missile-warning radar. Actually, a project to make and break first contact under Cold War cover.",
       "Ye Wenjie discovered the solar amplification effect here: the Sun could be used as a superantenna by tuning carriers to its energy mirror layers.",
-      "In 1971 she transmitted toward α Centauri without authorization. Eight years later, a pacifist on Trisolaris answered: 'Do not answer. Do not answer. Do not answer.' She answered.",
+      "In 1971 she transmitted through the Sun without authorization — not aimed at anyone, broadcast at everyone. Eight years later a listener on Trisolaris answered: 'Do not answer. Do not answer. Do not answer.' She answered.",
     ],
     related: ["ye-wenjie", "trisolaris"],
+    // Body mentions the reply arriving "eight years later", so it cannot
+    // surface before 1979.
+    revealAfter: 4,
   },
   {
     id: "eto",
     title: "Earth-Trisolaris Organization",
     category: "Faction",
-    era: "1979 — present",
+    era: "1980s — present",
     summary:
       "Underground human movement loyal to the Trisolaran fleet. Splintered into Adventists, Redemptionists, and Survivors.",
     body: [
@@ -51,6 +62,7 @@ export const WORLD_ENTRIES: WorldEntry[] = [
       "Survivors: the smallest faction. They want personal favor in the new order; they will hand over their species in exchange for a clan's survival.",
     ],
     related: ["adventist", "redemptionist", "judgment-day"],
+    revealAfter: 5,
   },
   {
     id: "judgment-day",
@@ -61,10 +73,10 @@ export const WORLD_ENTRIES: WorldEntry[] = [
       "A Panamax oil tanker repurposed as the ETO's mobile command and the only channel to the Trisolaran fleet.",
     body: [
       "Owned by Mike Evans's petroleum trust. Houses the Second Red Coast: the only known transmitter still in two-way contact with the fleet.",
-      "Boarded and dismantled at the Panama Canal during Operation Guzheng — a nano-filament trap suspended across the canal sliced the ship through every deck.",
-      "The intercepted hard drives revealed the contents of the Trisolaran communications and the existence of the Sophons.",
+      "It moves constantly and answers to no flag. Everything the ETO knows about the Lord passes through its server decks.",
     ],
     related: ["eto", "guzheng"],
+    revealAfter: 5,
   },
   {
     id: "guzheng",
@@ -76,9 +88,11 @@ export const WORLD_ENTRIES: WorldEntry[] = [
     body: [
       "Named for the zither — strings strung tight across the canal's narrowest point.",
       "The filaments were Wang Miao's nanomaterial: cross-sections measured in nanometers, tensile strength sufficient to slice steel.",
-      "Took less than three minutes. Recovered the Trisolaran archives intact.",
+      "Took less than three minutes. The Judgment Day was sliced through every deck and the Trisolaran archives recovered intact.",
+      "The intercepted hard drives revealed the contents of the Trisolaran communications and the existence of the Sophons.",
     ],
     related: ["judgment-day", "wang-miao"],
+    revealAfter: 10,
   },
   {
     id: "sophon",
@@ -93,6 +107,7 @@ export const WORLD_ENTRIES: WorldEntry[] = [
       "They also relay every photon of light, every word, every keystroke back to Trisolaris in real time. Earth has no privacy.",
     ],
     related: ["trisolaris"],
+    revealAfter: 7,
   },
   {
     id: "three-body-game",
@@ -107,6 +122,7 @@ export const WORLD_ENTRIES: WorldEntry[] = [
       "Wang Miao played as 'Hai Ren' and met King Wen, von Neumann, Newton, Einstein, Copernicus.",
     ],
     related: ["eto"],
+    revealAfter: 9,
   },
   {
     id: "dark-forest",
@@ -119,6 +135,10 @@ export const WORLD_ENTRIES: WorldEntry[] = [
       "Ye Wenjie sketched two axioms to Luo Ji on a hilltop. From them, an unspoken rule: announcing your position to the universe is suicide.",
       "She did not name the conclusion. She did not need to. The rest of the trilogy is its echo.",
     ],
+    // Coda only (TIMELINE index 10, so all 11 events must have fired).
+    // Keeping this gated is also what holds the project to Book I scope —
+    // it must never sit in a character's context by default.
+    revealAfter: 11,
   },
 ];
 
@@ -144,15 +164,15 @@ export const TIMELINE: TimelineEvent[] = [
     date: "1969",
     title: "Greater Khingan Range",
     detail:
-      "Ye Wenjie is exiled to the Inner Mongolian forest construction corps. The Bethune incident finalizes her loss of faith in humanity.",
+      "Ye Wenjie is sent to the Inner Mongolia Production and Construction Corps, felling forest. Bai Mulin, a journalist she trusts, uses her handwritten copy of Silent Spring to denounce her. Facing prison, she is offered Red Coast instead.",
     axis: "earth",
   },
   {
     id: "ev-1971",
     date: "1971",
-    title: "First reply",
+    title: "First transmission",
     detail:
-      "Ye Wenjie discovers solar amplification at Red Coast. She transmits a reply toward α Centauri: 'Come.'",
+      "Ye Wenjie works out the solar amplification effect and, without authorization, beams a message at the Sun. Amplified, it goes out in every direction at once. She tells no one and waits.",
     axis: "earth",
   },
   {
@@ -160,7 +180,7 @@ export const TIMELINE: TimelineEvent[] = [
     date: "1979",
     title: "Pacifist warning received",
     detail:
-      "A Trisolaran monitor (Listener 1379) sends a warning back: 'Do not answer.' Ye answers anyway, revealing Earth's coordinates.",
+      "Eight years on, the listener at Trisolaran Monitoring Post 1379 breaks protocol and warns Earth: 'Do not answer! Do not answer!! Do not answer!!!' Ye answers anyway — inviting them to come, and fixing the Sun's position for the fleet.",
     axis: "trisolaris",
   },
   {
@@ -173,10 +193,10 @@ export const TIMELINE: TimelineEvent[] = [
   },
   {
     id: "ev-fleet",
-    date: "≈ 2007",
+    date: "After 1983",
     title: "First Trisolaran Fleet launched",
     detail:
-      "1,000+ stellar ships set out for the Solar System. Estimated time of arrival: 400 Earth years.",
+      "Ye's reply reaches Trisolaris four years after she sends it, and the decision is made. A thousand ships set out for the Solar System at a fraction of light speed. Estimated time of arrival: roughly 450 years.",
     axis: "trisolaris",
   },
   {
@@ -200,7 +220,7 @@ export const TIMELINE: TimelineEvent[] = [
     date: "Present",
     title: "Wang Miao enters Three-Body",
     detail:
-      "Wang Miao plays the VR. He sees the countdown. Da Shi pulls him into the Battle Command Center.",
+      "Da Shi drags Wang Miao into the Battle Command Center, then back out to infiltrate the Frontiers of Science. A countdown burns itself into his photographs, and he puts on the V-suit.",
     axis: "earth",
   },
   {
@@ -220,3 +240,42 @@ export const TIMELINE: TimelineEvent[] = [
     axis: "earth",
   },
 ];
+
+// ---------------------------------------------------------------- story clock
+
+/** The story index is simply how many TIMELINE events have fired so far. */
+export function currentStoryEvent(triggeredCount: number): TimelineEvent | null {
+  if (triggeredCount <= 0) return null;
+  return TIMELINE[Math.min(triggeredCount, TIMELINE.length) - 1] ?? null;
+}
+
+/** Human-readable "where are we" label used in the character prompt. */
+export function storyPositionLabel(triggeredCount: number): string {
+  const event = currentStoryEvent(triggeredCount);
+  if (!event) return "Before the first recorded event on the timeline";
+  return `${event.date} · ${event.title}`;
+}
+
+/**
+ * The World Book slice a character may know right now: everything the timeline
+ * has already reached, plus whatever this character personally knows from the
+ * start (Evans knows the ETO before the player ever hears of it).
+ */
+export function worldEntriesKnownAt(
+  triggeredCount: number,
+  baselineKnowledge: readonly string[] = []
+): WorldEntry[] {
+  const baseline = new Set(baselineKnowledge);
+  return WORLD_ENTRIES.filter(
+    (entry) => entry.revealAfter <= triggeredCount || baseline.has(entry.id)
+  );
+}
+
+/** Titles the story has NOT reached — never sent to the model, used by the UI. */
+export function unreachedTimelineEvents(triggeredCount: number): TimelineEvent[] {
+  return TIMELINE.slice(Math.max(0, triggeredCount));
+}
+
+export function isTimelineExhausted(triggeredCount: number): boolean {
+  return triggeredCount >= TIMELINE.length;
+}

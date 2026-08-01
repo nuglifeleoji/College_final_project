@@ -24,6 +24,27 @@ export default function CharactersPage() {
           chapter in the first novel. They begin where the book begins for them.
           You begin wherever you are willing to.
         </p>
+
+        <div className="mt-8 max-w-2xl border border-amber/40 bg-amber/5 p-5">
+          <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber">
+            Public demo
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-parchment-dim">
+            This build is a fixed demo. Every reply was written ahead of time,
+            so each character offers two branching options per beat — 32 paths
+            through a six-beat scene, ending in one of four outcomes. You cannot
+            type your own lines here. The full version answers freely, runs the
+            whole Book I timeline, and remembers what you told the other
+            characters.{" "}
+            <a
+              href="mailto:cpwei@stanford.edu?subject=Three-Body%20—%20full%20version"
+              className="text-eto-glow underline underline-offset-2 hover:text-amber"
+            >
+              Contact me for access
+            </a>
+            .
+          </p>
+        </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 lg:px-10 pb-24 grid grid-cols-1 lg:grid-cols-2 gap-6">

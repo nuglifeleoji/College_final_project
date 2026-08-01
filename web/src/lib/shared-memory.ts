@@ -10,7 +10,11 @@ import {
 
 export const SHARED_MEMORY_KEY = "tb_shared_memory_v1";
 export const SHARED_MEMORY_UPDATED_EVENT = "tb_shared_memory_updated";
-export const TIMELINE_TURN_INTERVAL = 10;
+// Global player turns between forced timeline events. Sized so the 11 TIMELINE
+// events complete at global turn 22 — inside CONVERSATION_TURN_LIMIT (24) — so
+// "the timeline is spent" is the ending a player normally reaches, and the
+// per-thread cap stays a backstop rather than the usual terminator.
+export const TIMELINE_TURN_INTERVAL = 2;
 
 const MAX_RECENT_ENTRIES = 48;
 const MAX_PROMPT_ENTRIES = 18;
@@ -39,11 +43,15 @@ export type SharedMemoryState = {
   timelineEvents: ForcedTimelineEvent[];
 };
 
+// NOTE: this is the object shipped to /api/chat, so it deliberately carries no
+// forward-looking fields. The next queued event and the turns-until-next
+// counter are UI-only concerns (TimelineBar, WorldBookView read them straight
+// from local state) — sending them here is how characters used to learn the
+// future and spoil their own timeline.
 export type SharedMemorySnapshot = {
   globalTurn: number;
-  interval: number;
-  turnsUntilNextEvent: number | null;
-  nextTimelineEvent: TimelineEvent | null;
+  /** How many TIMELINE events have fired. Drives the story clock and World Book gating. */
+  triggeredCount: number;
   recentEntries: SharedMemoryEntry[];
   recentTimelineEvents: ForcedTimelineEvent[];
 };
@@ -266,9 +274,7 @@ export function toSharedMemorySnapshot(
 ): SharedMemorySnapshot {
   return {
     globalTurn: memory.globalTurn,
-    interval: TIMELINE_TURN_INTERVAL,
-    turnsUntilNextEvent: turnsUntilNextTimelineEvent(memory),
-    nextTimelineEvent: getNextTimelineEvent(memory),
+    triggeredCount: memory.timelineEvents.length,
     recentEntries: memory.entries.slice(-MAX_PROMPT_ENTRIES),
     recentTimelineEvents: memory.timelineEvents.slice(-MAX_PROMPT_EVENTS),
   };
@@ -302,17 +308,9 @@ export function buildSharedMemoryPrompt(snapshot?: SharedMemorySnapshot) {
         .join("\n")
     : "- No recent conversation lines.";
 
-  const next = snapshot.nextTimelineEvent
-    ? `Next forced event in ${snapshot.turnsUntilNextEvent} turn(s): ${snapshot.nextTimelineEvent.date} · ${snapshot.nextTimelineEvent.title}.`
-    : "No further forced timeline events are queued.";
-
   return `Shared cross-character memory. Treat this as private continuity all character personas know. Do not quote it mechanically, but let it affect what you know, suspect, and remember.
 
-Global player turn: ${snapshot.globalTurn}
-Forced event cadence: every ${snapshot.interval} player turns.
-${next}
-
-Forced timeline events already triggered:
+Events that have already happened (this is the complete list — nothing later has occurred):
 ${timeline}
 
 Recent shared memory:

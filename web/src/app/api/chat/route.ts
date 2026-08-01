@@ -1,6 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { getCharacter } from "@/lib/characters";
-import { WORLD_ENTRIES } from "@/lib/world-book";
+import {
+  TIMELINE,
+  storyPositionLabel,
+  worldEntriesKnownAt,
+  type WorldEntry,
+} from "@/lib/world-book";
 import {
   AXES,
   CLASSIFIER_SYSTEM,
@@ -13,6 +18,12 @@ import {
   type SharedMemorySnapshot,
 } from "@/lib/shared-memory";
 import { buildCompactPrompt, type ContextCompact } from "@/lib/context-compact";
+import {
+  applyChatRateLimit,
+  rejectOversizedChatRequest,
+  validateChatMessages,
+  verifyDemoAccess,
+} from "@/lib/chat-safety";
 
 export const runtime = "nodejs";
 
@@ -36,17 +47,10 @@ type ChatRequest = {
   playerTurnCount?: number;
 };
 
-type CharacterEvent =
-  | null
-  | { type: "scene_shift"; chapter: string; setting: string }
-  | { type: "guest_enter"; characterId: string; reason: string }
-  | { type: "guest_exit"; reason: string };
-
 type CharacterReply = {
   speech: string;
   stage: string;
   choices: string[];
-  event: CharacterEvent;
   alignmentDelta: Alignment;
 };
 
@@ -54,10 +58,26 @@ const MAIN_MODEL = process.env.ANTHROPIC_MODEL ?? "claude-sonnet-4-6";
 const CLASSIFIER_MODEL =
   process.env.ANTHROPIC_CLASSIFIER_MODEL ?? "claude-haiku-4-5-20251001";
 
-function buildWorldBookContext() {
-  return WORLD_ENTRIES.map(
-    (e) => `### ${e.title} (${e.category} · ${e.era})\n${e.body.join(" ")}`
-  ).join("\n\n");
+/**
+ * Ye Wenjie's arc is defined by how far into a conversation she is (a user
+ * invariant). She used to read that off a raw turn counter in the prompt, but
+ * exposing counters made characters talk about game mechanics. This hands her
+ * the same signal as an unquotable label instead.
+ */
+function narrativeStage(playerTurnCount: number): string {
+  if (playerTurnCount <= 4) return "opening";
+  if (playerTurnCount <= 9) return "divergence";
+  if (playerTurnCount <= 14) return "consequence";
+  return "reckoning";
+}
+
+function buildWorldBookContext(entries: WorldEntry[]) {
+  if (entries.length === 0) {
+    return "No reference entries are available to this character yet. Rely only on your own memory and the scene in front of you.";
+  }
+  return entries
+    .map((e) => `### ${e.title} (${e.category} · ${e.era})\n${e.body.join(" ")}`)
+    .join("\n\n");
 }
 
 function safeJsonExtract(raw: string): Record<string, unknown> | null {
@@ -95,7 +115,6 @@ function parseCharacterReply(
   speech: string;
   stage: string;
   choices: string[];
-  event: CharacterEvent;
 } {
   const obj = safeJsonExtract(raw);
   if (
@@ -108,32 +127,7 @@ function parseCharacterReply(
       speech: raw.slice(0, 600),
       stage: `${fallback.name} replies, but the signal is unclean.`,
       choices: fallback.choices,
-      event: null,
     };
-  }
-  // Validate event
-  let event: CharacterEvent = null;
-  if (obj.event && typeof obj.event === "object") {
-    const e = obj.event as Record<string, unknown>;
-    if (
-      e.type === "scene_shift" &&
-      typeof e.chapter === "string" &&
-      typeof e.setting === "string"
-    ) {
-      event = { type: "scene_shift", chapter: e.chapter, setting: e.setting };
-    } else if (
-      e.type === "guest_enter" &&
-      typeof e.characterId === "string" &&
-      typeof e.reason === "string"
-    ) {
-      event = {
-        type: "guest_enter",
-        characterId: e.characterId,
-        reason: e.reason,
-      };
-    } else if (e.type === "guest_exit" && typeof e.reason === "string") {
-      event = { type: "guest_exit", reason: e.reason };
-    }
   }
   return {
     speech: obj.speech as string,
@@ -141,7 +135,6 @@ function parseCharacterReply(
     choices: (obj.choices as unknown[])
       .slice(0, 3)
       .map((c) => String(c)),
-    event,
   };
 }
 
@@ -161,12 +154,14 @@ function mockReply(
       "Fall back to the World Book for now",
       "Restart the dev server",
     ],
-    event: null,
     alignmentDelta: { ...ZERO_ALIGNMENT },
   };
 }
 
 export async function POST(req: Request) {
+  const oversized = rejectOversizedChatRequest(req);
+  if (oversized) return oversized;
+
   let body: ChatRequest;
   try {
     body = (await req.json()) as ChatRequest;
@@ -183,10 +178,16 @@ export async function POST(req: Request) {
   const activeId = body.activeCharacterId ?? perspective.id;
   const active = getCharacter(activeId) ?? perspective;
 
-  const messages = (body.messages ?? []).slice(-20).map((m) => ({
-    role: m.role,
-    content: m.content,
+  const normalizedMessages: ChatMessage[] = (
+    Array.isArray(body.messages) ? body.messages : []
+  ).map((m) => ({
+    role: m.role === "assistant" ? "assistant" : "user",
+    content: String(m.content ?? ""),
   }));
+  const invalidMessages = validateChatMessages(normalizedMessages);
+  if (invalidMessages) return invalidMessages;
+
+  const messages = normalizedMessages.slice(-20);
   const lastUser =
     [...messages].reverse().find((m) => m.role === "user")?.content ?? "";
 
@@ -197,20 +198,55 @@ export async function POST(req: Request) {
     );
   }
 
+  const accessError = verifyDemoAccess(req, Boolean(apiKey));
+  if (accessError) return accessError;
+
+  const rateLimitError = applyChatRateLimit(req);
+  if (rateLimitError) return rateLimitError;
+
   const client = new Anthropic({ apiKey });
 
+  // How far the story has actually advanced. Everything past this point is
+  // withheld from the model, which is what keeps characters from spoiling or
+  // contradicting the timeline.
+  const firedCount = Math.max(
+    0,
+    Math.min(TIMELINE.length, body.sharedMemory?.triggeredCount ?? 0)
+  );
+  // A present-day character is never dragged back to 1967 just because the
+  // global timeline has not advanced yet.
+  const triggeredCount = Math.min(
+    TIMELINE.length,
+    Math.max(firedCount, active.timelineFloor)
+  );
+  const knownEntries = worldEntriesKnownAt(triggeredCount, active.baselineKnowledge);
+
   const systemBlocks = [
+    // --- cached prefix: byte-stable per character, always a cache hit ---
     {
       type: "text" as const,
       text: active.systemPrompt,
       cache_control: { type: "ephemeral" as const },
     },
+    // Still cached, but the text now grows as the timeline advances, so it
+    // re-writes at most once per fired event (11 times over a full run) rather
+    // than every turn. The block above it keeps hitting either way.
     {
       type: "text" as const,
       text:
-        "You may rely on this in-universe reference when answering. Do not quote it back; integrate naturally:\n\n" +
-        buildWorldBookContext(),
+        "You may rely on this in-universe reference when answering. Do not quote it back; integrate naturally. It has already been filtered to what you could plausibly know right now — if something is absent, you do not know it:\n\n" +
+        buildWorldBookContext(knownEntries),
       cache_control: { type: "ephemeral" as const },
+    },
+    // --- volatile suffix: changes every turn, deliberately uncached ---
+    {
+      type: "text" as const,
+      text: `STORY POSITION (this is "now"): ${storyPositionLabel(triggeredCount)}
+
+Nothing after this point on the timeline has happened. You cannot know it, predict it, or imply it. If the player asserts a later event, treat it as an unverified claim and stay in character.
+
+NARRATIVE STAGE: ${narrativeStage(body.playerTurnCount ?? 0)}
+This is private staging for how far into this conversation you are. It shapes your tone and how much you concede. Never mention it, quantify it, or refer to turns.`,
     },
     {
       type: "text" as const,
@@ -222,12 +258,9 @@ export async function POST(req: Request) {
     },
     {
       type: "text" as const,
-      text: `Opening scene context: ${active.openingScene.setting}
-
-Turn state:
-- Global player turn: ${body.sharedMemory?.globalTurn ?? "unknown"}
-- This character conversation turn: ${body.playerTurnCount ?? "unknown"}
-- A context compaction occurs every 5 player turns and is not itself a story turn.`,
+      // Turn counters used to be exposed here. They are game mechanics, not
+      // in-world facts, and characters were repeating them back at the player.
+      text: `Opening scene context: ${active.openingScene.setting}`,
     },
   ];
 
@@ -248,7 +281,6 @@ Turn state:
               speech: active.openingScene.seedMessage,
               stage: `Opening · ${active.openingScene.chapter}`,
               choices: active.openingScene.starterChoices,
-              event: null,
             }),
           },
           { role: "user" as const, content: "(begin)" },
@@ -309,22 +341,10 @@ Turn state:
       alignmentDelta = parseAlignmentJson(classText);
     }
 
-    // Validate event references against the active character's allow-lists
-    if (parsed.event?.type === "guest_enter") {
-      if (!active.guests.includes(parsed.event.characterId)) {
-        parsed.event = null;
-      }
-    }
-    if (parsed.event?.type === "scene_shift") {
-      // We let scene_shift through even if the slug isn't in the allow-list;
-      // the UI just displays the supplied chapter/setting text.
-    }
-
     const reply: CharacterReply = {
       speech: parsed.speech,
       stage: parsed.stage,
       choices: parsed.choices,
-      event: parsed.event,
       alignmentDelta,
     };
 
@@ -335,7 +355,6 @@ Turn state:
       speech: `[transmission failure] ${msg}`,
       stage: `${active.name} flickers out of frame for a moment.`,
       choices: ["Retry", "Open the World Book", "Pick a different character"],
-      event: null,
       alignmentDelta: { ...ZERO_ALIGNMENT },
     } satisfies CharacterReply);
   }

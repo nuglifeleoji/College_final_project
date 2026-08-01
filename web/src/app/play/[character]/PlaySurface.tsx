@@ -18,9 +18,12 @@ import {
 import {
   ZERO_ALIGNMENT,
   add as addAlignment,
-  checkEndingTrigger,
+  resolveEnding,
   type Alignment,
+  type Axis,
 } from "@/lib/factions";
+import { isTimelineExhausted } from "@/lib/world-book";
+import { getTrajectory, nodeAt } from "@/lib/trajectories";
 import {
   compactedMessages,
   maybeCompactContext,
@@ -33,25 +36,31 @@ import {
   type ForcedTimelineEvent,
 } from "@/lib/shared-memory";
 import AlignmentMeter from "@/components/AlignmentMeter";
+import DemoAccessCode, {
+  demoAccessHeaders,
+  emitDemoAccessError,
+} from "@/components/DemoAccessCode";
 import TurnRows from "./TurnRows";
 import StoryProgressPanel from "./StoryProgressPanel";
-
-type CharacterEvent =
-  | null
-  | { type: "scene_shift"; chapter: string; setting: string }
-  | { type: "guest_enter"; characterId: string; reason: string }
-  | { type: "guest_exit"; reason: string };
 
 type ApiReply = {
   speech: string;
   stage: string;
   choices: string[];
-  event: CharacterEvent;
   alignmentDelta: Alignment;
 };
 
 function uid() {
   return Math.random().toString(36).slice(2, 10);
+}
+
+function openingChoicesFor(character: Character): string[] {
+  // In demo mode the opening must offer exactly the two branches the
+  // pre-generated tree actually has.
+  const trajectory = getTrajectory(character.id);
+  return trajectory
+    ? trajectory.opening.choices.map((c) => c.text)
+    : character.openingScene.starterChoices;
 }
 
 function freshTurns(character: Character): Turn[] {
@@ -70,7 +79,7 @@ function freshTurns(character: Character): Turn[] {
     },
     {
       kind: "choices",
-      choices: character.openingScene.starterChoices,
+      choices: openingChoicesFor(character),
       id: uid(),
     },
   ];
@@ -93,9 +102,12 @@ export default function PlaySurface({ character }: { character: Character }) {
   const [hydrated, setHydrated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [draft, setDraft] = useState("");
-  const [activeChoiceSet, setActiveChoiceSet] = useState<string[]>(
-    character.openingScene.starterChoices
+  const [activeChoiceSet, setActiveChoiceSet] = useState<string[]>(() =>
+    openingChoicesFor(character)
   );
+  // Demo mode only: which branch of the pre-generated tree we are on.
+  const trajectory = useMemo(() => getTrajectory(character.id), [character.id]);
+  const [path, setPath] = useState("");
   const [contextCompact, setContextCompact] = useState<
     ContextCompact | undefined
   >(undefined);
@@ -127,7 +139,7 @@ export default function PlaySurface({ character }: { character: Character }) {
     if (!hydrated) return;
     const hasUserTurn = turns.some((t) => t.kind === "user");
     if (!hasUserTurn) return;
-    saveSession(character.id, turns, alignment, activeId, contextCompact);
+    saveSession(character.id, turns, alignment, activeId, contextCompact, undefined, path);
     setSavedAt(Date.now());
   }, [turns, alignment, activeId, character.id, contextCompact, hydrated]);
 
@@ -149,6 +161,7 @@ export default function PlaySurface({ character }: { character: Character }) {
         setTurns(saved.turns);
         setAlignment(saved.alignment);
         setContextCompact(saved.contextCompact);
+        setPath(saved.demoPath ?? "");
         setActiveId(saved.activeCharacterId ?? saved.characterId);
         const lastChoices = [...saved.turns]
           .reverse()
@@ -162,6 +175,7 @@ export default function PlaySurface({ character }: { character: Character }) {
       setTurns(freshTurns(character));
       setAlignment({ ...ZERO_ALIGNMENT });
       setContextCompact(undefined);
+      setPath("");
       setActiveId(character.id);
       setActiveChoiceSet(character.openingScene.starterChoices);
     }
@@ -187,9 +201,47 @@ export default function PlaySurface({ character }: { character: Character }) {
     setTurns(preReplyTurns);
 
     try {
+      let data: ApiReply;
+      let nextPath = path;
+      let reachedEnd = false;
+      let bakedEndingAxis: Axis | undefined;
+
+      if (trajectory) {
+        // --- demo mode: read the next beat out of the pre-generated tree ---
+        const current = nodeAt(trajectory, path);
+        const index = Math.max(0, fromChoices.indexOf(text));
+        nextPath = path + String(index);
+        const next = nodeAt(trajectory, nextPath);
+        if (!current || !next) {
+          throw new Error("This branch is not part of the demo trajectory.");
+        }
+        data = {
+          speech: next.speech,
+          stage: next.stage,
+          choices: next.choices.map((c) => c.text),
+          // The score belongs to the choice the player just made, which is
+          // recorded on the node they made it from.
+          alignmentDelta:
+            current.choices[index]?.alignmentDelta ?? ZERO_ALIGNMENT,
+        };
+        reachedEnd = next.final === true;
+        // The tree decides which ending a path resolves to, so the spread
+        // across the 32 paths stays even (7/7/9/9) instead of collapsing.
+        bakedEndingAxis = next.endingAxis;
+        setPath(nextPath);
+      } else {
+        data = await fetchLiveReply();
+      }
+
+      async function fetchLiveReply(): Promise<ApiReply> {
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+        ...demoAccessHeaders(),
+      };
+
       const res = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({
           characterId: character.id,
           activeCharacterId: activeId,
@@ -200,9 +252,18 @@ export default function PlaySurface({ character }: { character: Character }) {
           playerTurnCount: preReplyTurns.filter((t) => t.kind === "user").length,
         }),
       });
-      const raw = (await res.json()) as Partial<ApiReply> & { error?: string };
+      const raw = (await res.json()) as Partial<ApiReply> & {
+        error?: string;
+        message?: string;
+      };
       if (!res.ok) {
-        throw new Error(raw.error ?? `Request failed with ${res.status}`);
+        if (
+          raw.error === "demo_access_required" ||
+          raw.error === "demo_access_not_configured"
+        ) {
+          emitDemoAccessError(raw.message ?? "Demo access is required.");
+        }
+        throw new Error(raw.message ?? raw.error ?? `Request failed with ${res.status}`);
       }
       if (
         typeof raw.speech !== "string" ||
@@ -211,48 +272,22 @@ export default function PlaySurface({ character }: { character: Character }) {
       ) {
         throw new Error("Malformed character reply");
       }
-      const data: ApiReply = {
-        speech: raw.speech,
-        stage: raw.stage,
-        choices: raw.choices,
-        event: raw.event ?? null,
-        alignmentDelta: raw.alignmentDelta ?? ZERO_ALIGNMENT,
-      };
+        return {
+          speech: raw.speech,
+          stage: raw.stage,
+          choices: raw.choices,
+          alignmentDelta: raw.alignmentDelta ?? ZERO_ALIGNMENT,
+        };
+      }
 
       // Apply alignment first (so ending checks see the new totals)
       const nextAlignment = addAlignment(alignment, data.alignmentDelta ?? ZERO_ALIGNMENT);
       setAlignment(nextAlignment);
 
-      // Build new turns. Order: any pre-event scene/guest banner, then char line, then choices.
+      // Build new turns. Character scene/guest events are disabled; forced timeline
+      // events are inserted before the reply via sharedTurn.forcedEvent.
       const newTurns: Turn[] = [];
       let nextActiveId = activeId;
-
-      if (data.event?.type === "scene_shift") {
-        newTurns.push({
-          kind: "scene",
-          chapter: data.event.chapter,
-          setting: data.event.setting,
-        });
-      } else if (data.event?.type === "guest_enter") {
-        const guest = getCharacter(data.event.characterId);
-        if (guest && active.guests.includes(guest.id)) {
-          newTurns.push({
-            kind: "guest_enter",
-            characterId: guest.id,
-            reason: data.event.reason,
-          });
-          nextActiveId = guest.id;
-        }
-      } else if (data.event?.type === "guest_exit") {
-        if (activeId !== character.id) {
-          newTurns.push({
-            kind: "guest_exit",
-            characterId: activeId,
-            reason: data.event.reason,
-          });
-          nextActiveId = character.id;
-        }
-      }
 
       newTurns.push({
         kind: "char",
@@ -294,10 +329,20 @@ export default function PlaySurface({ character }: { character: Character }) {
         },
       });
 
-      // Ending check (only on the perspective character's saves)
+      // Ending check. Alignment no longer decides *when* the story ends — it
+      // only selects which of the four endings you get. The story ends when
+      // the timeline runs out of Book I, or when this thread hits its cap.
       const userTurns = preReplyTurns.filter((t) => t.kind === "user").length;
-      const trigger = checkEndingTrigger(nextAlignment, userTurns);
+      const trigger = resolveEnding({
+        alignment: nextAlignment,
+        userTurns,
+        timelineExhausted: isTimelineExhausted(
+          sharedTurn.memory.timelineEvents.length
+        ),
+        trajectoryComplete: reachedEnd,
+      });
       if (trigger) {
+        const endingAxis = bakedEndingAxis ?? trigger.axis;
         saveSession(
           character.id,
           fullTurns,
@@ -305,14 +350,16 @@ export default function PlaySurface({ character }: { character: Character }) {
           nextActiveId,
           nextCompact,
           {
-            axis: trigger.axis,
+            axis: endingAxis,
+            reason: trigger.reason,
             turn: trigger.reachedAt,
             resolvedAt: Date.now(),
-          }
+          },
+          nextPath
         );
         // small delay so the typewriter has a chance to finish
         setTimeout(() => {
-          router.push(`/play/${character.id}/end?axis=${trigger.axis}`);
+          router.push(`/play/${character.id}/end?axis=${endingAxis}`);
         }, 1800);
       }
     } catch (err) {
@@ -479,31 +526,59 @@ export default function PlaySurface({ character }: { character: Character }) {
             />
           </div>
 
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              send(draft, activeChoiceSet);
-            }}
-            className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex flex-col sm:flex-row sm:items-stretch overflow-hidden"
-          >
-            <span className="px-4 py-3 sm:py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-b sm:border-b-0 sm:border-r border-line self-stretch flex items-center">
-              Speak
-            </span>
-            <input
-              value={draft}
-              onChange={(e) => setDraft(e.target.value)}
-              placeholder="Or write your own line..."
-              className="min-w-0 flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
-              disabled={loading}
-            />
-            <button
-              type="submit"
-              disabled={loading || !draft.trim()}
-              className="px-6 py-4 sm:py-0 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
-            >
-              Send →
-            </button>
-          </form>
+          {trajectory ? (
+            /* Demo mode: every reply is pre-written, so free text has nowhere
+               to go. Say so plainly rather than leaving a dead input. */
+            <div className="mt-8 border border-amber/40 bg-amber/5 backdrop-blur-sm p-5">
+              <div className="font-mono text-[10px] tracking-[0.32em] uppercase text-amber">
+                Demo version
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-parchment-dim">
+                This is a fixed demo. Every line {character.name} speaks was
+                written ahead of time, so you can only follow the branches
+                offered above — {2 ** trajectory.depth} paths through this
+                scene, ending after {trajectory.depth + 1} beats. Free
+                conversation and the full cast are part of the complete
+                version.{" "}
+                <a
+                  href="mailto:cpwei@stanford.edu?subject=Three-Body%20—%20full%20version"
+                  className="text-eto-glow underline underline-offset-2 hover:text-amber"
+                >
+                  Get in touch for access
+                </a>
+                .
+              </p>
+            </div>
+          ) : (
+            <>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  send(draft, activeChoiceSet);
+                }}
+                className="mt-8 border border-line bg-panel/40 backdrop-blur-sm flex flex-col sm:flex-row sm:items-stretch overflow-hidden"
+              >
+                <span className="px-4 py-3 sm:py-4 font-mono text-[11px] tracking-[0.32em] uppercase text-eto-glow border-b sm:border-b-0 sm:border-r border-line self-stretch flex items-center">
+                  Speak
+                </span>
+                <input
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  placeholder="Or write your own line..."
+                  className="min-w-0 flex-1 bg-transparent px-4 py-4 outline-none text-parchment placeholder:text-mute font-display text-lg"
+                  disabled={loading}
+                />
+                <button
+                  type="submit"
+                  disabled={loading || !draft.trim()}
+                  className="px-6 py-4 sm:py-0 font-mono text-xs tracking-[0.28em] uppercase bg-eto text-parchment hover:bg-eto-glow disabled:bg-line disabled:text-mute transition-colors"
+                >
+                  Send →
+                </button>
+              </form>
+              <DemoAccessCode disabled={loading} />
+            </>
+          )}
         </div>
 
         <StoryProgressPanel

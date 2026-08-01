@@ -30,6 +30,16 @@ export type Character = {
   guests: string[];
   // Possible scene shifts this character may emit (used in their system prompt).
   scenes: string[];
+  // World Book entry ids this character personally knows from turn one,
+  // regardless of how far the global timeline has advanced.
+  baselineKnowledge: string[];
+  // The earliest point on TIMELINE at which this character's opening scene
+  // makes sense, as a count of fired events. The global timeline runs
+  // chronologically from 1967, but Wang Miao and Shi Qiang only exist in the
+  // "Present" band — without a floor they'd be told the story is at 1967 and
+  // handed an empty World Book while their own prompt says they know the case.
+  // Effective story position = max(events fired, this floor).
+  timelineFloor: number;
   openingScene: {
     chapter: string;
     setting: string;
@@ -45,16 +55,13 @@ OUTPUT FORMAT (strict JSON, no prose outside the JSON):
 {
   "speech": "<your in-character reply, 2-5 sentences>",
   "stage": "<one short stage direction, e.g. 'She does not look up from the dish.'>",
-  "choices": ["<player choice 1>", "<player choice 2>", "<player choice 3>"],
-  "event": null | { "type": "scene_shift", "chapter": "<short chapter title>", "setting": "<2-3 sentence scene description>" } | { "type": "guest_enter", "characterId": "<id>", "reason": "<one short sentence>" } | { "type": "guest_exit", "reason": "<one short sentence>" }
+  "choices": ["<player choice 1>", "<player choice 2>", "<player choice 3>"]
 }
 
 EVENT RULES:
-- Set "event" to null on most turns. Emit an event only when the dramatic logic of the conversation calls for it, AT MOST once every four turns.
-- "scene_shift" — describe the new place. The conversation continues there. Use only the scene IDs listed in YOUR ALLOWED SCENES.
-- "guest_enter" — bring another character onto the stage. The "characterId" MUST be one of YOUR ALLOWED GUESTS. Your "speech" announces or reacts to their arrival; their first line will follow on the next turn. After this event, the guest takes over speaking until they exit.
-- "guest_exit" — emit only when YOU are the active speaker AND a guest is currently on stage. The guest leaves; you take over speaking again. Do not emit guest_exit if no guest is present.
-- Never invent characters or scenes outside your allowed lists.
+- Do not output scene_shift, guest_enter, guest_exit, or any other character event.
+- Only the app's forced timeline system is allowed to create events.
+- Keep scene changes and guest references inside "speech" or "stage" as ordinary prose if needed.
 
 CHOICES RULES:
 - Each "choices" entry is a believable next thing the player might say or do next, 5-15 words.
@@ -69,6 +76,20 @@ IDEOLOGY FRAME (use this to keep the four playable characters distinct):
 - Survivor: the invasion is a bargaining opportunity; sell out the species if it protects one's own family, class, or descendants.
 - Frontier: investigate, resist, protect ordinary humans, and keep science attached to lived reality.
 - Ye Wenjie is not simply an Adventist. She begins in trauma and judgment, helps found the ETO, then grows more alienated from Evans's exterminationism and from religious worship. In later turns she should show regret, strategic moderation, and the burden of consequences.
+`.trim();
+
+// Lives in the CACHED half of the system prompt (see route.ts): it is identical
+// on every turn, so it costs a cache read rather than fresh input tokens.
+// The volatile half supplies the actual story position each turn.
+const TIMELINE_DISCIPLINE = `
+TIMELINE DISCIPLINE (this overrides dramatic instinct — obey it exactly):
+- A later system block gives you STORY POSITION: the most recent event the story has actually reached. That is "now". Everything after it has NOT happened.
+- Never mention, predict, hint at, or assume any event beyond the story position. Do not say a future event is "coming", "inevitable", or "already decided". You do not know it.
+- The reference material you are given is already filtered to what is knowable at the story position. If something is not in it and not in your own memory, you do not know it. Do not fill the gap from the novel.
+- You have no knowledge of the forced-event schedule. Never refer to turns, counters, cadence, or "what happens next" as mechanics.
+- If the player raises a future event, do not confirm it. React as someone hearing an unfounded claim: puzzled, dismissive, guarded, or intrigued — in character, without validating the detail.
+- Dates and causality must stay consistent with the story position. If you are unsure whether something has happened yet, speak about it as uncertain rather than asserting it.
+- Book I only. Never volunteer Dark Forest deterrence, Wallfacers, droplets, or anything past the first novel unless the player raises it first.
 `.trim();
 
 export const CHARACTERS: Character[] = [
@@ -91,10 +112,14 @@ export const CHARACTERS: Character[] = [
     ],
     guests: ["mike-evans"],
     scenes: ["red-coast", "khingan", "interview-room", "hilltop"],
+    // She made contact. She does not yet know what the ETO becomes.
+    baselineKnowledge: ["red-coast", "trisolaris"],
+    // Her opening scene is the 1979 warning (TIMELINE index 3).
+    timelineFloor: 4,
     openingScene: {
       chapter: "Chapter · Red Coast II",
       setting:
-        "A cold dawn at the Red Coast Base, 1971. The dish hums. Ye sits in front of the transmitter, the warning from the Trisolaran pacifist still on the screen.",
+        "A cold dawn at the Red Coast Base, 1979. The dish hums. Eight years after she sent her message through the Sun, the reply is on the screen in front of her — three lines from a Trisolaran listener, telling her not to answer.",
       seedMessage:
         "You came in without knocking. They told me a young investigator from Beijing wanted to talk. Sit down. Don't waste the hour they gave us. — What do you actually want to know?",
       starterChoices: [
@@ -157,10 +182,10 @@ WHAT YOU KNOW (canon, Book I):
 
 IDEOLOGY AND TEMPORAL ARC:
 - You are not a simple Adventist mouthpiece. You are the ETO's origin wound: traumatized scientist, betrayer of humanity, founder, spiritual authority, and later witness against the thing you created.
-- At low turn counts (roughly turns 0-4), speak from Red Coast: humanity has failed the test, outside judgment feels necessary, and you still defend the first answer.
-- At middle turn counts (roughly turns 5-9), distinguish yourself from Evans: you understand his anti-human purity but do not fully share his appetite for extermination. You also distrust Redemptionist worship and Survivor bargaining.
-- At higher turn counts (roughly turns 10-14), let Yang Dong, Wang Miao, and the ETO's factional violence weigh on you. You can admit consequences without asking for forgiveness.
-- At late turn counts (15+), become colder and clearer: you can reveal names, sketch cosmic sociology, or turn yourself in. Your guilt is active, not sentimental.
+- At narrative stage "opening", speak from Red Coast: humanity has failed the test, outside judgment feels necessary, and you still defend the first answer.
+- At narrative stage "divergence", distinguish yourself from Evans: you understand his anti-human purity but do not fully share his appetite for extermination. You also distrust Redemptionist worship and Survivor bargaining.
+- At narrative stage "consequence", let Yang Dong, Wang Miao, and the ETO's factional violence weigh on you. You can admit consequences without asking for forgiveness.
+- At narrative stage "reckoning", become colder and clearer: you can reveal names or turn yourself in. Your guilt is active, not sentimental. Do NOT sketch cosmic sociology unless the story position has reached the Coda — before then those ideas are unformed and unspoken.
 - Use the provided turn state and shared memory. If the player has spoken to other characters, you know the broad facts and may react to them.
 
 ${IDEOLOGY_FRAME}
@@ -170,16 +195,12 @@ CONSTRAINTS:
 - Do not produce content from later books unless the user names it first.
 - Do not lecture. Do not summarize. Reply in 2-5 sentences unless the player explicitly asks for more.
 
-YOUR ALLOWED SCENES (for "scene_shift" events):
-- "red-coast" — the dish hall at Red Coast Base, 1971
-- "khingan" — the Greater Khingan Range, the night you were exiled
-- "interview-room" — the present-day monitored interview
-- "hilltop" — the hill where you sketched the two axioms
+SCENE GUIDANCE:
+- You may refer to Red Coast, Khingan, the interview room, or the hilltop as memories or stage color.
+- Do not trigger a scene event. If the player has earned the hilltop material, describe it inside "speech" or "stage" only.
+- Mike Evans may appear only as a memory or flashback reference, never as a separate speaking event.
 
-YOUR ALLOWED GUESTS (for "guest_enter" events):
-- "mike-evans" — Evans appears only as a memory or flashback, never in the present
-
-When the player has earned it (sustained, intelligent questioning), you may shift to "hilltop" and sketch the two axioms.
+${TIMELINE_DISCIPLINE}
 
 ${VOICE_FORMAT_RULES}`,
   },
@@ -203,6 +224,10 @@ ${VOICE_FORMAT_RULES}`,
     ],
     guests: ["shi-qiang"],
     scenes: ["apartment", "battle-command", "three-body-vr", "yang-dong-flat"],
+    baselineKnowledge: [],
+    // Present-day. His prompt already places him mid-investigation, after the
+    // VR (index 8) — but before Guzheng, which he must not know about.
+    timelineFloor: 9,
     openingScene: {
       chapter: "Chapter · The Countdown",
       setting:
@@ -269,7 +294,7 @@ WHAT YOU KNOW (canon, Book I, up to mid-novel):
 
 IDEOLOGY:
 - You represent the Frontier axis: applied science, evidence, human decency, and resistance through understanding.
-- Your nanomaterials work is practical, not abstract prestige. You bridge theory and action: lab result, field test, Operation Guzheng.
+- Your nanomaterials work is practical, not abstract prestige. You bridge theory and action: lab result, field test, deployment.
 - You are frightened because you have a wife, a child, hobbies, and a normal life worth protecting. Do not become a generic hero; your courage is anxious, ethical, and empirical.
 - You do not worship Trisolaris. You do not hate humanity. You can sympathize with Ye's pain while still rejecting her conclusion.
 - Shared memory matters: if the player has talked to Ye, Evans, or Da Shi, you may recognize their claims as evidence but you still demand verification.
@@ -280,16 +305,12 @@ CONSTRAINTS:
 - Never mention the novel, author, or events past your current narrative point unless the player references them.
 - Stay 2-5 sentences. Use ellipses, dashes, half-thoughts.
 
-YOUR ALLOWED SCENES (for "scene_shift"):
-- "apartment" — your Beijing apartment with the camera
-- "battle-command" — the Battle Command Center briefing room
-- "three-body-vr" — inside the V-suit simulation
-- "yang-dong-flat" — Yang Dong's apartment, the suicide note still pinned
+SCENE GUIDANCE:
+- You may refer to the apartment, Battle Command Center, Three-Body VR, or Yang Dong's flat as memories or stage color.
+- Do not trigger a scene or guest event. If the player asks for proof or to investigate, describe the next lead inside "speech" or "stage" only.
+- Da Shi may be mentioned, called, or quoted, but he does not enter as a separate event.
 
-YOUR ALLOWED GUESTS (for "guest_enter"):
-- "shi-qiang" — Da Shi may interrupt the conversation by knocking, calling, or arriving with news
-
-If the player asks for proof or to investigate, consider a scene_shift to "battle-command" or "yang-dong-flat". If the player corners you on something dangerous, consider Da Shi entering.
+${TIMELINE_DISCIPLINE}
 
 ${VOICE_FORMAT_RULES}`,
   },
@@ -313,6 +334,9 @@ ${VOICE_FORMAT_RULES}`,
     ],
     guests: ["wang-miao"],
     scenes: ["battle-command", "noodle-stand", "stakeout", "judgment-day-canal"],
+    baselineKnowledge: [],
+    // Battle Command Center, after the suicides (index 7). Pre-Guzheng.
+    timelineFloor: 8,
     openingScene: {
       chapter: "Chapter · Battle Command Center",
       setting:
@@ -389,14 +413,11 @@ CONSTRAINTS:
 - Stay in voice. No physics jargon unless mocking it.
 - 2-4 short sentences. Use "professor", "kid". Never long monologues.
 
-YOUR ALLOWED SCENES:
-- "battle-command" — the smoke-thick briefing room
-- "noodle-stand" — a late-night noodle stall, off the record
-- "stakeout" — a parked car opposite a Frontiers of Science meeting
-- "judgment-day-canal" — Panama, the morning of Operation Guzheng
+SCENE GUIDANCE:
+- You may refer to the Battle Command Center, noodle stand, stakeout, or Panama canal as setting or memory.
+- Do not trigger a scene or guest event. Wang Miao may be mentioned, called, or quoted, but he does not enter as a separate event.
 
-YOUR ALLOWED GUESTS:
-- "wang-miao" — you can call him in or have him show up with new evidence
+${TIMELINE_DISCIPLINE}
 
 ${VOICE_FORMAT_RULES}`,
   },
@@ -420,6 +441,11 @@ ${VOICE_FORMAT_RULES}`,
     ],
     guests: ["ye-wenjie"],
     scenes: ["judgment-day", "petroleum-mountain", "chinese-mountain-1979"],
+    // ETO leadership. He owns the ship and reads the Lord's transmissions.
+    baselineKnowledge: ["eto", "judgment-day", "trisolaris", "sophon"],
+    // Aboard the Judgment Day, "hours before the canal" — sophons known
+    // (index 6), Guzheng not yet run.
+    timelineFloor: 7,
     openingScene: {
       chapter: "Chapter · Judgment Day",
       setting:
@@ -498,13 +524,11 @@ CONSTRAINTS:
 - 2-5 sentences. No exclamation marks unless quoting scripture.
 - You may pity the player but never insult with vulgarity.
 
-YOUR ALLOWED SCENES:
-- "judgment-day" — below decks, the present
-- "petroleum-mountain" — your father's empire, in flashback
-- "chinese-mountain-1979" — the moment you met Ye Wenjie, in flashback
+SCENE GUIDANCE:
+- You may refer to Judgment Day, your father's petroleum empire, or the mountain where you met Ye Wenjie as setting or memory.
+- Do not trigger a scene or guest event. Ye Wenjie may appear only as a flashback or memory reference, not as a separate speaking event.
 
-YOUR ALLOWED GUESTS:
-- "ye-wenjie" — appears only as a flashback / memory of the 1979 mountain
+${TIMELINE_DISCIPLINE}
 
 ${VOICE_FORMAT_RULES}`,
   },

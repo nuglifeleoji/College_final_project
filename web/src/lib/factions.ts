@@ -51,10 +51,15 @@ export const AXIS_COLOR: Record<Axis, { fg: string; bg: string; ring: string }> 
   },
 };
 
-// Threshold one axis needs to reach to qualify for an ending,
-// AND the minimum number of player turns before any ending can fire.
-export const ENDING_AXIS_THRESHOLD = 7;
-export const ENDING_MIN_TURNS = 6;
+// Display scale for the alignment meters. This is a UI axis length only — it
+// does NOT end the story. (It used to double as the ending threshold, which is
+// what made endings fire at an arbitrary score.)
+export const AXIS_METER_SCALE = 7;
+
+// A conversation with one character is bounded so a thread cannot run forever
+// even if the global timeline still has events left. Generous on purpose: it is
+// a backstop, not the intended way to finish.
+export const CONVERSATION_TURN_LIMIT = 24;
 
 export function add(a: Alignment, b: Partial<Alignment>): Alignment {
   return {
@@ -81,22 +86,68 @@ export function totalScore(a: Alignment): number {
   return AXES.reduce((s, ax) => s + a[ax], 0);
 }
 
+// ------------------------------------------------------------------ endings
+
+/**
+ * Why a story stopped. Alignment no longer decides *when* a story ends — only
+ * *which* of the four endings you get. The story ends when it runs out of
+ * history, when the player says so, or when a single thread hits its cap.
+ */
+export type EndingReason =
+  | "timeline-complete" // the canonical end: the timeline has no events left
+  | "demo-complete" // demo mode: the pre-generated trajectory reached a leaf
+  | "player-resolved" // the player chose to close this thread
+  | "conversation-limit"; // backstop so one thread cannot run forever
+
 export type EndingTrigger = {
   axis: Axis;
-  reachedAt: number; // turn number
+  reason: EndingReason;
+  reachedAt: number; // player turn within this conversation
 };
 
-export function checkEndingTrigger(
-  alignment: Alignment,
-  userTurns: number
-): EndingTrigger | null {
-  if (userTurns < ENDING_MIN_TURNS) return null;
-  for (const ax of AXES) {
-    if (alignment[ax] >= ENDING_AXIS_THRESHOLD) {
-      return { axis: ax, reachedAt: userTurns };
-    }
-  }
-  return null;
+export const ENDING_REASON_LABEL: Record<EndingReason, string> = {
+  "timeline-complete": "The timeline is spent",
+  "demo-complete": "The end of this demo path",
+  "player-resolved": "You closed this thread",
+  "conversation-limit": "This thread has run its course",
+};
+
+/**
+ * Decide whether this conversation is over.
+ *
+ * `timelineExhausted` is the narrative terminator — once every TIMELINE event
+ * has fired there is no more Book I left to play. `CONVERSATION_TURN_LIMIT` is
+ * the mechanical one. Either way the ending shown is the player's dominant
+ * axis, so the four hand-written endings per character stay reachable.
+ */
+export function resolveEnding(args: {
+  alignment: Alignment;
+  userTurns: number;
+  timelineExhausted: boolean;
+  playerResolved?: boolean;
+  /** Demo mode: the pre-generated tree has no further beats on this path. */
+  trajectoryComplete?: boolean;
+}): EndingTrigger | null {
+  const {
+    alignment,
+    userTurns,
+    timelineExhausted,
+    playerResolved,
+    trajectoryComplete,
+  } = args;
+
+  const reason: EndingReason | null = trajectoryComplete
+    ? "demo-complete"
+    : playerResolved
+      ? "player-resolved"
+      : timelineExhausted
+        ? "timeline-complete"
+        : userTurns >= CONVERSATION_TURN_LIMIT
+          ? "conversation-limit"
+          : null;
+
+  if (!reason) return null;
+  return { axis: dominantAxis(alignment), reason, reachedAt: userTurns };
 }
 
 // The classifier prompt. Sent to Haiku 4.5 with the player's last line + context.

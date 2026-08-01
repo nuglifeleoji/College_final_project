@@ -25,7 +25,7 @@ import {
   AXIS_COLOR,
   AXIS_LABEL,
   AXES,
-  ENDING_AXIS_THRESHOLD,
+  AXIS_METER_SCALE,
   dominantAxis,
 } from "@/lib/factions";
 
@@ -186,7 +186,7 @@ export default function DecisionsView() {
                       <div className="mt-3 grid grid-cols-4 gap-1.5">
                         {AXES.map((ax) => {
                           const v = s.alignment[ax];
-                          const pct = Math.min(100, (v / ENDING_AXIS_THRESHOLD) * 100);
+                          const pct = Math.min(100, (v / AXIS_METER_SCALE) * 100);
                           return (
                             <div key={ax} className="flex flex-col">
                               <div className={`font-mono text-[8px] tracking-[0.24em] uppercase ${AXIS_COLOR[ax].fg}`}>

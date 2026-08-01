@@ -1,10 +1,10 @@
 # CONTINUITY.md
 
 ## Snapshot
-- Goal: Upgrade to 3D Three.js simulation, source-informed ideology prompts, shared memory/timeline, player goal, compact context, and polished UI.
-- Now: 2026-05-10T14:06:48-07:00 [CODE]: World Book timeline/goal and UI polish complete; build and route checks pass.
-- Next: 2026-05-10 [USER]: Try the updated app locally at `http://localhost:3000`.
-- Open questions: None.
+- Goal: Maintain the interactive Three-Body project and presentation artifacts for the final project.
+- Now: 2026-05-28 [CODE]: Added public-demo safety controls for `/api/chat`: optional access code, fail-closed production behavior, request-size cap, and per-instance rate limit.
+- Next: 2026-05-28 [USER]: Choose deployment host/domain and set `ANTHROPIC_API_KEY` plus `THREE_BODY_DEMO_ACCESS_CODE` only in host environment variables.
+- Open questions: 2026-05-28 [CODE]: Final deployment host/domain and whether the live Claude demo should be public, access-code protected, or mock-only.
 
 ## Invariants / Constraints
 - 2026-05-10 [USER]: Character agents must share memory across conversations.
@@ -15,14 +15,30 @@
 - 2026-05-10 [USER]: Three-body balls should be smaller, trajectories removed, and motion kept inside the visible area.
 - 2026-05-10 [USER]: World Book must connect to the turn timeline; player goal is to stop destruction of the human world.
 - 2026-05-10 [USER]: Play header Rewind/Switch controls should fit cleanly on one line; character picker Begin arrow position should be fixed.
+- 2026-05-23 [USER]: Delete each character's pop-out events; only ending/timeline should govern event progression.
+- 2026-05-27 [USER]: Generate a guizang-style web PPT introducing the project, focused on each character's ideology, and include two YouTube demo links.
+- 2026-05-27 [USER]: Convert the project intro slides to a more concise `.pptx` with the same content and demo links.
 - 2026-05-10 [CODE]: Preserve Next.js App Router structure and localStorage-only persistence unless user asks for backend storage.
 
 ## Decisions
 - D001 ACTIVE 2026-05-10 [CODE]: Use browser localStorage for shared memory because the existing app stores sessions/decision history locally.
 - D002 ACTIVE 2026-05-10 [CODE]: Treat one player message as one global turn for forced timeline cadence.
-- D003 ACTIVE 2026-05-10 [CODE]: Forced timeline events advance through `TIMELINE` every 10 global player turns and are injected into the next character reply.
+- D003 REVISED 2026-08-01 [USER]: Forced timeline events advance through `TIMELINE` every **2** global player turns (was 10) and are injected into the next character reply. Rationale: at an interval of 10 the 11-event arc needed 110 global turns, which no player can reach, so the narrative ending never fired. At 2 the arc completes at global turn 22, inside `CONVERSATION_TURN_LIMIT` (24). See D014.
 - D004 ACTIVE 2026-05-10 [CODE]: Use Three.js directly for the front-page 3D scene; keep gravitational integration in `three-body-physics.ts`.
 - D005 ACTIVE 2026-05-10 [CODE]: Auto context compaction is deterministic/client-side every 5 user turns and sent as a separate API context block.
+- D006 ACTIVE 2026-05-23 [CODE]: Character LLM replies no longer return or trigger scene/guest events; forced timeline events remain.
+- D007 ACTIVE 2026-05-27 [CODE]: Use guizang-ppt "Indigo Porcelain" theme for the project introduction deck because the content is technical/research-oriented.
+- D008 ACTIVE 2026-05-27 [CODE]: Use installed PowerPoint COM to generate the concise `.pptx` because local `pptxgenjs`/`python-pptx` were unavailable and manual OpenXML was rejected by PowerPoint.
+- D009 ACTIVE 2026-05-28 [CODE]: Public deployments with a real Claude key should require `THREE_BODY_DEMO_ACCESS_CODE`; static pages remain browsable without the code.
+- D010 ACTIVE 2026-08-01 [CODE]: The chat request must carry no forward-looking timeline data. `SharedMemorySnapshot` drops `nextTimelineEvent`/`turnsUntilNextEvent` and carries `triggeredCount`; those two fields stay UI-only.
+- D011 ACTIVE 2026-08-01 [CODE]: World Book entries are gated by `revealAfter` (elapsed TIMELINE events) plus a per-character `baselineKnowledge` allowlist, so a character is never shown canon the story has not reached.
+- D012 ACTIVE 2026-08-01 [CODE]: Timeline discipline rules live in the cached half of the system prompt (inside each `systemPrompt`), because they are byte-stable; only the story position is sent uncached each turn.
+- D013 ACTIVE 2026-08-01 [USER]: Alignment must not decide *when* a story ends, only *which* ending. Replaces the hard-coded 7-point / 6-turn game-over check, which existed only for the class demo.
+- D014 ACTIVE 2026-08-01 [CODE]: Endings resolve on timeline exhaustion (canonical), explicit player resolution, or `CONVERSATION_TURN_LIMIT` as a backstop.
+- D015 ACTIVE 2026-08-01 [USER]: Ship a "demo mode" of pre-generated branching dialogue instead of live Claude calls. Opening + 5 rounds of two choices = 2^5 = 32 paths, 62 responses per character, generated by `scripts/generate-trajectory.mjs` into `src/data/trajectories/<id>.json`. A character without a trajectory file still uses the live route.
+- D016 ACTIVE 2026-08-01 [CODE]: Trajectory choices are scored by the app's existing Haiku classifier, not by the persona model self-labelling — self-labelling collapsed 53 of 62 choices to "frontier" and left 2 of 4 endings unreachable.
+- D017 ACTIVE 2026-08-01 [CODE]: Each branch level is forced to offer two *opposed* axes (`AXIS_PAIRS` in the generator). Without it the model wrote two investigative questions everywhere, because Ye's scene casts the player as an interrogator.
+- D018 ACTIVE 2026-08-01 [USER]: Demo mode disables free-text input and shows a notice that the questions are fixed, with a contact link for the full version.
 
 ## State
 ### Done (recent)
@@ -39,12 +55,20 @@
 - 2026-05-10 [CODE]: Made 3D balls smaller, removed trajectory lines, and added damped bounds to keep bodies in view.
 - 2026-05-10 [CODE]: Connected World Book page to shared global turn/timeline state and added explicit player goal.
 - 2026-05-10 [CODE]: Resized play header Rewind/Switch controls and fixed character picker Begin arrow alignment.
+- 2026-05-23 [CODE]: Removed character scene/guest event response type, parsing, UI rendering, and prompt instructions.
+- 2026-05-27 [CODE]: Created `slides/project-intro/index.html` with 11 horizontal web-PPT slides covering project mechanics, ideology axes, character worldview matrix, Ye Wenjie's turn-based arc, shared memory/timeline design, and demo video embeds.
+- 2026-05-27 [CODE]: Created `slides/project-intro/three-body-project-concise.pptx`, an 8-slide concise editable PowerPoint version of the same content.
+- 2026-05-28 [CODE]: Added chat API safety controls, in-app demo access code input, `.env.example`, README safety notes, and `.gitignore` tracking allowance for `.env.example`.
+- 2026-08-01 [CODE]: Stopped leaking the next timeline event into the character prompt; removed it from the wire format entirely.
+- 2026-08-01 [CODE]: Added `revealAfter` gating to all 8 World Book entries and `baselineKnowledge` to all 4 characters; relocated the post-Guzheng lines off `judgment-day` onto `guzheng`.
+- 2026-08-01 [CODE]: Added `TIMELINE_DISCIPLINE` to the cached system prompt and a `STORY POSITION` block to the uncached suffix; removed turn-counter mechanics from the prompt.
+- 2026-08-01 [CODE]: Replaced `checkEndingTrigger` with `resolveEnding`; `ENDING_AXIS_THRESHOLD` became display-only `AXIS_METER_SCALE`.
 
 ### Now
-- 2026-05-10 [CODE]: No active implementation.
+- 2026-05-28 [CODE]: Three-Body app builds with the new safety controls.
 
 ### Next
-- 2026-05-10 [USER]: Review behavior in browser.
+- 2026-05-28 [USER]: Deploy only after choosing access-code vs mock-only mode and adding environment variables in the host.
 
 ## Working set
 - `web/src/app/api/chat/route.ts`
@@ -56,21 +80,31 @@
 - `web/src/app/decisions/DecisionsView.tsx`
 - `web/src/components/TimelineBar.tsx`
 - `web/src/components/ThreeBodyOrbit.tsx`
+- `web/src/components/DemoAccessCode.tsx`
 - `web/src/lib/three-body-physics.ts`
 - `web/src/lib/context-compact.ts`
 - `web/src/lib/shared-memory.ts`
 - `web/src/lib/sessions.ts`
+- `web/src/lib/chat-safety.ts`
 - `web/src/lib/characters.ts`
+- `web/.env.example`
+- `web/.gitignore`
 - `web/package.json`
 - `web/package-lock.json`
 - `web/README.md`
+- `slides/project-intro/index.html`
+- `slides/project-intro/assets/motion.min.js`
+- `slides/project-intro/create_concise_pptx.ps1`
+- `slides/project-intro/three-body-project-concise.pptx`
+- `slides/project-intro/.pptx-verify/`
 - `CONTINUITY.md`
 
 ## Open questions
-- None.
+- 2026-05-28 [CODE]: Which host/domain will serve the app, and should live Claude access be limited to invited viewers?
 
 ## Incidents
-- None.
+- 2026-08-01 [CODE]: Removing turn counters from the prompt silently broke Ye Wenjie's four-stage arc (a 2026-05-10 [USER] invariant), which was keyed to "turns 0-4 / 5-9 / 10-14 / 15+". She had no remaining signal for her own progression. Fixed by sending an unquotable `NARRATIVE STAGE` label (opening / divergence / consequence / reckoning) instead of a raw count, and re-keying her prompt to those names. Caught only by reading her prompt during live testing, not by any build or type check.
+- 2026-08-01 [CODE]: First pass at `revealAfter` gating was off by one — every World Book entry unlocked one event early (sophons at the fleet launch, dark-forest at Guzheng instead of the Coda). Caught by a logic harness, not by the build.
 
 ## Receipts
 - 2026-05-10 [TOOL]: `Get-Date -Format o` -> `2026-05-10T13:10:32.3644874-07:00`.
@@ -85,3 +119,23 @@
 - 2026-05-10 [TOOL]: `Invoke-WebRequest http://localhost:3000` -> HTTP 200 after latest change.
 - 2026-05-10 [TOOL]: `npm.cmd run build` -> passed after World Book/controls/character picker UI changes.
 - 2026-05-10 [TOOL]: `Invoke-WebRequest` for `/world`, `/characters`, `/play/ye-wenjie` -> HTTP 200.
+- 2026-05-23 [TOOL]: `npm.cmd run build` -> passed after removing character events; warning noted about root-level `package-lock.json`.
+- 2026-05-23 [TOOL]: `Invoke-WebRequest http://localhost:3000/play/wang-miao` -> HTTP 200.
+- 2026-05-27 [TOOL]: `rg` / `Select-String` checks -> no PPT placeholders; 11 slide sections; 83 `data-anim` markers; both YouTube demo IDs present.
+- 2026-05-27 [TOOL]: Playwright file preview -> title correct; 11 slides; 11 nav dots; screenshots saved in `slides/project-intro/.verify/`.
+- 2026-05-27 [TOOL]: `tool_search` for Presentations -> no dedicated Presentations deck-generation tool exposed; available install candidates did not include Presentations.
+- 2026-05-27 [TOOL]: Initial manual OpenXML `.pptx` parsed as ZIP/XML but PowerPoint rejected it as corrupted; superseded by PowerPoint COM generation.
+- 2026-05-27 [TOOL]: `powershell -ExecutionPolicy Bypass -File slides\project-intro\create_concise_pptx.ps1` -> generated PPTX and PDF export successfully.
+- 2026-05-27 [TOOL]: PPTX ZIP/XML text extraction -> 8 slides, 51 package parts, both YouTube hyperlinks present on slide 8.
+- 2026-05-27 [TOOL]: `pdftoppm` rendered 8 verification JPGs and `contact-sheet.jpg`; visual check showed no overlap/cutoff issues.
+- 2026-05-28 [TOOL]: `npm.cmd run build` in `web` -> passed after chat safety controls; duplicate-lockfile Turbopack root warning remains.
+- 2026-05-28 [TOOL]: `git diff --check` scoped to safety files -> passed; CRLF conversion warnings only.
+- 2026-08-01 [TOOL]: `npm run build` -> passed after timeline-gating and ending rework.
+- 2026-08-01 [TOOL]: Dev server smoke test in mock mode (`.env.local` moved aside) -> all 10 routes HTTP 200; `POST /api/chat` HTTP 200 with the new `triggeredCount` snapshot shape, 3 choices returned.
+- 2026-08-01 [TOOL]: Logic harness over `worldEntriesKnownAt` / `resolveEnding` -> caught an off-by-one where every `revealAfter` unlocked one event early (sophons visible at the fleet-launch event; dark-forest at Guzheng instead of the Coda). Gates incremented; re-run clean.
+- 2026-08-01 [TOOL]: Post-fix harness -> 0 anachronisms across all story positions x 4 characters; single-character run ends at thread turn 22 via `timeline-complete` with 11/11 events fired and 8/8 entries revealed.
+
+- 2026-08-01 [TOOL]: Live model test (14 calls, ~$0.15, local only, user-authorised key). Confirmed: Ye denies sophons pre-gate ("that is a word I do not recognize"); Ye denies Judgment Day/Panama at 1979; Evans refuses a future-event assertion ("you speak of something that has not yet been written"); Wang denies the dark forest; Shi Qiang correctly knows the ETO. Coda-gated Ye sketches the two axioms and stops short of naming the Dark Forest.
+- 2026-08-01 [TOOL]: Live test also exposed prompt-level leaks the World Book gating could not reach — Wang's prompt named "Operation Guzheng" and Ye's authorised sketching cosmic sociology at "turn 15+". Both scrubbed; re-tested clean.
+- 2026-08-01 [TOOL]: Generated Ye Wenjie's trajectory — 62 responses, 32 paths, 90s, ~$0.60. Simulation over all 32 paths: 4/4 endings reachable (frontier 22, redemptionist 6, adventist 3, survivor 1).
+- 2026-08-01 [TOOL]: Playwright walk of a full demo path with `.env.local` removed -> 5 rounds x exactly 2 choices, reached `/play/ye-wenjie/end?axis=frontier`, **0 calls to `/api/chat`**, no page errors.

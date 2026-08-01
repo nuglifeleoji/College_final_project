@@ -5,7 +5,7 @@ import {
   AXIS_COLOR,
   AXIS_LABEL,
   AXIS_TAGLINE,
-  ENDING_AXIS_THRESHOLD,
+  AXIS_METER_SCALE,
   type Alignment,
   type Axis,
 } from "@/lib/factions";
@@ -22,7 +22,7 @@ export default function AlignmentMeter({
   variant = "compact",
   className = "",
 }: Props) {
-  const max = Math.max(ENDING_AXIS_THRESHOLD, ...AXES.map((a) => alignment[a]));
+  const max = Math.max(AXIS_METER_SCALE, ...AXES.map((a) => alignment[a]));
   if (variant === "compact") {
     return (
       <div className={`flex items-center gap-3 ${className}`}>
@@ -64,7 +64,7 @@ export default function AlignmentMeter({
             <div className="flex items-baseline justify-between font-mono text-[10px] tracking-[0.28em] uppercase">
               <span className={c.fg}>{AXIS_LABEL[ax]}</span>
               <span className="text-parchment tabular-nums">
-                {v} / {ENDING_AXIS_THRESHOLD}
+                {v} / {AXIS_METER_SCALE}
               </span>
             </div>
             <div className="mt-1.5 h-[6px] bg-line/70 relative overflow-hidden">
@@ -76,7 +76,7 @@ export default function AlignmentMeter({
               />
               <div
                 className={`absolute inset-y-0 w-px bg-parchment/40`}
-                style={{ left: `${(ENDING_AXIS_THRESHOLD / max) * 100}%` }}
+                style={{ left: `${(AXIS_METER_SCALE / max) * 100}%` }}
                 aria-hidden
               />
             </div>

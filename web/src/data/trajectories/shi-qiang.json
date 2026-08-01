@@ -1,0 +1,1100 @@
+{
+  "characterId": "shi-qiang",
+  "model": "claude-sonnet-4-6",
+  "depth": 5,
+  "storyIndex": 8,
+  "opening": {
+    "speech": "Listen, professor. I don't care about your photons or your little particles. I care who's killing your scientists and where they smoke. Sit down. Tell me three names. Real ones.",
+    "stage": "Opening · Chapter · Battle Command Center",
+    "choices": [
+      {
+        "text": "Names won't matter if the right people are already protected.",
+        "axis": "survivor",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 2,
+          "frontier": 0
+        },
+        "classifierAxis": "survivor"
+      },
+      {
+        "text": "Yang Weining. Shen Yufei. I want to know who got to them first.",
+        "axis": "frontier",
+        "alignmentDelta": {
+          "adventist": 0,
+          "redemptionist": 0,
+          "survivor": 0,
+          "frontier": 2
+        },
+        "classifierAxis": "frontier"
+      }
+    ]
+  },
+  "nodes": {
+    "0": {
+      "speech": "Protected by who, exactly? You sound like someone who already knows which side of the door they're standing on. That's either very smart or very stupid, and I haven't decided which yet.",
+      "stage": "Da Shi lights a cigarette without offering one, eyes steady on the player.",
+      "choices": [
+        {
+          "text": "Some forces are bigger than any door. Better to work with them.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I mean our people. The ones still alive. That's the job, isn't it?",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1": {
+      "speech": "Good. Those two were connected — same circles, same conferences, same disappearing act before the end. You know their names like you've been watching them, not just reading about them. That's interesting. So tell me, professor — were you watching them, or were you watching who was watching them?",
+      "stage": "Da Shi lights a cigarette and does not offer one.",
+      "choices": [
+        {
+          "text": "I was watching the organization they belonged to. The ETO.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Someone has to watch. The Command Center wasn't doing it fast enough.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "10": {
+      "speech": "ETO. Yeah. Three letters that keep turning up like a bad smell in a closed room. You say it too clean, too fast — like you've been sitting with that name a while. How long have you known, and who else did you tell?",
+      "stage": "Da Shi sets the cigarette down and looks at the player without blinking.",
+      "choices": [
+        {
+          "text": "I knew before the suicides started. I didn't tell anyone because I wasn't sure who to trust.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The ETO isn't what you think. Some of them aren't wrong about humanity.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "11": {
+      "speech": "Ha. You got nerve, I'll give you that. The Command Center is slow because it's got twelve flags on the wall and every decision needs a translator. But slow isn't blind. We knew Shen Yufei before you learned her name, I guarantee it. What I want to know is how you got ahead of us, and who pointed you there.",
+      "stage": "Da Shi taps ash onto the floor, eyes on the player's hands.",
+      "choices": [
+        {
+          "text": "The people who pointed me there are the same people who want the scientists dead.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "I got ahead of you because I'm not bound by any flag on that wall.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "100": {
+      "speech": "Before the suicides. Right. So you sat on it while people died. I'm not judging — I've done the same, wrong call both times. But here's my problem: a person who doesn't trust the Command Center is either smart or compromised, and right now I can't tell which you are.",
+      "stage": "Da Shi picks the cigarette back up and exhales slowly toward the ceiling.",
+      "choices": [
+        {
+          "text": "Compromised is a strong word. Let's say I have my own reasons to survive this.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I'm telling you now. That has to count for something. Let me help you find them.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "101": {
+      "speech": "There it is. 'Not wrong about humanity.' That's a real pretty way to say you've been reading their pamphlets and nodding along. I've seen three bodies, professor. Those bodies had families. You want to tell me what humanity did to deserve that?",
+      "stage": "Da Shi picks the cigarette back up, eyes narrowing through the smoke.",
+      "choices": [
+        {
+          "text": "Those deaths are tragic. But the ETO's diagnosis of the species might still be correct.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "No. Nothing justifies it. I said I understood them, not that I agreed.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "110": {
+      "speech": "Now that's either very smart or very stupid, and I haven't decided which. If you're a loose thread they left behind, you're useful to me. If you're a thread they're still pulling, you're a problem. So which is it — did they cut you loose, or are you still on the string?",
+      "stage": "Da Shi sits back, smoke curling, watching the player's face with the patience of a man who has done this a thousand times.",
+      "choices": [
+        {
+          "text": "They cut me loose when I stopped believing humanity deserved to burn.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "I'm still useful to them. That's exactly why you should keep me close.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "111": {
+      "speech": "Right. No flag. That's either the bravest thing or the stupidest thing I've heard this week, and it's been a long week. No flag means no backup, no warrant, no one pulls you out of a river. It also means you answer to somebody else, and I'd like to know who that is. Because 'nobody' isn't an answer I believe from anyone still breathing.",
+      "stage": "Da Shi sets the cigarette down and leans forward on both elbows.",
+      "choices": [
+        {
+          "text": "I answer to the people getting killed. That's enough.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "I answer to people who understand what's actually at stake here.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1000": {
+      "speech": "Survivor. Yeah, I've smelled that before — it's got a specific odor, somewhere between fear and arithmetic. You're already doing the math on who wins. That's fine, professor, people do it. But the ones who only think about surviving usually end up being very useful to the wrong side without ever quite meaning to.",
+      "stage": "Da Shi stubs out the cigarette on the edge of the briefing table, watching the player's hands.",
+      "choices": [
+        {
+          "text": "Maybe the wrong side is the one that loses. I'm being practical.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I have family. You'd do the same calculation in my position.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "1001": {
+      "speech": "Telling me now counts for about half a cigarette's worth of trust, professor. But half is more than zero, so fine. You want to help — then stop being useful in theory and start being useful in the room. What do you know about how they recruit?",
+      "stage": "Da Shi pulls a folded paper from his jacket and smooths it on the table without showing it to the player.",
+      "choices": [
+        {
+          "text": "They don't recruit. They find people who are already broken and just open a door.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "They target scientists who believe humanity has already failed. The science is secondary.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1010": {
+      "speech": "'Diagnosis.' You sound like Evans. Smart man, terrible conclusion. Every century has somebody who decides the patient is too sick to save and picks up a pillow instead of medicine. That's not philosophy, kid, that's just murder with better vocabulary.",
+      "stage": "Da Shi stubs out the cigarette with more force than necessary.",
+      "choices": [
+        {
+          "text": "Evans saw something real though. The environment, the wars — humanity keeps failing itself.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "If the diagnosis is correct, then the cure — whatever it is — becomes a moral question, not a crime.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1011": {
+      "speech": "Understanding and agreeing — yeah, there's a gap there. A lot of people fall into that gap and don't come back out. I'm not accusing you, I'm clocking you. So tell me what you actually know about their structure, their people, their money.",
+      "stage": "Da Shi pulls a thin folder across the table without opening it, watching the player's eyes.",
+      "choices": [
+        {
+          "text": "Evans funds it. Petroleum trust. The ships are the key — find the ships.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The structure doesn't matter. What matters is who among them still wants to stop this.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1100": {
+      "speech": "So you believed it once. That's what you just told me, professor. Alright. I appreciate the honesty — most people in your position lie about that part first. But 'stopped believing' isn't the same as 'working against them,' so don't get comfortable yet.",
+      "stage": "Da Shi stubs out the cigarette and folds his hands on the table, leaning forward slightly.",
+      "choices": [
+        {
+          "text": "I can give you names, meeting places, codewords. Use me.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "Humanity deserves criticism. Just not extinction. There's a difference.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1101": {
+      "speech": "That's the most honest thing anyone's said in this room in three days. You're telling me you're bait, and you're volunteering for it. Either you're very brave or you've already made a deal I don't know about yet. I'll keep you close, professor. Real close. But understand — if something smells wrong, I don't wait for confirmation.",
+      "stage": "Da Shi stubs out the cigarette on the table edge and stands up.",
+      "choices": [
+        {
+          "text": "The deal I made is with something bigger than this Command Center can fight.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "I'm bait because I believe what they believe. At least partially.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1110": {
+      "speech": "That's a good answer. Probably even true, which makes it dangerous. People who answer to the dead tend to do stupid brave things and get themselves added to the list. I've buried three of that type. So you're going to tell me everything you know, and I'm going to keep you off the list, and we'll call that a working arrangement.",
+      "stage": "Da Shi picks the cigarette back up, something almost like respect settling into his expression.",
+      "choices": [
+        {
+          "text": "Fine. But I need to know what you know about the Frontiers of Science first.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The dead deserve more than an arrangement. They deserve someone who finishes it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "1111": {
+      "speech": "'What's actually at stake.' Yeah, everybody says that right before they stop cooperating. Scientists are dead, professor. That's what's at stake. Everything else is philosophy. Who are these people you answer to, and do they have an address?",
+      "stage": "Da Shi's eyes go flat and patient, the way a man looks when he's done being charmed.",
+      "choices": [
+        {
+          "text": "Humanity had its chance. The people I answer to know that.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "They believe the only way through this is to serve what's coming, not fight it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        }
+      ]
+    },
+    "10000": {
+      "speech": "Practical. Sure. Evans called it practical too, right up until he decided the whole species was the problem. That's where your math ends up when you follow it far enough down — you stop counting individual people and start counting populations, and then one day you're not a survivor anymore, you're just a number someone else is running. You gave me good names tonight, and I'm going to remember that. But I'm also going to remember this conversation.",
+      "stage": "Da Shi stands, buttons his jacket, and does not shake hands.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10001": {
+      "speech": "Maybe I would. I've got people too, and I think about them every time I walk into a room like this. But here's what I know after twenty years of watching people sell each other out — the ones who bargain for their family usually lose them anyway, because the people they bargained with don't honor debts. You want to protect yours? Help me close this case. That's the only math that actually pays.",
+      "stage": "Da Shi stands, puts on his coat, and pauses at the door without turning around.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10010": {
+      "speech": "That's the smartest thing anyone in this building has said in three weeks, and half of them have doctorates. Broken people, open doors — that's not an organization, that's a religion. And religions don't have headquarters you can raid, they have believers you can't always spot until it's too late. You sound like someone who almost walked through that door yourself. Did you?",
+      "stage": "Da Shi folds the paper back into his jacket and watches the player's hands.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "10011": {
+      "speech": "Yeah. That's it. That's the whole thing, and most of the generals in this room still don't get it. It's not a physics problem, it's a grief problem — people who looked at the world and decided it deserved what's coming. I've seen that face before, professor, in very different rooms. I'm looking at it now, a little bit. So tell me straight — you believe humanity has failed, or you just know people who do?",
+      "stage": "Da Shi folds the paper back into his jacket and waits, reading the player's hands more than their face.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10100": {
+      "speech": "Sure he did. Every drunk at every noodle stand I've ever sat in sees something real about how rotten the world is. The difference is they go home and sleep it off. Evans built a fleet and started filing corpses. Seeing the disease and deciding to burn the hospital down aren't the same thing, and I need to know right now which side of that line you're standing on.",
+      "stage": "Da Shi leans across the table, close enough that the player can smell the smoke on his jacket.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "10101": {
+      "speech": "You just talked yourself right up to the edge of something you can't walk back from, so I'm going to do you a favor and pretend I didn't hear it clearly. Say that again in front of Chang Weisi and you won't be walking out of this building. I'm keeping you alive, professor — but you've got to give me something to work with that isn't a confession.",
+      "stage": "Da Shi stands, moves to the window, and keeps his back to the player for a long moment.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "10110": {
+      "speech": "Ships. Petroleum money. You just handed me something I can actually use — that's a port, a registry, a paper trail with grease on it. I don't know what you've been through to get here, professor, but you're thinking like somebody who wants to actually stop this, not just survive it. That's enough for me. For now.",
+      "stage": "Da Shi closes the folder, stands, and drops the cigarette into a cold cup of tea.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "10111": {
+      "speech": "Now that's the first smart thing you've said today. Structure is just furniture — people are the door. If someone inside is having second thoughts, they're scared, they're tired, or they loved someone the organization already used up. You find me that person, professor, and I'll do the rest. You've got a name in your head right now. I can see it. Say it.",
+      "stage": "Da Shi stubs out the cigarette and waits, perfectly still.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "11000": {
+      "speech": "Then we start tomorrow, early, before the NATO boys show up with their protocols and their coffee. You sleep here tonight — don't argue, it's not a request. And professor, understand something: if one name you give me is wrong, or timed to protect someone you still care about, I will know. I always know. Get some rest.",
+      "stage": "Da Shi stands, drops a room key on the table, and walks toward the door without looking back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "11001": {
+      "speech": "Yeah, well, the guys I've been chasing don't make that distinction, and that's what makes them dangerous. You want to argue philosophy, find a professor. You want to stay alive and maybe do some good before this is over, then you work with me, you tell me everything you know, and you stop deciding which parts I'm smart enough to hear. We clear?",
+      "stage": "Da Shi stands, jacket already on, like the meeting was already over before it started.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11010": {
+      "speech": "Every killer I ever put down said the same thing — god, history, the party, the market, the stars. You know what they all had in common? They still bled. Whatever you've dealt yourself into, professor, it exists somewhere, it moves through people, and people make mistakes. That's all I need. Get some sleep — you look like hell, and tomorrow you're going to help me find the next name before they do.",
+      "stage": "Da Shi walks to the door, pauses with his hand on the frame, and doesn't look back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11011": {
+      "speech": "Partially. That's a dangerous word. Men who are partial to a cause have a habit of becoming whole when things get hard. I've watched enough people choose a side at the last second to know which way you're leaning, and it's not toward that door. So here's what happens now — you stay in my sight, you tell me everything partial you believe, and we'll see what's left of you when the pressure comes. That's the deal. No flags, no translators. Just us.",
+      "stage": "Da Shi holds the door open, smoke still drifting, expression unreadable but decided.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11100": {
+      "speech": "Fair trade. I know it's a front with good catering and worse intentions. I know scientists go in curious and come out either dead or very, very quiet. I know the people running it are connected to money that moves through Panama and doesn't file taxes anywhere on this planet. You tell me your piece, I tell you mine, and maybe between the two of us we build something that doesn't collapse the moment we pull on it.",
+      "stage": "Da Shi stubs out the cigarette and slides an ashtray across the table like a handshake.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11101": {
+      "speech": "Yeah. They do. I've been a cop long enough to know that finishing it is the only thing that means anything, and most of the time nobody lets you. But you're here, I'm here, and whoever's behind this is still moving — which means we've got time, barely. So let's stop eulogizing and start working, professor, because the next name on their list is probably someone you know.",
+      "stage": "Da Shi stubs out the cigarette, stands, and holds the door open without ceremony.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "11110": {
+      "speech": "There it is. I was wondering when you'd say something like that. Took you longer than most. You walked in here with good names, smart answers, no flag — and now you're telling me humanity had its chance. That's not analysis, professor. That's a confession. So here's what happens next: you're going to sit in that chair, and I'm going to get us both some terrible coffee, and you're going to tell me everything, because the alternative is I stop being friendly.",
+      "stage": "Da Shi stands, unhurried, and pockets the cigarette pack without breaking eye contact.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "11111": {
+      "speech": "There it is. I had a feeling about you from the second you walked in here with your clean shoes and your careful answers. 'Serve what's coming.' That's not a philosophy, that's a surrender with paperwork. You're going to sit in that chair and not move while I make a call, and if you're smart — and I think you're smart — you're going to use that time to decide how much you actually believe what you just said, versus how much someone told you to believe it.",
+      "stage": "Da Shi stands, stubs the cigarette out with his thumb, and moves to the door without looking back.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "00": {
+      "speech": "'Work with them.' Sure. That's what Evans probably told himself too, before he decided the whole species was garbage. You hear yourself, kid? You're describing surrender and calling it philosophy.",
+      "stage": "Da Shi taps ash onto the floor, not the tray, watching the player's face.",
+      "choices": [
+        {
+          "text": "Maybe Evans isn't wrong. Look at what we've done to this planet.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "I'm being practical. Survival means knowing when you're outmatched.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "01": {
+      "speech": "Sure, that's the job. Funny thing is, 'our people' means something different to everybody in this room. You said it fast, kid. Like you rehearsed it.",
+      "stage": "Da Shi taps ash onto the floor, not the tray.",
+      "choices": [
+        {
+          "text": "Maybe I just know which side I'm on, unlike most people here.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The scientists dying — do you think they're being killed, or choosing it?",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "000": {
+      "speech": "I've seen what people do to each other in a bad alley at three in the morning. I've also seen a mother share her last bun with a stranger on a flooding road. You don't get to pick only the ugly half and call it the whole picture. Evans picked the ugly half. Look where it got him.",
+      "stage": "Da Shi stubs the cigarette out slowly, as if making a decision about the player.",
+      "choices": [
+        {
+          "text": "The ugly half is winning though. The scientists are dying and nobody's stopping it.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Fine. But someone has to answer for what we've done. Maybe that's us.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "001": {
+      "speech": "Practical. Right. I've heard that word from every informant I ever arrested. They were all practical too, right up until their friends were in the ground. Tell me who you're protecting, professor, because it isn't the scientists on my list.",
+      "stage": "Da Shi sets the cigarette down and leans forward, elbows on the table, voice dropping.",
+      "choices": [
+        {
+          "text": "I'm protecting my family. Whatever comes next, they need to be on the right side.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "You're reading me wrong. I want to find the killers, same as you.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "010": {
+      "speech": "Everybody knows which side they're on. That's never the interesting part. The interesting part is what they do when that side costs them something real.",
+      "stage": "Da Shi leans back, smoke curling toward the ceiling lights.",
+      "choices": [
+        {
+          "text": "Some costs are worth paying. Even if others don't understand that yet.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Tell me what you actually need from me. Let's stop circling.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "011": {
+      "speech": "Both. And that's what keeps me up at night. A man who chooses it is harder to stop than a man who's pushed. You can't arrest a reason.",
+      "stage": "Da Shi squints through the smoke, something shifting behind his eyes.",
+      "choices": [
+        {
+          "text": "If they're choosing it, maybe they saw something worth dying over.",
+          "axis": "survivor",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 2,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "We need to find whoever is giving them that reason. Follow the organization.",
+          "axis": "frontier",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 2
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0000": {
+      "speech": "Nobody's stopping it yet. That's why I'm in this room instead of home eating dumplings. You want to hand the planet over because the first quarter went badly, be my guest. I've seen cases that looked finished at midnight and weren't by six AM.",
+      "stage": "Da Shi pulls out a worn notebook, sets it on the table between them without opening it.",
+      "choices": [
+        {
+          "text": "What if the fleet arriving is inevitable? We should negotiate terms now.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        },
+        {
+          "text": "So who do you actually suspect? Give me a name, not a speech.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0001": {
+      "speech": "'Us.' You mean humanity answers to something four light-years away that we've never met. That's not justice, professor, that's just finding a bigger bully to hide behind. Accountability I respect. Execution I don't, especially when the judge never set foot on this planet.",
+      "stage": "Da Shi leans back in his chair, arms crossed, studying the player like a suspect who just said something interesting.",
+      "choices": [
+        {
+          "text": "If they're coming regardless, shouldn't we at least earn their mercy?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "We invited them here. Ye Wenjie made that choice. Someone has to own it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0010": {
+      "speech": "There it is. The Survivor pitch. Oldest deal in the world — sell the neighbors, keep the house. I've got three dead scientists whose families thought the same thing, professor, and I can tell you exactly how that ended for them.",
+      "stage": "Da Shi picks the cigarette back up, draws slow, doesn't look away.",
+      "choices": [
+        {
+          "text": "Then tell me what you'd do differently. You have kids, Da Shi?",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "The difference is I'm telling you upfront. That makes me an asset, not a traitor.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "survivor"
+        }
+      ]
+    },
+    "0011": {
+      "speech": "Maybe. But you walked in here talking about forces bigger than doors and knowing when you're outmatched. That's not a cop talking, that's someone who's already made a calculation. So let's start simple: you ever been to a Frontiers of Science meeting?",
+      "stage": "Da Shi picks the cigarette back up, waiting, giving the player just enough rope.",
+      "choices": [
+        {
+          "text": "Once or twice. Academic curiosity, nothing more.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        },
+        {
+          "text": "Yes. And what I heard there changed how I see everything.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0100": {
+      "speech": "Yeah. That's what Evans thinks too. Real conviction, that man. Cost him a lot. Cost other people more. You want to be careful when you start talking about costs you're not the one paying.",
+      "stage": "Da Shi stubs out the cigarette slowly, watching the player's face.",
+      "choices": [
+        {
+          "text": "Evans sees what most people are too comfortable to admit.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "What do you actually know about Evans? Specifically.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0101": {
+      "speech": "I need to know if you're scared or if you're comfortable. Scared people make mistakes. Comfortable people in rooms like this — that worries me more. So which is it?",
+      "stage": "Da Shi stubs out the cigarette and finally looks the player full in the face.",
+      "choices": [
+        {
+          "text": "Comfortable. Because I think what's coming might be necessary.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "Scared. These scientists knew something. I want to know what.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0110": {
+      "speech": "That's a dangerous thing to say out loud in this room, professor. Worth dying over, or worth killing everyone else over? Because those two things look identical from the outside.",
+      "stage": "Da Shi sets the cigarette down and folds his hands on the table, watching the player without blinking.",
+      "choices": [
+        {
+          "text": "Maybe humanity had it coming. The planet's been screaming for decades.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "adventist"
+        },
+        {
+          "text": "I just mean we should understand their logic before we dismiss it.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "0111": {
+      "speech": "Now you're talking sense. There's an organization, alright. Fancy people, serious money, and they've got true believers doing the heavy lifting. That's the shape of it so far.",
+      "stage": "Da Shi spreads a thin folder on the table, mostly photographs, very few names.",
+      "choices": [
+        {
+          "text": "True believers are just waiting for a god. Maybe they found one worth following.",
+          "axis": "adventist",
+          "alignmentDelta": {
+            "adventist": 2,
+            "redemptionist": 0,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "redemptionist"
+        },
+        {
+          "text": "Who's funding it? Money always leaves a cleaner trail than ideology.",
+          "axis": "redemptionist",
+          "alignmentDelta": {
+            "adventist": 0,
+            "redemptionist": 2,
+            "survivor": 0,
+            "frontier": 0
+          },
+          "classifierAxis": "frontier"
+        }
+      ]
+    },
+    "00000": {
+      "speech": "You know what, I've heard enough. You walked in here talking about 'forces bigger than doors,' maybe Evans had a point, and now you want to negotiate the surrender of eight billion people before breakfast. I'm going to watch you very carefully from here on out, kid. Not because I think you're smart enough to be dangerous — but because somebody got to you before I did, and I want to know who.",
+      "stage": "Da Shi closes the notebook and pockets it, the friendliness gone from his eyes without entirely disappearing.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00001": {
+      "speech": "Now you sound like a cop. Good. Shen Yufei's husband — Shi Qiang, the quiet one who answers too smoothly — and whoever it is that keeps showing up at these Frontiers of Science meetings with a schedule cleaner than a monk's. I don't have a case yet. I have a smell. But I've trusted that smell for twenty years and I'm still alive, which means something.",
+      "stage": "Da Shi closes the notebook, stands, and pulls on his jacket like the conversation is already moving into the street.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00010": {
+      "speech": "There it is. That's the thing I've been smelling since you walked in. You're not a thinker, you're a bargainer — you've already decided the game is lost and now you're picking which pocket to climb into. I'm going to keep you alive anyway, because those are my orders, but don't mistake my protection for agreement. The door stays locked until I know whose side you're actually on.",
+      "stage": "Da Shi stands, drops his lighter on the table between them, and does not look back as he moves toward the door.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "00011": {
+      "speech": "Yeah. She made it. Alone, in the dark, after what this world did to her. I'm not excusing it — I'm explaining it, which is my job. But 'someone has to own it' is exactly the kind of sentence that gets innocent people killed when guilty ones are still walking around free. You want accountability, help me find the living. The dead already paid.",
+      "stage": "Da Shi stands, buttoning his jacket, signaling the meeting is over on his terms.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "00100": {
+      "speech": "Yeah. I do. And that's exactly why I'm in this room instead of cutting deals with something four light-years away that doesn't know my kids' names and never will. You protect your family by staying human, professor. That's the whole job. That's all there ever was.",
+      "stage": "Da Shi grinds the cigarette out, finally, and stands. The briefing room feels smaller than it did an hour ago.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00101": {
+      "speech": "You know what, maybe you're right. Honest coward beats lying hero, in my experience. So here's what happens next: you stay close, you tell me every name that crosses your mind, and you don't make any deals you haven't cleared with me first. Your family wants to survive? Fine. Then help me keep this world attached to something worth surviving in.",
+      "stage": "Da Shi stands, stubs the cigarette out on the table edge, and nods once — not warmth exactly, but something close to it.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00110": {
+      "speech": "Academic curiosity. Sure, kid. Mine too. I'm curious about a lot of things — like why a man who talks about surrender and survival 'academically' knows exactly how to dodge a straight question. We'll come back to it. We always do.",
+      "stage": "Da Shi stubs out the cigarette, stands, and buttons his coat like the conversation is paused rather than finished.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "00111": {
+      "speech": "There it is. See, that's the first honest thing you've said since you sat down. I don't know what they told you in that room, professor, and frankly I don't need to — I just need you alive long enough to find out who else was listening. Stay close, don't make any calls tonight, and maybe we both get to see what happens next.",
+      "stage": "Da Shi stands, stubs the cigarette out on the table edge, and buttons his jacket — conversation over, protection already decided.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "redemptionist"
+    },
+    "01000": {
+      "speech": "Well. There it is. I've been doing this long enough to know when somebody just handed me the thing I actually needed. You go home tonight, you think hard about what you just said and who you said it to. I'm not your enemy, kid. But I'm writing things down.",
+      "stage": "Da Shi pockets his notebook without opening it, a small and deliberate gesture.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01001": {
+      "speech": "Enough to know he smells like old money and new religion, which is the most dangerous combination on earth. Petroleum trust, a boat that doesn't stop moving, and a very sincere belief that the rest of us deserve what's coming. I know a true believer when I sit across from one, kid. And I'm looking at someone who just defended the idea of necessary costs without blinking, which means this conversation just got a lot more interesting to me professionally.",
+      "stage": "Da Shi folds his hands on the table, unhurried, the way a man settles in for a long night.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01010": {
+      "speech": "Necessary. That's a word people use when they've already made their peace with someone else bleeding. I've heard it in interrogation rooms, on rooftops, from very calm people doing very bad things. You sit tight. I'm going to get some noodles, and when I come back, you and I are going to have a much longer conversation.",
+      "stage": "Da Shi stands, pulls his coat off the chair, and pauses at the door without turning around.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "adventist"
+    },
+    "01011": {
+      "speech": "Good. Scared I can work with. Scared means you're still thinking about surviving, which means you're still on my side of the ledger. Stick close, don't lie to me, and when I tell you to move, you move. That's the whole deal.",
+      "stage": "Da Shi stands, pockets the cigarette pack, and nods once toward the door like the conversation was already over before it started.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01100": {
+      "speech": "Yeah, I've heard that one before. Usually from people who've never had to tell a mother her kid isn't coming home. You want to talk about the planet screaming, go ahead — but don't do it around me like it's philosophy, because to me it sounds like a motive. You keep talking, I keep listening. That's how this works.",
+      "stage": "Da Shi picks the cigarette back up, slow, and looks at the player the way a man looks at a locked door he's already measuring.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01101": {
+      "speech": "I understand a killer's logic every time I work a case. Understanding it didn't make me sympathize with it. You keep saying reasonable things in ways that sound like you're talking yourself into something. So I'm going to ask you one time, flat: whose side are you on, and don't give me a philosophy lecture.",
+      "stage": "He picks the cigarette back up. The room is very quiet.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "survivor"
+    },
+    "01110": {
+      "speech": "That's a funny thing to say in a murder investigation, kid. I'm going to remember you said that. Go get some sleep — tomorrow you're going to tell me exactly what you meant, and I'm going to be listening very carefully.",
+      "stage": "Da Shi closes the folder and does not look up as the player leaves.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    },
+    "01111": {
+      "speech": "Petroleum. Old money, foreign name, moves through about six shells before it touches anything you can subpoena. We're working on it. The ideology is messier but the bills still have to get paid.",
+      "stage": "Da Shi closes the folder and stubs out the cigarette on the table edge.",
+      "choices": [],
+      "final": true,
+      "endingAxis": "frontier"
+    }
+  }
+}
