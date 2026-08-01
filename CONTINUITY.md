@@ -101,6 +101,7 @@
 
 ## Open questions
 - 2026-05-28 [CODE]: Which host/domain will serve the app, and should live Claude access be limited to invited viewers?
+- 2026-08-01 [CODE]: Only ~40% of generated choices are read by the classifier as the axis they were authored to express. The ending spread is unaffected, but a player may not feel their choices earned the outcome. Worth a spot-read of the choice text before publishing.
 
 ## Incidents
 - 2026-08-01 [CODE]: Removing turn counters from the prompt silently broke Ye Wenjie's four-stage arc (a 2026-05-10 [USER] invariant), which was keyed to "turns 0-4 / 5-9 / 10-14 / 15+". She had no remaining signal for her own progression. Fixed by sending an unquotable `NARRATIVE STAGE` label (opening / divergence / consequence / reckoning) instead of a raw count, and re-keying her prompt to those names. Caught only by reading her prompt during live testing, not by any build or type check.
@@ -139,3 +140,7 @@
 - 2026-08-01 [TOOL]: Live test also exposed prompt-level leaks the World Book gating could not reach — Wang's prompt named "Operation Guzheng" and Ye's authorised sketching cosmic sociology at "turn 15+". Both scrubbed; re-tested clean.
 - 2026-08-01 [TOOL]: Generated Ye Wenjie's trajectory — 62 responses, 32 paths, 90s, ~$0.60. Simulation over all 32 paths: 4/4 endings reachable (frontier 22, redemptionist 6, adventist 3, survivor 1).
 - 2026-08-01 [TOOL]: Playwright walk of a full demo path with `.env.local` removed -> 5 rounds x exactly 2 choices, reached `/play/ye-wenjie/end?axis=frontier`, **0 calls to `/api/chat`**, no page errors.
+- 2026-08-01 [TOOL]: Brute-forced all 6^5 axis-pair assignments for ending evenness. Argmax scoring caps at a gap of 4 and repeats one pair three times; recency tie-break with no pair used more than twice reaches 7/7/9/9 (gap 2). Adopted.
+- 2026-08-01 [TOOL]: Regenerated all four characters (63 calls each, ~$2.60 total). Every file: 62 nodes, 32 leaves, 62/62 unique speeches, endings 7/7/9/9.
+- 2026-08-01 [TOOL]: Playwright across all four characters with no API key -> all PASS: 5 rounds of exactly 2 choices, reached an ending, 0 `/api/chat` calls, no free-text box, no page errors.
+- 2026-08-01 [TOOL]: Classifier agreement with authored choice intent is 21-34 of 62 per character. Endings are unaffected (baked on the leaves) but some choices may not read as the axis they were written for — see Open questions.
