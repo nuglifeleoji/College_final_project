@@ -5,6 +5,7 @@ import { CHARACTERS } from "@/lib/characters";
 
 export default function Home() {
   const initialNow = Date.now();
+  const staticDemo = process.env.THREE_BODY_STATIC_EXPORT === "1";
 
   return (
     <div className="relative">
@@ -100,12 +101,16 @@ export default function Home() {
             {
               n: "I",
               title: "Speak with the canon",
-              body: "Every character runs on a Claude-powered persona — researched from Book I, prompted to stay in voice. Ye Wenjie answers in pauses. Da Shi answers in cigarettes.",
+              body: staticDemo
+                ? "Every character follows a pre-generated branching persona researched from Book I. Ye Wenjie answers in pauses. Da Shi answers in cigarettes."
+                : "Every character runs on a Claude-powered persona — researched from Book I, prompted to stay in voice. Ye Wenjie answers in pauses. Da Shi answers in cigarettes.",
             },
             {
               n: "II",
               title: "Choose, branch, or refuse",
-              body: "Each turn surfaces three plausible paths. Pick one or write your own. The system tracks your decisions in a private World Book that grows as you play.",
+              body: staticDemo
+                ? "Each turn offers two ideologically opposed choices. The system tracks your decisions in a private World Book that grows as you play."
+                : "Each turn surfaces three plausible paths. Pick one or write your own. The system tracks your decisions in a private World Book that grows as you play.",
             },
             {
               n: "III",

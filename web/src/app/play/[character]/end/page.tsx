@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
-import { getCharacter } from "@/lib/characters";
-import { AXES, type Axis } from "@/lib/factions";
+import { CHARACTERS, getCharacter } from "@/lib/characters";
 import EndingView from "./EndingView";
 
 type Props = {
   params: Promise<{ character: string }>;
-  searchParams: Promise<{ axis?: string }>;
 };
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return CHARACTERS.map((character) => ({ character: character.id }));
+}
 
 export async function generateMetadata({ params }: Props) {
   const { character } = await params;
@@ -14,13 +18,9 @@ export async function generateMetadata({ params }: Props) {
   return { title: c ? `${c.name} · Ending · Three-Body` : "Ending" };
 }
 
-export default async function EndingPage({ params, searchParams }: Props) {
+export default async function EndingPage({ params }: Props) {
   const { character } = await params;
-  const { axis: axisParam } = await searchParams;
   const c = getCharacter(character);
   if (!c) notFound();
-  const axis: Axis = (AXES as string[]).includes(axisParam ?? "")
-    ? (axisParam as Axis)
-    : "frontier";
-  return <EndingView character={c} axis={axis} />;
+  return <EndingView character={c} />;
 }

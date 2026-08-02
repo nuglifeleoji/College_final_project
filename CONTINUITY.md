@@ -1,10 +1,10 @@
 # CONTINUITY.md
 
 ## Snapshot
-- Goal: Maintain the interactive Three-Body project and presentation artifacts for the final project.
-- Now: 2026-05-28 [CODE]: Added public-demo safety controls for `/api/chat`: optional access code, fail-closed production behavior, request-size cap, and per-instance rate limit.
-- Next: 2026-05-28 [USER]: Choose deployment host/domain and set `ANTHROPIC_API_KEY` plus `THREE_BODY_DEMO_ACCESS_CODE` only in host environment variables.
-- Open questions: 2026-05-28 [CODE]: Final deployment host/domain and whether the live Claude demo should be public, access-code protected, or mock-only.
+- Goal: 2026-08-01 [USER]: Publish the updated public demo under `cpwei.qzz.io` without replacing the existing portfolio or its `/three-body` case study.
+- Now: 2026-08-01 [TOOL]: Public static demo is deployed and verified at `https://cpwei.qzz.io/three-body/demo/`; the existing `/three-body` case study remains intact.
+- Next: 2026-08-01 [ASSUMPTION]: No required work remains; future trajectory changes must be rebuilt with `THREE_BODY_STATIC_EXPORT=1` and copied into the portfolio repository.
+- Open questions: 2026-08-01 [TOOL]: None.
 
 ## Invariants / Constraints
 - 2026-05-10 [USER]: Character agents must share memory across conversations.
@@ -41,6 +41,7 @@
 - D018 ACTIVE 2026-08-01 [USER]: Demo mode disables free-text input and shows a notice that the questions are fixed, with a contact link for the full version.
 - D020 ACTIVE 2026-08-01 [CODE]: Timeline enforcement needs three checks, not one blocklist. (a) Entity names, gated by `revealAfter` — but the full faction taxonomy counts as ETO vocabulary, since the writer prompt injects `AXIS_LABEL` at every node. (b) Period-relative facts such as world population, which no entity regex can see. (c) A character naming themselves as a third party, which is wrong at every story position and so is never clock-gated.
 - D019 ACTIVE 2026-08-01 [CODE]: Choice generation is a closed loop — every option is scored by the classifier and rewritten until it reads as the axis it is scored as. The writer is given the classifier's own axis rubric verbatim; the two using different vocabularies is what made 56% of the first pass illegible. Rewrites are kept only when they reduce the mismatch count, so a round can never regress a node.
+- D021 ACTIVE 2026-08-01 [CODE]: Publish the API-free demo as a Next.js static export with `basePath=/three-body/demo`; mount the generated output inside the existing Cloudflare Pages portfolio repository and scope its CSP separately from the no-script case study.
 
 ## State
 ### Done (recent)
@@ -67,48 +68,32 @@
 - 2026-08-01 [CODE]: Replaced `checkEndingTrigger` with `resolveEnding`; `ENDING_AXIS_THRESHOLD` became display-only `AXIS_METER_SCALE`.
 
 ### Now
-- 2026-05-28 [CODE]: Three-Body app builds with the new safety controls.
+- 2026-08-01 [TOOL]: Deployment completed at `https://cpwei.qzz.io/three-body/demo/` from portfolio commit `2277483`.
 
 ### Next
-- 2026-05-28 [USER]: Deploy only after choosing access-code vs mock-only mode and adding environment variables in the host.
+- 2026-08-01 [ASSUMPTION]: No required next step.
 
 ## Working set
-- `web/src/app/api/chat/route.ts`
-- `web/src/app/play/[character]/PlaySurface.tsx`
-- `web/src/app/play/[character]/TurnRows.tsx`
-- `web/src/app/story/[character]/StoryView.tsx`
-- `web/src/app/world/WorldBookView.tsx`
-- `web/src/app/characters/page.tsx`
-- `web/src/app/decisions/DecisionsView.tsx`
-- `web/src/components/TimelineBar.tsx`
-- `web/src/components/ThreeBodyOrbit.tsx`
-- `web/src/components/DemoAccessCode.tsx`
-- `web/src/lib/three-body-physics.ts`
-- `web/src/lib/context-compact.ts`
-- `web/src/lib/shared-memory.ts`
-- `web/src/lib/sessions.ts`
-- `web/src/lib/chat-safety.ts`
-- `web/src/lib/characters.ts`
-- `web/.env.example`
-- `web/.gitignore`
-- `web/package.json`
-- `web/package-lock.json`
-- `web/README.md`
-- `slides/project-intro/index.html`
-- `slides/project-intro/assets/motion.min.js`
-- `slides/project-intro/create_concise_pptx.ps1`
-- `slides/project-intro/three-body-project-concise.pptx`
-- `slides/project-intro/.pptx-verify/`
+- `web/next.config.ts`
+- `web/src/app/page.tsx`
+- `web/src/app/play/[character]/page.tsx`
+- `web/src/app/play/[character]/end/page.tsx`
+- `web/src/app/play/[character]/end/EndingView.tsx`
+- `web/src/app/story/[character]/page.tsx`
+- `D:/Stanford/code/personal-website/three-body/demo/`
+- `D:/Stanford/code/personal-website/_headers`
 - `CONTINUITY.md`
 
 ## Open questions
-- 2026-05-28 [CODE]: Which host/domain will serve the app, and should live Claude access be limited to invited viewers?
+- 2026-08-01 [TOOL]: None.
 
 ## Incidents
 - 2026-08-01 [CODE]: Removing turn counters from the prompt silently broke Ye Wenjie's four-stage arc (a 2026-05-10 [USER] invariant), which was keyed to "turns 0-4 / 5-9 / 10-14 / 15+". She had no remaining signal for her own progression. Fixed by sending an unquotable `NARRATIVE STAGE` label (opening / divergence / consequence / reckoning) instead of a raw count, and re-keying her prompt to those names. Caught only by reading her prompt during live testing, not by any build or type check.
 - 2026-08-01 [CODE]: First pass at `revealAfter` gating was off by one — every World Book entry unlocked one event early (sophons at the fleet launch, dark-forest at Guzheng instead of the Coda). Caught by a logic harness, not by the build.
 
 ## Receipts
+- 2026-08-01 [TOOL]: `npm.cmd run build` in `web` -> passed on Next.js 16.2.6; 10 pages generated, with dynamic character routes and `/api/chat` retained.
+- 2026-08-01 [TOOL]: `cpwei.qzz.io` inspection -> existing static portfolio and `/three-body` case study confirmed; Cloudflare dashboard and Wrangler are not authenticated.
 - 2026-05-10 [TOOL]: `Get-Date -Format o` -> `2026-05-10T13:10:32.3644874-07:00`.
 - 2026-05-10 [TOOL]: `npm.cmd run build` -> passed after allowing font fetch; routes generated successfully.
 - 2026-05-10 [TOOL]: `Invoke-WebRequest http://localhost:3000` -> HTTP 200.
@@ -148,3 +133,8 @@
 - 2026-08-01 [TOOL]: `--repair` closed the loop (share the classifier's rubric with the writer, rewrite, re-score, keep only improvements). All four characters reached **62/62 legible** in 1-4 rounds. Endings still 7/7/9/9; Playwright across all four still passes with 0 API calls.
 - 2026-08-01 [TOOL]: Nine-agent audit read all 252 nodes against each character's story position, with an adversarial refutation pass per character. Discarded false positives (Evans's hedged "a few hours of speech left"; "watched Yang Dong die" as witnessing-at-a-distance; "Panama" as a tax haven). Confirmed 4 defects, 3 of them in `ye-wenjie` — the only file whose clock predates the ETO.
 - 2026-08-01 [TOOL]: Three generator guards added (faction labels, period-relative figures, self-reference). All four files now scrub clean in 1-2 rounds while holding 62/62 legible and 7/7/9/9.
+- 2026-08-01 [TOOL]: `THREE_BODY_STATIC_EXPORT=1 npm.cmd run build` -> 22 pages exported with all four play, story, and ending routes pre-rendered; no API directory emitted.
+- 2026-08-01 [TOOL]: Normal `npm.cmd run build` -> passed after static-export changes, preserving the server-capable build.
+- 2026-08-01 [TOOL]: Browser QA -> desktop and 390px mobile rendered without overflow; three colored simulation bodies detected; 6,602 canvas-region pixels changed between frames; a Ye Wenjie branch advanced to turn 1 with no console errors.
+- 2026-08-01 [TOOL]: Portfolio commit `2277483` pushed to `Michaelwei08/personal-website`; Cloudflare Pages served the new route immediately.
+- 2026-08-01 [TOOL]: Live checks -> `/three-body`, `/three-body/demo/`, character routes, ending query route, CSP, and a hashed Next.js asset all returned HTTP 200; live Three.js canvas rendered with no console warnings or errors.

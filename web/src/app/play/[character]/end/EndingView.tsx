@@ -4,20 +4,27 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Character } from "@/lib/characters";
-import { AXIS_COLOR, AXIS_LABEL, AXIS_TAGLINE, type Axis } from "@/lib/factions";
+import { AXES, AXIS_COLOR, AXIS_LABEL, AXIS_TAGLINE, type Axis } from "@/lib/factions";
 
 export default function EndingView({
   character,
-  axis,
 }: {
   character: Character;
-  axis: Axis;
 }) {
+  const [axis, setAxis] = useState<Axis>("frontier");
   const ending = character.endings[axis];
   const c = AXIS_COLOR[axis];
   const [revealed, setRevealed] = useState(0);
 
   useEffect(() => {
+    const axisParam = new URLSearchParams(window.location.search).get("axis");
+    if ((AXES as readonly string[]).includes(axisParam ?? "")) {
+      setAxis(axisParam as Axis);
+    }
+  }, []);
+
+  useEffect(() => {
+    setRevealed(0);
     let i = 0;
     const id = setInterval(() => {
       i++;
@@ -25,7 +32,7 @@ export default function EndingView({
       if (i >= ending.body.length + 2) clearInterval(id);
     }, 1100);
     return () => clearInterval(id);
-  }, [ending.body.length]);
+  }, [axis, ending.body.length]);
 
   return (
     <div className="relative min-h-[100vh]">
